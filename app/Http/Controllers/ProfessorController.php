@@ -12,6 +12,6 @@ class ProfessorController extends Controller
     public function index()
     {
         //echo Auth::user()->email;
-        return view('Professor.CreaTasques');
+        return view('professor.CreaTasques');
     }
 }
