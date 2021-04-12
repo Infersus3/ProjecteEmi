@@ -18,10 +18,8 @@
                 <td>
                     <button id="btnGroupDrop1" type="button" class="btn btn-sm btn-secondary dropdown-toggle" data-toggle="dropdown"> Assignar </button>
                     <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                        <a class="dropdown-item" href="#!">Usuari</a>
                         <a class="dropdown-item" href="#!">Alumne</a>
                         <a class="dropdown-item" href="#!">Professor</a>
-                        <a class="dropdown-item" href="#!">Admin</a>
                     </div>
                 </td>
                 <td>
@@ -35,10 +33,8 @@
                     <td>
                     <button id="btnGroupDrop1" type="button" class="btn btn-sm btn-secondary dropdown-toggle" data-toggle="dropdown"> Assignar </button>
                     <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                        <a class="dropdown-item" href="#!">Usuari</a>
                         <a class="dropdown-item" href="#!">Alumne</a>
                         <a class="dropdown-item" href="#!">Professor</a>
-                        <a class="dropdown-item" href="#!">Admin</a>
                     </div>
                     </td>
                     <td>
@@ -53,7 +49,7 @@
         <div class="col-md-4">
         <div class="card">
                 <div class="card-header">
-                    <h5 class="card-title">Professors</h5>
+                    <h5 class="card-title">Alumnes</h5>
                 </div>
                 <div class="card-body">
                     <div class="card-body">
@@ -65,10 +61,8 @@
                 <td>
                     <button id="btnGroupDrop1" type="button" class="btn btn-sm btn-secondary dropdown-toggle" data-toggle="dropdown"> Assignar </button>
                     <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                        <a class="dropdown-item" href="#!">Usuari</a>
                         <a class="dropdown-item" href="#!">Alumne</a>
                         <a class="dropdown-item" href="#!">Professor</a>
-                        <a class="dropdown-item" href="#!">Admin</a>
                     </div>
                 </td>
                 <td>
@@ -82,10 +76,8 @@
                     <td>
                     <button id="btnGroupDrop1" type="button" class="btn btn-sm btn-secondary dropdown-toggle" data-toggle="dropdown"> Assignar </button>
                     <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                        <a class="dropdown-item" href="#!">Usuari</a>
                         <a class="dropdown-item" href="#!">Alumne</a>
                         <a class="dropdown-item" href="#!">Professor</a>
-                        <a class="dropdown-item" href="#!">Admin</a>
                     </div>
                     </td>
                     <td>
@@ -100,7 +92,7 @@
         <div class="col-md-4">
         <div class="card">
                 <div class="card-header">
-                    <h5 class="card-title">Professors</h5>
+                    <h5 class="card-title">Usuaris</h5>
                 </div>
                 <div class="card-body">
                     <div class="card-body">
@@ -112,10 +104,8 @@
                 <td>
                     <button id="btnGroupDrop1" type="button" class="btn btn-sm btn-secondary dropdown-toggle" data-toggle="dropdown"> Assignar </button>
                     <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                        <a class="dropdown-item" href="#!">Usuari</a>
                         <a class="dropdown-item" href="#!">Alumne</a>
                         <a class="dropdown-item" href="#!">Professor</a>
-                        <a class="dropdown-item" href="#!">Admin</a>
                     </div>
                 </td>
                 <td>
@@ -129,10 +119,8 @@
                     <td>
                     <button id="btnGroupDrop1" type="button" class="btn btn-sm btn-secondary dropdown-toggle" data-toggle="dropdown"> Assignar </button>
                     <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                        <a class="dropdown-item" href="#!">Usuari</a>
                         <a class="dropdown-item" href="#!">Alumne</a>
                         <a class="dropdown-item" href="#!">Professor</a>
-                        <a class="dropdown-item" href="#!">Admin</a>
                     </div>
                     </td>
                     <td>
