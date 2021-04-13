@@ -13,10 +13,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+/*Route::get('/', function () {
     return view('admin.admin');
-});
+});*/
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [App\Http\Controllers\AdminController::class, 'administrarUsers'])->name('administrar');
+Route::get('/admin/{id}', [App\Http\Controllers\AdminController::class, 'addAlumne'])->name('add_alumne');

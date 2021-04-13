@@ -15,10 +15,10 @@ class CreateProfessorsTable extends Migration
     {
         Schema::create('professors', function (Blueprint $table) {
             $table->id();
-            $table->string('dni');
+            $table->string('dni')->nullable();
             $table->string('nom');
-            $table->string('cognom');
-            $table->date('dataN');
+            $table->string('cognom')->nullable();
+            $table->date('dataN')->nullable();
             $table->foreignId('user_id')->constrained('users');
             $table->timestamps();
         });
