@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Alumne;
+use App\Models\Professor;
 use App\Models\User;
 
 class AdminController extends Controller
@@ -28,18 +29,57 @@ class AdminController extends Controller
 
     public function addAlumne(Request $request, $id){
         $user = User::find($id);
-        Alumne::create([
+        if ($user->professor_id != null){
+            $professor = Professor::find($user->professor_id);
+            $user->professor_id = null;
+            $user->save();
+            $professor->delete();
+        }
+
+        $alumne = Alumne::create([
             'nom' => $user->name, 
             'user_id' => $id
         ]);
-        $alumne = Alumne::where('user_id', $id)->get();
-        var_dump($alumne[0]);exit(); FES LES RELACIONS PERQUÈ NO VA, els belongs to aquell
         $user->alumne_id = $alumne->id;
-
+        $user->save();
         return redirect()->route('administrar');
     }
 
-    public function addProfessor(){
+    public function addProfessor(Request $request, $id){
+        $user = User::find($id);
+        if ($user->alumne_id != null){
+            $alumne = ALumne::find($user->alumne_id);
+            $user->alumne_id = null;
+            $user->save();
+            $alumne->delete();
+            
+        }
 
+        $professor = Professor::create([
+            'nom' => $user->name, 
+            'user_id' => $id
+        ]);
+        $user->professor_id = $professor->id;
+        $user->save();
+        return redirect()->route('administrar');
+    }
+
+    public function deleteUser(Request $request, $id){
+        $user = User::find($id);
+        if ($user->alumne_id != null){
+            $alumne = Alumne::find($user->alumne_id);
+            $user->alumne_id = null;
+            $user->save();
+            $alumne->delete();
+            $user->delete();
+        }else if ($user->professor_id != null){
+            $professor = Professor::find($user->professor_id);
+            $user->professor_id = null;
+            $user->save();
+            $professor->delete();
+            $user->delete();
+        }else{
+            $user->delete();
+        }
     }
 }
