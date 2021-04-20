@@ -24,7 +24,7 @@ class AdminController extends Controller
             }else{}
 
        }
-        return view('admin.administrarUsers', ['alumnes' => $alumnes, 'professors' => $professors, 'nousUsers' => $nousUsers]);
+        return view('admin.administrar_users', ['alumnes' => $alumnes, 'professors' => $professors, 'nousUsers' => $nousUsers]);
     }
 
     public function addAlumne(Request $request, $id){
@@ -57,7 +57,7 @@ class AdminController extends Controller
 
         $professor = Professor::create([
             'nom' => $user->name, 
-            'user_id' => $id
+            'user_id' => $id,
         ]);
         $user->professor_id = $professor->id;
         $user->save();
@@ -81,5 +81,6 @@ class AdminController extends Controller
         }else{
             $user->delete();
         }
+        return redirect()->route('administrar');
     }
 }

@@ -20,7 +20,7 @@ class Alumne
         if (Auth::user()->admin || Auth::user()->professor_id != null || Auth::user()->alumne_id != null){
             return $next($request);
         }else{
-            abort(403, "Restricted area, vinga deu");
+            abort(403, "Sol·licitud denegada, àrea per alumnes");
         }
         
     }

@@ -3,6 +3,7 @@
 @section('content')
 <div class="wrapper">
     <div class="row justify-content-center">
+    @if (Auth::user()->admin)
         <div class="col-md-4">
             <div class="card">
                 <div class="card-header">
@@ -32,6 +33,7 @@
                 </div>
             </div>
         </div>
+        @endif
         <div class="col-md-4">
         <div class="card">
                 <div class="card-header">
@@ -45,12 +47,14 @@
                 <td>
                     <h5 class="users">{{ $alumne->name }}</h5>
                 </td>
+                @if (Auth::user()->admin)
                 <td>
                     <button type="button" class="btn btn-sm btn-secondary dropdown-toggle" data-toggle="dropdown"> Assignar </button>
                     <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
                         <a class="dropdown-item" href="{{ route('add_professor', ['id' => $alumne->id]) }}">Professor</a>
                     </div>
                 </td>
+                @endif
                 <td>
                     <a href="{{ route('delete_users', ['id' => $alumne->id]) }}" class="btn btn-sm btn-danger btn-secondary" value="{{ $alumne->name }}"> Eliminar </a>
                 </td>
@@ -78,7 +82,9 @@
                     <button id="btnGroupDrop1" type="button" class="btn btn-sm btn-secondary dropdown-toggle" data-toggle="dropdown"> Assignar </button>
                     <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
                         <a class="dropdown-item" href="{{ route('add_alumne', ['id' => $user->id]) }}">Alumne</a>
-                        <a class="dropdown-item" href="{{ route('add_professor', ['id' => $user->id]) }}">Professor</a>
+                        @if (Auth::user()->admin)
+                            <a class="dropdown-item" href="{{ route('add_professor', ['id' => $user->id]) }}">Professor</a>
+                        @endif
                     </div>
                 </td>
                 <td>
@@ -103,6 +109,5 @@
    return window.confirm('Segur que vols esborrar l\'usuari'+' '+name);
     });
 })
-    
 </script>
 @endsection

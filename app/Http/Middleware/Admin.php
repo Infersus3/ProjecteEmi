@@ -20,7 +20,7 @@ class Admin
         if (Auth::user()->admin){
             return $next($request);
         }else{
-            abort(403, "Restricted area, vinga deu");
+            abort(403, "Sol·licitud denegada, àrea per admins");
         }
     }
 }
