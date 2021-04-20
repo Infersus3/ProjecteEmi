@@ -15,18 +15,15 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-<<<<<<< HEAD
-Auth::routes();
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home'); 
 
-Route::get('/creatasca' , [App\Http\Controllers\ProfessorController::class, 'index'])->name('home');
-=======
 Route::get('/', function () {
-    return view('admin.admin');
+    return view('layouts.app');
 });
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
->>>>>>> 02e6d07a99cf1b29d7cd23c6ebb404438220038f
+Route::get('/admin', [App\Http\Controllers\AdminController::class, 'administrarUsers'])->name('administrar')->middleware(['auth', 'professor']);
+Route::get('/admin/addAlumne/{id}', [App\Http\Controllers\AdminController::class, 'addAlumne'])->name('add_alumne');
+Route::get('/admin/addProfessor/{id}', [App\Http\Controllers\AdminController::class, 'addProfessor'])->name('add_professor');
+Route::get('/admin/deleteUser/{id}', [App\Http\Controllers\AdminController::class, 'deleteUser'])->name('delete_users');
