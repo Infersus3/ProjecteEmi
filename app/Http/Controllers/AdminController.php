@@ -70,6 +70,11 @@ class AdminController extends Controller
             $alumne = Alumne::find($user->alumne_id);
             $user->alumne_id = null;
             $user->save();
+            
+            //Treiem l'alumne dels grups que pertanyi
+            foreach ($alumne->grups as $grup){
+                $grup->alumnes()->detach($alumne->id);
+            }
             $alumne->delete();
             $user->delete();
         }else if ($user->professor_id != null){
