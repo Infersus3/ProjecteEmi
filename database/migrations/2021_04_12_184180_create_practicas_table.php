@@ -15,9 +15,9 @@ class CreatePracticasTable extends Migration
     {
         Schema::create('practicas', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('professor_id')->nullable()->constrained('professors');
+            $table->foreignId('professor_id')->constrained('professors');
+            $table->foreignId('mostra_cond_compost_id')->constrained('mostra_cond_composts');
             $table->string("enunciat");
-            $table->foreignId('mostra_cond_compost_id')->nullable()->constrained('mostra_cond_composts');
             $table->date("data_entrega");
             $table->timestamps();
         });

@@ -15,12 +15,12 @@ class CreateTascasTable extends Migration
     {
         Schema::create('tascas', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('practica_id')->nullable()->constrained('practicas');
-            $table->foreignId('condicion_id')->nullable()->constrained('condicions'); // GRUP ID
-            // Condicions que posen els alumnes
-            $table->integer("nota");
-            $table->string("comentari");
-            $table->date("data_lliurament");
+            $table->foreignId('practica_id')->constrained('practicas');
+            $table->foreignId('grup_id')->constrained('grups');
+            $table->foreignId('condicion_id')->nullable()->constrained('condicions'); 
+            $table->string("comentari")->nullable();
+            $table->integer("nota")->nullable();
+            $table->date("data_lliurament")->nullable();
             $table->timestamps();
         });
     }
