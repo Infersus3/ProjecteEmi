@@ -20,17 +20,21 @@ Route::get('/', function () {
     return view('layouts.app');
 });
 
-Route::get('/prova', [App\Http\Controllers\ProfessorController::class, 'prova2'])->name('prova');
-
 Auth::routes();
 
-Route::get('/admin', [App\Http\Controllers\AdminController::class, 'administrarUsers'])->name('administrar')->middleware(['auth', 'professor']);
+//Admin i Professor 
+// ----- Administració d'usuaris i rols'
+Route::get('/admin', [App\Http\Controllers\AdminController::class, 'administrarUsers'])->name('admin_users')->middleware(['auth', 'professor']);
 Route::get('/admin/addAlumne/{id}', [App\Http\Controllers\AdminController::class, 'addAlumne'])->name('add_alumne');
 Route::get('/admin/addProfessor/{id}', [App\Http\Controllers\AdminController::class, 'addProfessor'])->name('add_professor');
 Route::get('/admin/deleteUser/{id}', [App\Http\Controllers\AdminController::class, 'deleteUser'])->name('delete_users');
 
+//Professor 
+// ----- Administració de grups
 Route::get('/professor/adminGrups', [App\Http\Controllers\ProfessorController::class, 'adminGrups'])->name('admin_grups');
 Route::get('/professor/crearGrups', [App\Http\Controllers\ProfessorController::class, 'crearGrup'])->name('crear_grup');
 Route::get('/professor/eliminarGrups/{id}', [App\Http\Controllers\ProfessorController::class, 'eliminarGrup'])->name('eliminar_grup');
 Route::get('/professor/alumne/addGrup/{idAlumne}{idGrup}', [App\Http\Controllers\ProfessorController::class, 'addAlumneGrup'])->name('add_alumne_grup');
 Route::get('/professor/alumne/deleteGrup/{idAlumne}{idGrup}', [App\Http\Controllers\ProfessorController::class, 'deleteAlumneGrup'])->name('delete_alumne_grup');
+// ----- Administració de pràtiques
+Route::get('/professor/adminPractiques', [App\Http\Controllers\ProfessorController::class, 'adminPractiques'])->name('admin_practiques');

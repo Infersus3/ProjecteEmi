@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Grup;
 use App\Models\Alumne;
+use App\Models\Practica;
 use Illuminate\Http\Request;
 
 class ProfessorController extends Controller
@@ -16,6 +17,11 @@ class ProfessorController extends Controller
         $alumnes = Alumne::all();
         $grups = Grup::all();
         return view('professor.administrar_grups', ['grups' => $grups, 'alumnes' => $alumnes]);
+    }
+
+    public function adminPractiques(){
+        $practiques = Practica::all();
+        return view('professor.administrar_practiques', ['practiques' => $practiques]);
     }
 
     public function crearGrup(Request $request){

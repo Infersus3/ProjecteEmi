@@ -42,7 +42,7 @@ class AdminController extends Controller
         ]);
         $user->alumne_id = $alumne->id;
         $user->save();
-        return redirect()->route('administrar');
+        return redirect()->route('admin_users');
     }
 
     public function addProfessor(Request $request, $id){
@@ -51,8 +51,10 @@ class AdminController extends Controller
             $alumne = ALumne::find($user->alumne_id);
             $user->alumne_id = null;
             $user->save();
+            foreach ($alumne->grups as $grup){
+                $grup->alumnes()->detach($alumne->id);
+            }
             $alumne->delete();
-            
         }
 
         $professor = Professor::create([
@@ -61,7 +63,7 @@ class AdminController extends Controller
         ]);
         $user->professor_id = $professor->id;
         $user->save();
-        return redirect()->route('administrar');
+        return redirect()->route('admin_users');
     }
 
     public function deleteUser(Request $request, $id){
@@ -86,6 +88,6 @@ class AdminController extends Controller
         }else{
             $user->delete();
         }
-        return redirect()->route('administrar');
+        return redirect()->route('admin_users');
     }
 }
