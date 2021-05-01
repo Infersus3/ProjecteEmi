@@ -15,13 +15,10 @@
                     <h5 class="users">{{ $practica->nom}}</h5>
                 </td>
                 <td>
-                    <button id="btnGroupDrop1" type="button" class="btn btn-sm btn-secondary dropdown-toggle" data-toggle="dropdown"> Edit </button>
-                    <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                        <a class="dropdown-item" href="{{ route('add_alumne', ['id' => $professor->id]) }}">Alumne</a>
-                    </div>
+                <a href="#" class="btn btn-sm btn-primary btn-secondary"> Editar </a>
                 </td>
                 <td>
-                    <a href="{{ route('delete_users', ['id' => $professor->id]) }}" class="btn btn-sm btn-danger btn-secondary" value="{{ $professor->name }}"> Eliminar </button>
+                <a href="#" class="btn btn-sm btn-danger btn-secondary"> Eliminar </a>
                 </td>
                 </tr>
                 @endforeach

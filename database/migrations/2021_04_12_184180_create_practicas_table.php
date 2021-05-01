@@ -17,7 +17,7 @@ class CreatePracticasTable extends Migration
             $table->id();
             $table->foreignId('professor_id')->constrained('professors');
             $table->foreignId('mostra_cond_compost_id')->constrained('mostra_cond_composts');
-            $table->string("enunciat");
+            $table->string("titol");
             $table->date("data_entrega");
             $table->timestamps();
         });
