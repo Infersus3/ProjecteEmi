@@ -15,9 +15,9 @@ class CreateMostraCondCompostsTable extends Migration
     {
         Schema::create('mostra_cond_composts', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('mostra_id')->nullable()->constrained('mostras');
-            $table->foreignId('condicion_id')->nullable()->constrained('condicions');
-            $table->foreignId('compost_quimic_id')->nullable()->constrained('compost_quimics');
+            $table->foreignId('mostra_id')->constrained('mostras');
+            $table->foreignId('condicion_id')->constrained('condicions');
+            $table->foreignId('compost_quimic_id')->constrained('compost_quimics');
             $table->float("temps_retencio");
             $table->float("alçada_grafic");
             $table->timestamps();
