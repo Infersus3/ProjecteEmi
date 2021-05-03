@@ -1,69 +1,112 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\Grup;
 use App\Models\Alumne;
 use Illuminate\Http\Request;
+use App\Models\CompostQuimics;
+use App\Models\Condicio;
+use App\Models\Mostra;
+use App\Models\MostraCondComposts;
+use App\Models\Practica;
+use Illuminate\Support\Facades\Auth;
+
 
 class ProfessorController extends Controller
 {
     public function index()
     {
-<<<<<<< HEAD
-        //echo Auth::user()->email;
-        return view('professor.CreaPractica');
-=======
         return view('professor.crea_tasques');
     }
 
-    public function adminGrups(){
+    public function adminGrups()
+    {
         $alumnes = Alumne::all();
         $grups = Grup::all();
         return view('professor.administrar_grups', ['grups' => $grups, 'alumnes' => $alumnes]);
     }
 
-    public function crearGrup(Request $request){
+    public function crearGrup(Request $request)
+    {
         Grup::create(['nom' => $request->nom]);
         return redirect()->route('admin_grups');
     }
 
-    public function addAlumneGrup($idAlumne, $idGrup){
+    public function addAlumneGrup($idAlumne, $idGrup)
+    {
         $grup = Grup::find($idGrup);
         $grup->alumnes()->attach($idAlumne);
         return redirect()->route('admin_grups');
     }
 
-    public function deleteAlumneGrup($idAlumne,$idGrup){
+    public function deleteAlumneGrup($idAlumne, $idGrup)
+    {
         $grup = Grup::find($idGrup);
         $grup->alumnes()->detach($idAlumne);
         return redirect()->route('admin_grups');
     }
 
-    public function eliminarGrup($id){
+    public function eliminarGrup($id)
+    {
         $grup = Grup::find($id);
         $grup->alumnes()->detach();
         $grup->delete();
         return redirect()->route('admin_grups');
->>>>>>> c7e10acb75ee4a91a98b10f6ddb7ebdb4c18fec1
     }
-<<<<<<< Updated upstream
-=======
 
-    public function startTasca()
+    public function creaPractica(Request $request)
     {
 
-        $compost_quimic = Compost_quimics::all();
-        return view('professor.CreaPractica',['compost_quimic' => $compost_quimic]);
-        // $arrayC = [];
-        // $datos = Mostra_cond_composts::all();
+        if (isset($request->submit)) {
+            $mostra = Mostra::create([
+                'nom' => $request->nom_mostra,
+            ]);
 
-        // foreach($datos as $d){
-        //     if($d->mostra_id == 1){
-        //         array_push($arrayC, $d);
-        //     }
-        // }
-        // var_dump($arrayC[0]->mostra_id);exit();
+            $condicio = Condicio::create([
+                'alçada_col' => $request->alçada_col,
+                'temperatura' => $request->temperatura,
+                'eluent' => $request->eluent,
+                'diametre_col' => $request->diametre_col,
+                'tamany' => $request->tamany,
+                'velocitat' => $request->velocitat,
+                'detector_uv' => $request->detector_uv,
+            ]);
 
+            $max = CompostQuimics::all();
+            for ($i = 0; $i < count($max); $i++) {
+                $param = 'compost_q' . $i;
+                $selected = $request->$param;
+                if (isset($selected)) {
+
+                    $idCompost = 'idCompost' . $i;
+                    $tr = 'temps_retencio' . $i;
+                    $alçada = 'alçada_grafic' . $i;
+                    $validated = $request->validate([
+                        $tr => 'required|min:0.01|max:255|numeric',
+                        $alçada => 'required|min:0.01|max:1000|numeric',
+                    ]);
+                    $mostCondComp = MostraCondComposts::create([
+                        'mostra_id' => $mostra->id,
+                        'condicion_id' => $condicio->id,
+                        'compost_quimic_id' => $request->$idCompost,
+                        'temps_retencio' => $request->$tr,
+                        'alçada_grafic' => $request->$alçada,
+                    ]);
+                    // var_dump($request->$idCompost);
+                } else {
+                }
+            }
+            $professor = Auth::user()->professor_id;
+            Practica::create([
+                'professor_id' => $professor,
+                'enunciat' => $request->eluent,
+                'mostra_cond_compost_id' => $mostCondComp->id,
+                'data_entrega' => $request->data_entrega,
+            ]);
+        } else {
+            $compost_quimic = CompostQuimics::all();
+            return view('professor.crea_practica', ['compost_quimic' => $compost_quimic]);
+        }
     }
->>>>>>> Stashed changes
 }
