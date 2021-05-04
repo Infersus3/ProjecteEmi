@@ -37,5 +37,6 @@ Route::get('/professor/crearGrups', [App\Http\Controllers\ProfessorController::c
 Route::get('/professor/eliminarGrups/{id}', [App\Http\Controllers\ProfessorController::class, 'eliminarGrup'])->name('eliminar_grup');
 Route::get('/professor/alumne/addGrup/{idAlumne}{idGrup}', [App\Http\Controllers\ProfessorController::class, 'addAlumneGrup'])->name('add_alumne_grup');
 Route::get('/professor/alumne/deleteGrup/{idAlumne}{idGrup}', [App\Http\Controllers\ProfessorController::class, 'deleteAlumneGrup'])->name('delete_alumne_grup');
+Route::get('/professor/alumne/assignarPractica', [App\Http\Controllers\ProfessorController::class, 'adminTasca'])->name('admin_tasca');
 
 Route::get('/creatasca', [App\Http\Controllers\ProfessorController::class, 'creaPractica'])->name('crear_practica');

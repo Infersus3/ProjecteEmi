@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\CompostQuimics;
 use App\Models\Condicio;
 use App\Models\Mostra;
+use App\Models\Tasca;
 use App\Models\MostraCondComposts;
 use App\Models\Practica;
 use Illuminate\Support\Facades\Auth;
@@ -108,5 +109,21 @@ class ProfessorController extends Controller
             $compost_quimic = CompostQuimics::all();
             return view('professor.crea_practica', ['compost_quimic' => $compost_quimic]);
         }
+    }
+
+    public function adminTasca()
+    {
+        // $idPractica = 1
+        $tasquesAll = Tasca::all();
+        $tasques = array();
+        foreach ($tasquesAll as $tasca){
+            if ($tasca->practica_id == 1){
+                array_push($tasques, $tasca);
+            }
+        }
+        $grups = Grup::all();
+        $alumnes = Alumne::all();
+        
+        return view('professor.administrar_tasques', ['tasques' => $tasques, 'grups' => $grups, 'alumnes' => $alumnes]);
     }
 }

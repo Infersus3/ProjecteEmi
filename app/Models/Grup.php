@@ -13,7 +13,7 @@ class Grup extends Model
     protected $fillable = ['nom'];
 
     public function alumnes(){
-        return $this->belongsToMany(Alumne::class);
+        return $this->belongsToMany(Alumne::class, 'grup_alumnes');
     }
 
 }
