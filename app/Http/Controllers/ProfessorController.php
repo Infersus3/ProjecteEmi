@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Grup;
 use App\Models\Alumne;
+use App\Models\Practica;
 use Illuminate\Http\Request;
 use App\Models\CompostQuimics;
 use App\Models\Condicio;
@@ -28,8 +29,17 @@ class ProfessorController extends Controller
         return view('professor.administrar_grups', ['grups' => $grups, 'alumnes' => $alumnes]);
     }
 
+<<<<<<< HEAD
     public function crearGrup(Request $request)
     {
+=======
+    public function adminPractiques(){
+        $practiques = Practica::all();
+        return view('professor.administrar_practiques', ['practiques' => $practiques]);
+    }
+
+    public function crearGrup(Request $request){
+>>>>>>> 6e910556b7c5d5b7ef039f156af3679acdb3653a
         Grup::create(['nom' => $request->nom]);
         return redirect()->route('admin_grups');
     }
