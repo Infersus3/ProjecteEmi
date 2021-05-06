@@ -16,5 +16,7 @@ class MostraCondComposts extends Model
         'compost_quimic_id',
         'temps_retencio',
         'alçada_grafic',
+        'temps_inicial',
+        'temps_final',
     ];
 }

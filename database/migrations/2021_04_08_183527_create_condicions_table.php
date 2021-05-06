@@ -22,6 +22,7 @@ class CreateCondicionsTable extends Migration
             $table->float("tamany");
             $table->string("velocitat");
             $table->double("detector_uv");
+            $table->string("neutre")->nullable();
             $table->timestamps();
         });
     }

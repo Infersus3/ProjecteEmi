@@ -17,6 +17,7 @@ class Condicio extends Model
         'tamany',
         'velocitat',
         'detector_uv',
+        'neutre',
     ];
 
     protected $table =  "condicions";

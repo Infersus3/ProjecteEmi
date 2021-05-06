@@ -20,6 +20,8 @@ class CreateMostraCondCompostsTable extends Migration
             $table->foreignId('compost_quimic_id')->constrained('compost_quimics');
             $table->float("temps_retencio");
             $table->float("alçada_grafic");
+            $table->float("temps_inicial");
+            $table->float("temps_final");
             $table->timestamps();
         });
     }

@@ -12,7 +12,8 @@ class Alumne extends Model
 
     protected $fillable = ['nom', 'user_id', 'dni', 'cognom', 'dataN'];
 
+    
     public function grups(){
-        return $this->belongsToMany(Grup::class);
+        return $this->belongsToMany(Grup::class, 'grup_alumnes');
     }
 }

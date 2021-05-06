@@ -39,3 +39,5 @@ Route::get('/professor/alumne/addGrup/{idAlumne}{idGrup}', [App\Http\Controllers
 Route::get('/professor/alumne/deleteGrup/{idAlumne}{idGrup}', [App\Http\Controllers\ProfessorController::class, 'deleteAlumneGrup'])->name('delete_alumne_grup');
 
 Route::get('/creatasca', [App\Http\Controllers\ProfessorController::class, 'creaPractica'])->name('crear_practica');
+Route::get('/veurepractica', [App\Http\Controllers\ProfessorController::class, 'veurePractica'])->name('veure_practica');
+Route::get('/editapractica/{id}', [App\Http\Controllers\ProfessorController::class, 'editaPractica'])->name('edita_practica');
