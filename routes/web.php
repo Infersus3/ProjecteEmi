@@ -24,10 +24,6 @@ Route::get('/', function () {
     return view('layouts.app');
 });
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 6e910556b7c5d5b7ef039f156af3679acdb3653a
 Auth::routes();
 
 //Admin i Professor 
@@ -44,11 +40,8 @@ Route::get('/professor/crearGrups', [App\Http\Controllers\ProfessorController::c
 Route::get('/professor/eliminarGrups/{id}', [App\Http\Controllers\ProfessorController::class, 'eliminarGrup'])->name('eliminar_grup');
 Route::get('/professor/alumne/addGrup/{idAlumne}{idGrup}', [App\Http\Controllers\ProfessorController::class, 'addAlumneGrup'])->name('add_alumne_grup');
 Route::get('/professor/alumne/deleteGrup/{idAlumne}{idGrup}', [App\Http\Controllers\ProfessorController::class, 'deleteAlumneGrup'])->name('delete_alumne_grup');
-<<<<<<< HEAD
-Route::get('/professor/alumne/assignarPractica', [App\Http\Controllers\ProfessorController::class, 'adminTasca'])->name('admin_tasca');
-
-Route::get('/creatasca', [App\Http\Controllers\ProfessorController::class, 'creaPractica'])->name('crear_practica');
-=======
 // ----- Administració de pràtiques
 Route::get('/professor/adminPractiques', [App\Http\Controllers\ProfessorController::class, 'adminPractiques'])->name('admin_practiques');
->>>>>>> 6e910556b7c5d5b7ef039f156af3679acdb3653a
+Route::get('/professor/adminTasca', [App\Http\Controllers\ProfessorController::class, 'adminTasca'])->name('admin_tasques');
+Route::get('/professor/deleteTasca/{id}', [App\Http\Controllers\ProfessorController::class, 'deleteTasca'])->name('delete_tasca');
+Route::get('/professor/createTasca', [App\Http\Controllers\ProfessorController::class, 'createTasca'])->name('create_tasca');

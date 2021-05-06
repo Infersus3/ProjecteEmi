@@ -10,6 +10,7 @@
                 </div>
                 <div class="card-body">
                     <div class="card-body">
+                    <h3>Alumnes</h3>
                         <table class="table table-responsive">
                             @foreach ($tasques as $tasca)
                             @if ($tasca->alumne_id != null)
@@ -34,6 +35,7 @@
                             @endif
                             @endforeach
                         </table>
+                        <h3> Grups</h3>
                         <table class="table table-responsive">
                             @foreach ($tasques as $tasca)
                             @if ($tasca->grup_id != null)
@@ -71,27 +73,6 @@
                     <div class="card-body">
                         <table class="table table-responsive">
                             @if (count($tasques))
-                            @foreach ($tasques as $tasca)
-                            @if ($tasca->alumne_id != null)
-                            @foreach ($alumnes as $alumne)
-                            @if ($alumne->id != $tasca->alumne_id)
-                            <tr>
-                                <td>
-                                    <h5 class="users">{{ $alumne->nom }}</h5>
-                                </td>
-                                <td>
-                                    <button type="button" class="btn btn-sm btn-secondary dropdown-toggle" data-toggle="dropdown"> Assignar </button>
-                                    <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                        <a class="dropdown-item">Professor</a>
-                                    </div>
-                                </td>
-                                <td>
-                                    <a class="btn btn-sm btn-danger btn-secondary" value="{{ $alumne->nom }}"> Eliminar </a>
-                                </td>
-                            </tr>
-                            @endif
-                            @endforeach
-                            @else
                             @foreach ($alumnes as $alumne)
                             <tr>
                                 <td>
@@ -100,15 +81,19 @@
                                 <td>
                                     <button type="button" class="btn btn-sm btn-secondary dropdown-toggle" data-toggle="dropdown"> Assignar </button>
                                     <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                        @foreach ($tasques as $tasca)
+                                     
+                                        @if ($alumne->id != $tasca->alumne_id)
                                         <a class="dropdown-item">Professor</a>
+                                        @endif
+                                     
+                                        @endforeach
                                     </div>
                                 </td>
                                 <td>
                                     <a class="btn btn-sm btn-danger btn-secondary" value="{{ $alumne->nom }}"> Eliminar </a>
                                 </td>
                             </tr>
-                            @endforeach
-                            @endif
                             @endforeach
                             @else
                             @foreach ($alumnes as $alumne)
@@ -140,10 +125,7 @@
                     <div class="card-body">
                         <table class="table table-responsive">
                             @if (count($tasques))
-                            @foreach ($tasques as $tasca)
-                            @if ($tasca->grup_id != null)
                             @foreach ($grups as $grup)
-                            @if ($grup->id != $tasca->grup_id)
                             <tr>
                                 <td>
                                     <h5 class="users">{{ $grup->nom }}</h5>
@@ -151,14 +133,19 @@
                                 <td>
                                     <button type="button" class="btn btn-sm btn-secondary dropdown-toggle" data-toggle="dropdown"> Assignar </button>
                                     <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                        @foreach ($tasques as $tasca)
+                                     
+                                        @if ($grup->id != $tasca->grup_id)
                                         <a class="dropdown-item">Professor</a>
+                                        @endif
+                                      
+                                        @endforeach
                                     </div>
                                 </td>
                                 <td>
-                                    <a class="btn btn-sm btn-danger btn-secondary" value="{{ $grup->nom }}"> Eliminar </a>
+                                    <a class="btn btn-sm btn-danger btn-secondary" value="{{ $alumne->nom }}"> Eliminar </a>
                                 </td>
                             </tr>
-                            @endif
                             @endforeach
                             @else
                             @foreach ($grups as $grup)
@@ -167,37 +154,17 @@
                                     <h5 class="users">{{ $grup->nom }}</h5>
                                 </td>
                                 <td>
-                                    <button type="button" class="btn btn-sm btn-secondary dropdown-toggle" data-toggle="dropdown"> Assignar </button>
+                                    <button type="button" class="btn btn-sm btn-secondary dropdown-toggle" data-toggle="dropdown"> Assignar2 </button>
                                     <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
                                         <a class="dropdown-item">Professor</a>
                                     </div>
                                 </td>
                                 <td>
-                                    <a class="btn btn-sm btn-danger btn-secondary" value="{{ $grup->nom }}"> Eliminar </a>
+                                    <a class="btn btn-sm btn-danger btn-secondary" value="{{ $alumne->nom }}"> Eliminar </a>
                                 </td>
                             </tr>
                             @endforeach
                             @endif
-                            @endforeach
-                            @else
-                            @foreach ($grups as $grup)
-                            <tr>
-                                <td>
-                                    <h5 class="users">{{ $grup->nom }}</h5>
-                                </td>
-                                <td>
-                                    <button type="button" class="btn btn-sm btn-secondary dropdown-toggle" data-toggle="dropdown"> Assignar </button>
-                                    <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                        <a class="dropdown-item">Professor</a>
-                                    </div>
-                                </td>
-                                <td>
-                                    <a class="btn btn-sm btn-danger btn-secondary" value="{{ $grup->nom }}"> Eliminar </a>
-                                </td>
-                            </tr>
-                            @endforeach
-                            @endif
-
                         </table>
                     </div>
                 </div>
