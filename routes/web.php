@@ -24,14 +24,17 @@ Route::get('/', function () {
     return view('layouts.app');
 });
 
-
 Auth::routes();
 
-Route::get('/admin', [App\Http\Controllers\AdminController::class, 'administrarUsers'])->name('administrar')->middleware(['auth', 'professor']);
+//Admin i Professor 
+// ----- Administració d'usuaris i rols'
+Route::get('/admin', [App\Http\Controllers\AdminController::class, 'administrarUsers'])->name('admin_users')->middleware(['auth', 'professor']);
 Route::get('/admin/addAlumne/{id}', [App\Http\Controllers\AdminController::class, 'addAlumne'])->name('add_alumne');
 Route::get('/admin/addProfessor/{id}', [App\Http\Controllers\AdminController::class, 'addProfessor'])->name('add_professor');
 Route::get('/admin/deleteUser/{id}', [App\Http\Controllers\AdminController::class, 'deleteUser'])->name('delete_users');
 
+//Professor 
+// ----- Administració de grups
 Route::get('/professor/adminGrups', [App\Http\Controllers\ProfessorController::class, 'adminGrups'])->name('admin_grups');
 Route::get('/professor/crearGrups', [App\Http\Controllers\ProfessorController::class, 'crearGrup'])->name('crear_grup');
 Route::get('/professor/eliminarGrups/{id}', [App\Http\Controllers\ProfessorController::class, 'eliminarGrup'])->name('eliminar_grup');
@@ -42,3 +45,8 @@ Route::get('/creatasca', [App\Http\Controllers\ProfessorController::class, 'crea
 Route::get('/veurepractica', [App\Http\Controllers\ProfessorController::class, 'veurePractica'])->name('veure_practica');
 Route::get('/editapractica/{id}', [App\Http\Controllers\ProfessorController::class, 'editaPractica'])->name('edita_practica');
 Route::get('/eliminapractica/{id}', [App\Http\Controllers\ProfessorController::class, 'eliminaPractica'])->name('elimina_practica');
+// ----- Administració de pràtiques
+Route::get('/professor/adminPractiques', [App\Http\Controllers\ProfessorController::class, 'adminPractiques'])->name('admin_practiques');
+Route::get('/professor/adminTasca', [App\Http\Controllers\ProfessorController::class, 'adminTasca'])->name('admin_tasques');
+Route::get('/professor/deleteTasca/{id}', [App\Http\Controllers\ProfessorController::class, 'deleteTasca'])->name('delete_tasca');
+Route::get('/professor/createTasca', [App\Http\Controllers\ProfessorController::class, 'createTasca'])->name('create_tasca');

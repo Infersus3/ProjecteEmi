@@ -83,8 +83,7 @@
 @endsection
 
 @section('scripts')
-<script>
-    
+<script> 
     $(function(){
     $('.delAlumnes').on('click', function(){
         let alumne = $(this).attr('value');

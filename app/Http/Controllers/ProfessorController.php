@@ -4,12 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Grup;
 use App\Models\Alumne;
+use App\Models\Practica;
 use Illuminate\Http\Request;
 use App\Models\CompostQuimics;
 use App\Models\Condicio;
 use App\Models\Mostra;
+use App\Models\Tasca;
 use App\Models\MostraCondComposts;
-use App\Models\Practica;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -27,8 +28,12 @@ class ProfessorController extends Controller
         return view('professor.administrar_grups', ['grups' => $grups, 'alumnes' => $alumnes]);
     }
 
-    public function crearGrup(Request $request)
-    {
+    public function adminPractiques(){
+        $practiques = Practica::all();
+        return view('professor.administrar_practiques', ['practiques' => $practiques]);
+    }
+
+    public function crearGrup(Request $request){
         Grup::create(['nom' => $request->nom]);
         return redirect()->route('admin_grups');
     }
@@ -222,6 +227,41 @@ class ProfessorController extends Controller
         $mostra_cond_comp->delete();
 
         return redirect()->route('veure_practica');
+    }
 
+    public function adminTasca($id)
+    {
+        $tasquesAll = Tasca::all();
+        $tasques = array();
+        foreach ($tasquesAll as $tasca){
+            if ($tasca->practica_id == $id){
+                array_push($tasques, $tasca);
+            }
+        }
+        $grups = Grup::all();
+        $alumnes = Alumne::all();
+        
+        return view('professor.assignar_practiques', ['tasques' => $tasques, 'grups' => $grups, 'alumnes' => $alumnes, 'practica_id' => $id]);
+    }
+
+    public function createTasca(Request $request){
+        if (isset($request->grup_id)){
+            Tasca::create([
+                'grup_id' => $request->grup_id, 
+                'practica_id' => $request->practica_id,
+            ]);
+        }else{
+            Tasca::create([
+                'alumne_id' => $request->alumne_id, 
+                'practica_id' => $request->practica_id,
+            ]);
+        }
+        return redirect()->route('admin_tasques');
+    }
+
+    public function deleteTasca($id){
+        $tasca = Tasca::find($id);
+        $tasca->delete();
+        return redirect()->route('admin_tasques');
     }
 }
