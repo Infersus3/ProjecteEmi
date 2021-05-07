@@ -25,31 +25,31 @@
                         <form id="myform" action="{{ route ('crear_practica') }}">
                             <div class="form-group">
                                 <label for="labelNom">Nom de la mostra</label>
-                                <input type="text" name="nom_mostra" class="form-control" id="labelNom" placeholder="" required>
+                                <input type="text" name="nom_mostra" class="form-control" value="{{ old('nom_mostra') }}" id="labelNom"  required>
                             </div>
                             <div class="form-group">
                                 <label for="labelCol">Alçada de la columna (mm)</label>
-                                <input type="number" name="alçada_col" class="form-control" id="labelCol" placeholder="" required>
+                                <input type="number" name="alçada_col" class="form-control" value="{{ old('alçada_col') }}" id="labelCol"  required>
                             </div>
                             <div class="form-group">
                                 <label for="labelTemp">Temperatura</label>
-                                <input type="text" name="temperatura" class="form-control" id="labelTemp" placeholder="" required>
+                                <input type="text" name="temperatura" class="form-control" value="{{ old('temperatura') }}" id="labelTemp"  required>
                             </div>
                     </div>
                     <div class="col">
                         <div class="form-group">
                             <label for="labelEluent">Eluent</label>
-                            <input type="text" name="eluent" class="form-control" id="labelEluent" placeholder="" required>
+                            <input type="text" name="eluent" class="form-control" value="{{ old('eluent') }}" id="labelEluent"  required>
                         </div>
 
 
                         <div class="form-group">
                             <label for="labelDiam">Diametre columna (mm)</label>
-                            <input type="number" name="diametre_col" class="form-control" id="labelDiam" placeholder="" required>
+                            <input type="number" name="diametre_col" class="form-control" value="{{ old('diametre_col') }}" id="labelDiam"  required>
                         </div>
                         <div class="form-group">
                             <label for="labelSpeed">Velocitat (ml/min)</label>
-                            <input type="text" name="velocitat" class="form-control" id="labelSpeed" placeholder="" required>
+                            <input type="text" name="velocitat" class="form-control" value="{{ old('velocitat') }}" id="labelSpeed"  required>
                         </div>
                     </div>
                 </div>
@@ -58,15 +58,15 @@
 
                         <div class="form-group">
                             <label for="labelDetector">Detector UV (nm)</label>
-                            <input type="number" name="detector_uv" class="form-control" id="labelDetector" placeholder="" required>
+                            <input type="number" name="detector_uv" class="form-control" value="{{ old('detector_uv') }}" id="labelDetector" required>
                         </div>
                         <div class="form-group">
                             <label for="labelTamany">Tamany de la particula (µm)</label>
-                            <input type="number" name="tamany" class="form-control" id="labelTamany" placeholder="" required>
+                            <input type="number" name="tamany" class="form-control" value="{{ old('tamany') }}" id="labelTamany"  required>
                         </div>
                         <div class="form-group">
                             <label for="labelNeutre">Neutre</label>
-                            <input type="text" name="neutre" class="form-control" id="labelNeutre" placeholder="">
+                            <input type="text" name="neutre" class="form-control" value="{{ old('neutre') }}" id="labelNeutre" >
                         </div>
                     </div>
                 </div>
@@ -78,19 +78,19 @@
                         <input type="hidden" value="{{ $compost_quimic[$i]->id }}" name="idCompost{{ $i }}"></br>
                         <div style="display: none;" class="form-group tr{{ $i }}">
                             <label for="labelTR{{ $i }}">Temps de retenció (TR)</label>
-                            <input class="form-control" type="number" name="temps_retencio{{ $i }}" id="labelTR{{ $i }}" placeholder="">
+                            <input class="form-control" type="number" name="temps_retencio{{ $i }}" id="labelTR{{ $i }}">
                         </div>
                         <div style="display: none;" class="form-group algraf{{ $i }}">
                             <label for="labelAlçGrafic{{ $i }}">Alçada del gràfic (mAU)</label>
-                            <input class="form-control" type="number" name="alçada_grafic{{ $i }}" id="labelAlçGrafic{{ $i }}" placeholder="">
+                            <input class="form-control" type="number" name="alçada_grafic{{ $i }}" id="labelAlçGrafic{{ $i }}">
                         </div>
                         <div style="display: none;" class="form-group ti{{ $i }}">
                             <label for="labelTI{{ $i }}">Temps Inicial (min)</label>
-                            <input class="form-control" type="number" name="temps_inicial{{ $i }}" id="labelTI{{ $i }}" placeholder="">
+                            <input class="form-control" type="number" name="temps_inicial{{ $i }}" id="labelTI{{ $i }}" >
                         </div>
                         <div style="display: none;" class="form-group tf{{ $i }}">
                             <label for="labelTF{{ $i }}">Temps Final (min)</label>
-                            <input class="form-control" type="number" name="temps_final{{ $i }}" id="labelTF{{ $i }}" placeholder="">
+                            <input class="form-control" type="number" name="temps_final{{ $i }}" id="labelTF{{ $i }}" >
                         </div>
                         @endfor
 
@@ -106,7 +106,7 @@
 
                 <div class="form-group">
                     <label for="data_entrega">Data d'entrega</label>
-                    <input class="form-control" name="data_entrega" type="date" id="data_entrega" required>
+                    <input class="form-control" name="data_entrega" type="date" value="{{ old('data_entrega') }}" id="data_entrega" required>
                 </div>
                 <label for="labelVisible">Visible</label>
                 <input type="checkbox" id="labelVisible" name="visiblebox"><br><br>

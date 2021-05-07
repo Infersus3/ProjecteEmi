@@ -8,14 +8,9 @@
                 <div class="card-header">{{ __('Dashboard') }}</div>
 
                 <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                            <p>iniciat</p>
+                        <div class="alert alert-danger" role="alert">
+                            <h1>Pàgina home EMI Quimics</h1>
                         </div>
-                    @endif
-
-                    {{ __('You are logged in!') }}
                 </div>
             </div>
         </div>

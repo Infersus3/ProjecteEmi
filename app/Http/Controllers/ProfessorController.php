@@ -60,10 +60,14 @@ class ProfessorController extends Controller
         return redirect()->route('admin_grups');
     }
 
+    public function adminPractica()
+    {
+        $practica = Practica::all();
+        return view('professor.administrar_practiques', ['practica' => $practica]);
+    }
+
     public function creaPractica(Request $request)
     {
-
-        $compost_quimic = CompostQuimics::all();
 
         if (isset($request->submit)) {
             $mostra = Mostra::create([
@@ -106,7 +110,6 @@ class ProfessorController extends Controller
                         'temps_inicial' => $request->$ti,
                         'temps_final' => $request->$tf,
                     ]);
-                    // var_dump($request->$idCompost);
                 } else {
                 }
             }
@@ -124,18 +127,12 @@ class ProfessorController extends Controller
                 'data_entrega' => $request->data_entrega,
                 'visible' => $visible,
             ]);
-            return redirect()->route('veure_practica');
+            return redirect()->route('admin_practicas');
 
         } else {
             $compost_quimic = CompostQuimics::all();
             return view('professor.crea_practica', ['compost_quimic' => $compost_quimic]);
         }
-    }
-
-    public function veurePractica()
-    {
-        $practica = Practica::all();
-        return view('professor.visualitza_practica', ['practica' => $practica]);
     }
 
     public function editaPractica($id, Request $request)
@@ -195,7 +192,7 @@ class ProfessorController extends Controller
             $pract->save();
             $mostra->save();
             $condicio->save();
-            return redirect()->route('veure_practica');
+            return redirect()->route('admin_practicas');
         } else {
             $practica = Practica::find($id);
             $mccId = $practica->mostra_cond_compost_id;
@@ -219,6 +216,7 @@ class ProfessorController extends Controller
             return view('professor.edita_practica', ['compost_quimic' => $compost_quimic, 'arrayComposts' => $arrayComposts, 'mostra' => $mostra, 'condicio' => $condicio, 'practica' => $practica]);
         }
     }
+
     public function eliminaPractica($id){
         $pract = Practica::find($id);
         Practica::destroy($id);
@@ -226,7 +224,7 @@ class ProfessorController extends Controller
         $mostra_cond_comp = MostraCondComposts::find($mccid);
         $mostra_cond_comp->delete();
 
-        return redirect()->route('veure_practica');
+        return redirect()->route('admin_practicas');
     }
 
     public function adminTasca($id)
@@ -241,7 +239,7 @@ class ProfessorController extends Controller
         $grups = Grup::all();
         $alumnes = Alumne::all();
         
-        return view('professor.assignar_practiques', ['tasques' => $tasques, 'grups' => $grups, 'alumnes' => $alumnes, 'practica_id' => $id]);
+        return view('professor.assignar_practica', ['tasques' => $tasques, 'grups' => $grups, 'alumnes' => $alumnes, 'practica_id' => $id]);
     }
 
     public function createTasca(Request $request){

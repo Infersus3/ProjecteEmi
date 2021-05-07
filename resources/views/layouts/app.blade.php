@@ -53,6 +53,34 @@
                                 </li>
                             @endif
                         @else
+                            @if (Auth::user()->admin || Auth::user()->professor_id)
+                            <li class="nav-item dropdown">
+                                <a class="nav-link" href="{{ route('admin_users')}}">
+                                    Usuaris
+                                </a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link" href="{{ route('admin_grups')}}">
+                                    Grups
+                                </a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link" href="{{ route('admin_practicas')}}">
+                                    Activitats
+                                </a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a  class="nav-link" href="#">
+                                    Avaluar
+                                </a>
+                            </li>
+                            @elseif (Auth::user()->alumne_id)
+                            <li class="nav-item dropdown">
+                                <a class="nav-link" href="#">
+                                    Activitats
+                                </a>
+                            </li>
+                            @endif
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}

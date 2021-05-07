@@ -2,12 +2,12 @@
 
 @section('content')
 <div class="wrapper">
-    <div class="row ">
-        <div class="col-md-8 d-inline-flex">
-        <form action="{{ route('crear_grup') }}">
+    <form action="{{ route('crear_grup') }}">
             <input type="text" name="nom" required placeholder="Nom del grup">
             <input type="submit" class="btn btn-sm btn-primary" value="Crear Grup">
         <form>
+    <div class="row ">
+        <div class="col-md-8 d-inline-flex">
             @foreach ($grups as $grup)
             <div class="col-md-4 d-inline-flex">
                 <div class="card">
