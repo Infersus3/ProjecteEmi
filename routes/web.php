@@ -41,3 +41,4 @@ Route::get('/professor/alumne/deleteGrup/{idAlumne}{idGrup}', [App\Http\Controll
 Route::get('/creatasca', [App\Http\Controllers\ProfessorController::class, 'creaPractica'])->name('crear_practica');
 Route::get('/veurepractica', [App\Http\Controllers\ProfessorController::class, 'veurePractica'])->name('veure_practica');
 Route::get('/editapractica/{id}', [App\Http\Controllers\ProfessorController::class, 'editaPractica'])->name('edita_practica');
+Route::get('/eliminapractica/{id}', [App\Http\Controllers\ProfessorController::class, 'eliminaPractica'])->name('elimina_practica');

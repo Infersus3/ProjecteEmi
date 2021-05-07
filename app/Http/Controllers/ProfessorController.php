@@ -119,6 +119,8 @@ class ProfessorController extends Controller
                 'data_entrega' => $request->data_entrega,
                 'visible' => $visible,
             ]);
+            return redirect()->route('veure_practica');
+
         } else {
             $compost_quimic = CompostQuimics::all();
             return view('professor.crea_practica', ['compost_quimic' => $compost_quimic]);
@@ -168,22 +170,11 @@ class ProfessorController extends Controller
                             $param->temps_inicial = $request->$idTempsI;
                             $param->temps_final = $request->$idTempsF;
                             $param->save();
-                            // var_dump("FUNCIONA ");
-                            // var_dump($param->compost_quimic_id);
-
-                            //var_dump($param->compost_quimic_id  . "Sale callate pls " . $mccObj->compost_quimic_id);
                         } else {
-                            // var_dump($mos . "Hola Sale" . $param->mostra_id . $param->mostra_id . $mos);
-                            //var_dump($request->$idMostCondCompost);
-
-                            // var_dump("NO FUNCIONA");
                         }
                     }
-                    //  var_dump("123123123");
                 } else {
-                    
-                    
-                }//var_dump($selected);
+                }
             }
             $mostra->nom = $request->nom_mostra;
             $condicio->alçada_col = $request->alçada_col;
@@ -199,6 +190,7 @@ class ProfessorController extends Controller
             $pract->save();
             $mostra->save();
             $condicio->save();
+            return redirect()->route('veure_practica');
         } else {
             $practica = Practica::find($id);
             $mccId = $practica->mostra_cond_compost_id;
@@ -221,5 +213,15 @@ class ProfessorController extends Controller
 
             return view('professor.edita_practica', ['compost_quimic' => $compost_quimic, 'arrayComposts' => $arrayComposts, 'mostra' => $mostra, 'condicio' => $condicio, 'practica' => $practica]);
         }
+    }
+    public function eliminaPractica($id){
+        $pract = Practica::find($id);
+        Practica::destroy($id);
+        $mccid = $pract->mostra_cond_compost_id;
+        $mostra_cond_comp = MostraCondComposts::find($mccid);
+        $mostra_cond_comp->delete();
+
+        return redirect()->route('veure_practica');
+
     }
 }

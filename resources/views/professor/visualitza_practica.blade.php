@@ -19,7 +19,10 @@
                             <a href="{{ route('edita_practica', ['id' => $practica[$i]->id]) }}" class="btn btn-sm btn-info">Editar</a>
                         </td>
                         <td>
-                            <a href="" class="btn btn-sm btn-danger btn-secondary" value=""> Eliminar </a>
+                            <a href="{{ route('elimina_practica', ['id' => $practica[$i]->id]) }}" class="btn btn-sm btn-danger btn-secondary" value=""> Eliminar </a>
+                        </td>
+                        <td>
+                            <a href="" class="btn btn-sm btn-success" value="">Asignar</a>
                         </td>
                         </tr>
                         @endfor
