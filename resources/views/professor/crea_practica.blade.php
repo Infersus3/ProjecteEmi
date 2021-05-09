@@ -28,34 +28,35 @@
                                 <input type="text" name="nom_mostra" class="form-control" value="{{ old('nom_mostra') }}" id="labelNom"  required>
                             </div>
                             <div class="form-group">
-                                <label for="labelCol">Alçada de la columna (mm)</label>
-                                <input type="number" name="alçada_col" class="form-control" value="{{ old('alçada_col') }}" id="labelCol"  required>
-                            </div>
-                            <div class="form-group">
                                 <label for="labelTemp">Temperatura</label>
                                 <input type="text" name="temperatura" class="form-control" value="{{ old('temperatura') }}" id="labelTemp"  required>
+                            </div>
+                            <div class="form-group">
+                                <label for="labelCol">Alçada de la columna (mm)</label>
+                                <input type="number" name="alçada_col" class="form-control" value="{{ old('alçada_col') }}" id="labelCol"  required>
                             </div>
                     </div>
                     <div class="col">
                         <div class="form-group">
+                                <label for="labelNomCol">Nom de la columna</label>
+                                <input type="text" name="nom_col" class="form-control" value="{{ old('nom_col') }}" id="labelNomCol"  required>
+                            </div>
+                        <div class="form-group">
                             <label for="labelEluent">Eluent</label>
                             <input type="text" name="eluent" class="form-control" value="{{ old('eluent') }}" id="labelEluent"  required>
                         </div>
-
-
                         <div class="form-group">
                             <label for="labelDiam">Diametre columna (mm)</label>
                             <input type="number" name="diametre_col" class="form-control" value="{{ old('diametre_col') }}" id="labelDiam"  required>
-                        </div>
-                        <div class="form-group">
-                            <label for="labelSpeed">Velocitat (ml/min)</label>
-                            <input type="text" name="velocitat" class="form-control" value="{{ old('velocitat') }}" id="labelSpeed"  required>
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col">
-
+                        <div class="form-group">
+                            <label for="labelSpeed">Velocitat (ml/min)</label>
+                            <input type="text" name="velocitat" class="form-control" value="{{ old('velocitat') }}" id="labelSpeed"  required>
+                        </div>
                         <div class="form-group">
                             <label for="labelDetector">Detector UV (nm)</label>
                             <input type="number" name="detector_uv" class="form-control" value="{{ old('detector_uv') }}" id="labelDetector" required>
@@ -73,26 +74,30 @@
 
                 <div class="form-group">
                     <label class="form-check-label" for="labelSelect">Selecció de compost</label><br>
+                    @if (count($compost_quimic))
                     @for ($i = 0; $i < count($compost_quimic); $i++) <label for="{{ $i }}">{{ $compost_quimic[$i]->nom }}</label>
                         <input class="cbox" type="checkbox" id="{{ $i }}" name="compost_q{{ $i }}">
                         <input type="hidden" value="{{ $compost_quimic[$i]->id }}" name="idCompost{{ $i }}"></br>
                         <div style="display: none;" class="form-group tr{{ $i }}">
                             <label for="labelTR{{ $i }}">Temps de retenció (TR)</label>
-                            <input class="form-control" type="number" name="temps_retencio{{ $i }}" id="labelTR{{ $i }}">
+                            <input class="form-control" type="number" name="temps_retencio{{ $i }}" value="{{ old('temps_retencio$i') }}" id="labelTR{{ $i }}">
                         </div>
                         <div style="display: none;" class="form-group algraf{{ $i }}">
                             <label for="labelAlçGrafic{{ $i }}">Alçada del gràfic (mAU)</label>
-                            <input class="form-control" type="number" name="alçada_grafic{{ $i }}" id="labelAlçGrafic{{ $i }}">
+                            <input class="form-control" type="number" name="alçada_grafic{{ $i }}" value="{{ old('alçada_grafic$i') }}" id="labelAlçGrafic{{ $i }}">
                         </div>
                         <div style="display: none;" class="form-group ti{{ $i }}">
                             <label for="labelTI{{ $i }}">Temps Inicial (min)</label>
-                            <input class="form-control" type="number" name="temps_inicial{{ $i }}" id="labelTI{{ $i }}" >
+                            <input class="form-control" type="number" name="temps_inicial{{ $i }}" value="{{ old('temps_inicial$i') }}" id="labelTI{{ $i }}" >
                         </div>
                         <div style="display: none;" class="form-group tf{{ $i }}">
                             <label for="labelTF{{ $i }}">Temps Final (min)</label>
-                            <input class="form-control" type="number" name="temps_final{{ $i }}" id="labelTF{{ $i }}" >
+                            <input class="form-control" type="number" name="temps_final{{ $i }}" value="{{ old('temps_final$i') }}" id="labelTF{{ $i }}" >
                         </div>
                         @endfor
+                    @else
+                        <h5 id="nullCompostos" style="color:red;"> Necesites tenir mínim 1 compost</h5>
+                    @endif
 
                 </div>
                 <!-- <div class="form-group">
@@ -110,7 +115,7 @@
                 </div>
                 <label for="labelVisible">Visible</label>
                 <input type="checkbox" id="labelVisible" name="visiblebox"><br><br>
-                <input type="submit" name="submit" class="btn btn-dark" onclick="alertame()" value="Envia"></input>
+                <input type="submit" name="submit" class="btn btn-dark" value="Envia"></input>
                 </form>
             </div>
         </div>
@@ -123,10 +128,6 @@
     <!-- Your application script -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script>
-        function alertame() {
-            var values = $('#exampleFormControlSelect1').val();
-            console.log(values);
-        }
         $(document).ready(function() {
             $('input[type="checkbox"]').click(function(e) {
                 var tar = e.target.id;
@@ -141,8 +142,17 @@
                     $('.ti' + tar).css("display", "block");
                     $('.tf' + tar).css("display", "block");
                 }
-            })
+            });
+            $('input[type="submit"]').click(function(e) {
+                var compostsMinim = $('#nullCompostos');
+                if (isset(compostsMinim)){
+                    alert('Necesites tenir mínim 1 compost');
+                    console.log(compostsMinim);
+                    return false;
+                }
+            });
         });
+        
 
         function unfoldVariables() {
             //var values = $(':checkbox');

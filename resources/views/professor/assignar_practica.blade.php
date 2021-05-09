@@ -26,7 +26,7 @@
                                     </div>
                                 </td>
                                 <td>
-                                    <a class="btn btn-sm btn-danger delAlumne" href="{{ route('delete_tasca', ['tasca_id' => $tasca->grup_id])}}" value="{{ $alumne->nom }}"> Eliminar </a>
+                                    <a class="btn btn-sm btn-danger delAlumne" href="{{ route('delete_tasca', ['practica_id' => $practica->id, 'tasca_id' => $tasca->id]) }}" value="{{ $alumne->nom }}"> Eliminar </a>
                                 </td>
                             </tr>
                             @endif
@@ -49,7 +49,7 @@
                                     </div>
                                 </td>
                                 <td>
-                                    <a class="btn btn-sm btn-danger delGrup" href="{{ route('delete_tasca', ['tasca_id' => $tasca->grup_id])}}" value="{{ $grup->nom }}"> Eliminar </a>
+                                    <a class="btn btn-sm btn-danger delGrup" href="{{ route('delete_tasca', ['practica_id' => $practica->id, 'tasca_id' => $tasca->id]) }}" value="{{ $grup->nom }}"> Eliminar </a>
                                 </td>
                             </tr>
                             @endif
@@ -81,7 +81,7 @@
                                 @endphp
                                 @if (!$in)
                                 <td>
-                                    <button type="button" class="btn btn-sm btn-primary" href="{{ route('create_tasca', ['practica_id' => $practica_id, 'alumne_id' => $alumne->id])}}"> Assignar </button>
+                                    <a class="btn btn-sm btn-primary" href="{{ route('create_tasca', ['practica_id' => $practica->id, 'alumne_id' => $alumne->id])}}"> Assignar </a>
                                 </td>
                                 @else
                                 <td>
@@ -91,7 +91,7 @@
                                 @endif
                                 @else
                                 <td>
-                                    <button type="button" class="btn btn-sm btn-primary" href="{{ route('create_tasca', ['practica_id' => $practica_id, 'alumne_id' => $alumne->id])}}"> Assignar </button>
+                                    <a class="btn btn-sm btn-primary" href="{{ route('create_tasca', ['practica_id' => $practica->id, 'alumne_id' => $alumne->id])}}"> Assignar </a>
                                 </td>
                             </tr>
                             @endif
@@ -121,7 +121,7 @@
                                 @endphp
                                 @if (!$in)
                                 <td>
-                                    <button type="button" class="btn btn-sm btn-primary" href="{{ route('create_tasca', ['practica_id' => $practica_id, 'grup_id' => $grup->id])}}"> Assignar </button>
+                                    <a class="btn btn-sm btn-primary" href="{{ route('create_tasca', ['practica_id' => $practica->id, 'grup_id' => $grup->id])}}"> Assignar </a>
                                 </td>
                                 @else
                                 <td>
@@ -130,7 +130,7 @@
                                 @endif
                                 @else
                                 <td>
-                                    <button type="button" class="btn btn-sm btn-primary" href="{{ route('create_tasca', ['practica_id' => $practica_id, 'grup_id' => $grup->id])}}"> Assignar </button>
+                                    <a class="btn btn-sm btn-primary" href="{{ route('create_tasca', ['practica_id' => $practica->id, 'grup_id' => $grup->id])}}"> Assignar </a>
                                 </td>
                             </tr>
                             @endif

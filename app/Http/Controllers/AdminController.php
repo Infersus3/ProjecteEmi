@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Alumne;
 use App\Models\Professor;
 use App\Models\User;
+use App\Models\Tasca;
+
 
 class AdminController extends Controller
 {
@@ -49,6 +51,12 @@ class AdminController extends Controller
         $user = User::find($id);
         if ($user->alumne_id != null){
             $alumne = ALumne::find($user->alumne_id);
+            $tasques = Tasca::all();
+            foreach ($tasques as $tasca){
+                if ($tasca->alumne_id == $alumne->id){
+                    $tasca->delete();
+                }
+            }
             $user->alumne_id = null;
             $user->save();
             foreach ($alumne->grups as $grup){
@@ -70,6 +78,12 @@ class AdminController extends Controller
         $user = User::find($id);
         if ($user->alumne_id != null){
             $alumne = Alumne::find($user->alumne_id);
+            $tasques = Tasca::all();
+            foreach ($tasques as $tasca){
+                if ($tasca->alumne_id == $alumne->id){
+                    $tasca->delete();
+                }
+            }
             $user->alumne_id = null;
             $user->save();
             

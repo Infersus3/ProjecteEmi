@@ -38,24 +38,26 @@
                     </div>
                     <div class="col">
                         <div class="form-group">
+                                <label for="labelNomCol">Nom de la columna</label>
+                                <input type="text" value="{{ $condicio->nom_col }}" name="nom_col" class="form-control" id="labelNomCol" placeholder="" required>
+                            </div>
+                        <div class="form-group">
                             <label for="labelEluent">Eluent</label>
                             <input type="text" value="{{ $condicio->eluent }}" name="eluent" class="form-control" id="labelEluent" placeholder="" required>
                         </div>
-
-
                         <div class="form-group">
                             <label for="labelDiam">Diametre columna (mm)</label>
                             <input type="number" value="{{ $condicio->diametre_col }}" name="diametre_col" class="form-control" id="labelDiam" placeholder="" required>
                         </div>
-                        <div class="form-group">
-                            <label for="labelSpeed">Velocitat (ml/min)</label>
-                            <input type="text" value="{{ $condicio->velocitat }}" name="velocitat" class="form-control" id="labelSpeed" placeholder="" required>
-                        </div>
+
                     </div>
                 </div>
                 <div class="row">
                     <div class="col">
-
+                        <div class="form-group">
+                            <label for="labelSpeed">Velocitat (ml/min)</label>
+                            <input type="text" value="{{ $condicio->velocitat }}" name="velocitat" class="form-control" id="labelSpeed" placeholder="" required>
+                        </div>
                         <div class="form-group">
                             <label for="labelDetector">Detector UV (nm)</label>
                             <input type="number" value="{{ $condicio->detector_uv }}" name="detector_uv" class="form-control" id="labelDetector" placeholder="" required>

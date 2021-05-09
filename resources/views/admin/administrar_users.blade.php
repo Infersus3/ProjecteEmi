@@ -106,7 +106,7 @@
     $(function(){
     $('.btn-danger').on('click', function(){
     let name = $(this).attr('value');
-   return window.confirm('Segur que vols esborrar l\'usuari'+' '+name);
+    return window.confirm('Segur que vols esborrar l\'usuari'+' '+name+', s\'eliminaran les activitats asociades a ell');
     });
 })
 </script>

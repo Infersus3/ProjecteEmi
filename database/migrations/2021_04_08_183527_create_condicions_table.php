@@ -15,6 +15,7 @@ class CreateCondicionsTable extends Migration
     {
         Schema::create('condicions', function (Blueprint $table) {
             $table->id();
+            $table->integer("nom_col");
             $table->integer("alçada_col");
             $table->float("temperatura");
             $table->string("eluent");
