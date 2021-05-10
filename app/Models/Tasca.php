@@ -16,6 +16,7 @@ class Tasca extends Model
         'condicion_id',
         'comentari',
         'nota',
-        'data_lliurament'
+        'data_lliurament',
+        'correcta',
     ];
 }

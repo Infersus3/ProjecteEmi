@@ -1,0 +1,89 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\Grup;
+use App\Models\Alumne;
+use App\Models\Practica;
+use Illuminate\Http\Request;
+use App\Models\CompostQuimics;
+use App\Models\Condicio;
+use App\Models\Mostra;
+use App\Models\Tasca;
+use App\Models\MostraCondComposts;
+
+class AlumneController extends Controller
+{
+    //
+    public function realitzaTasca($id, Request $request)
+    {
+        if (isset($request->submit)) {
+
+            $tasca = Tasca::find($id);
+            $practId = $tasca->practica_id;
+            $practica = Practica::find($$practId);
+            $mccId = $practica->mostra_cond_compost_id;
+            $mcc = MostraCondComposts::find($mccId);
+            $mostraid = $mcc->mostra_id;
+            $totesmcc = MostraCondComposts::all();
+            $cond = $mcc->condicion_id;
+            $condicio = Condicio::find($cond);
+            $ok = true;
+
+            if (
+                $condicio->alçada_col == $request->alçada_col
+                && $condicio->temperatura == $request->temperatura
+                && $condicio->eluent == $request->eluent
+                && $condicio->diametre_col == $request->diametre_col
+                && $condicio->tamany == $request->tamany
+                && $condicio->velocitat == $request->velocitat
+                && $condicio->detector_uv == $request->detector_uv
+                && $condicio->neutre == $request->neutre
+            ) {
+                $ok = true;
+            } else {
+                $ok = false;
+            }
+
+            if ($ok == true) {
+                $tasca->condicion_id = $cond;
+                $tasca->correcta = true;
+                //return a la vista de lista tasques
+            } else {
+                $condIncorrecta = Condicio::create();
+                $tasca->condicion_id = $condIncorrecta->id;
+                $tasca->correcta = false;
+                $condIncorrecta->alçada_col = $request->alçada_col;
+                $condIncorrecta->temperatura = $request->temperatura;
+                $condIncorrecta->eluent = $request->eluent;
+                $condIncorrecta->diametre_col = $request->diametre_col;
+                $condIncorrecta->tamany = $request->tamany;
+                $condIncorrecta->velocitat = $request->velocitat;
+                $condIncorrecta->detector_uv = $request->detector_uv;
+                $condIncorrecta->neutre = $request->neutre;
+                //return a una vista de error
+            }
+        } else {
+            $practica = Practica::find($id);
+            $mccId = $practica->mostra_cond_compost_id;
+            $mcc = MostraCondComposts::find($mccId);
+            $mostraid = $mcc->mostra_id;
+            $totesmcc = MostraCondComposts::all();
+            $arrayComposts = array();
+            $mostraGuardar = 0;
+            $condicioGuardar = 0;
+            foreach ($totesmcc as $param) {
+                if ($param->mostra_id == $mostraid) {
+                    array_push($arrayComposts, $param);
+                    $mostraGuardar = $param->mostra_id;
+                    $condicioGuardar = $param->condicion_id;
+                }
+            }
+            $mostra = Mostra::find($mostraGuardar);
+            $condicio = Condicio::find($condicioGuardar);
+            $compost_quimic = CompostQuimics::all();
+
+            return view('alumne.fer_practica', ['compost_quimic' => $compost_quimic, 'arrayComposts' => $arrayComposts, 'mostra' => $mostra, 'condicio' => $condicio, 'practica' => $practica]);
+        }
+    }
+}

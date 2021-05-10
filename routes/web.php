@@ -50,4 +50,7 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
     Route::get('/professor/createTasca', [App\Http\Controllers\ProfessorController::class, 'createTasca'])->name('create_tasca');
 });
 
+// Alumne
+// ----- Realitzacio de la tasca
+Route::get('/alumne/realitzaTasca/{id}', [App\Http\Controllers\AlumneController::class, 'realitzaTasca'])->name('realitza_tasca');
 
