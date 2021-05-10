@@ -18,7 +18,7 @@
                             @endforeach
                         </td>
                         <td>
-                            <a href="{{ route('realitzar_tasca', ['id' => $tasca->id]) }}" class="btn btn-sm btn-info">Haser el meneo</a>
+                            <a href="{{ route('realitza_tasca', ['id' => $tasca->id]) }}" class="btn btn-sm btn-info">Haser el meneo</a>
                         </td>
                         </tr>
                         @endforeach

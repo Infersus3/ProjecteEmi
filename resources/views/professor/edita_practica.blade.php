@@ -68,7 +68,7 @@
                         </div>
                         <div class="form-group">
                             <label for="labelNeutre">Neutre</label>
-                            <input type="text" name="neutre" class="form-control" id="labelNeutre" placeholder="">
+                            <input type="text" name="neutre"  value="{{ $condicio->neutre }}" class="form-control" id="labelNeutre" placeholder="">
                         </div>
                     </div>
                 </div>

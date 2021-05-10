@@ -143,7 +143,7 @@ class ProfessorController extends Controller
             if ($request->visiblebox) {
                 $visible = 1;
             } else {
-                $visible = 0;
+                $visible = null;
             }
             $professor = Auth::user()->professor_id;
             Practica::create([

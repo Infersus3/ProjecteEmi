@@ -36,7 +36,7 @@ class AlumneController extends Controller
 
             $tasca = Tasca::find($id);
             $practId = $tasca->practica_id;
-            $practica = Practica::find($$practId);
+            $practica = Practica::find($practId);
             $mccId = $practica->mostra_cond_compost_id;
             $mcc = MostraCondComposts::find($mccId);
             $mostraid = $mcc->mostra_id;
@@ -63,23 +63,31 @@ class AlumneController extends Controller
             if ($ok == true) {
                 $tasca->condicion_id = $cond;
                 $tasca->correcta = true;
+                $tasca->save();
+                return redirect()->route('tasques_alumne');
                 //return a la vista de lista tasques
             } else {
-                $condIncorrecta = Condicio::create();
+                $condIncorrecta = Condicio::create([
+                    'alçada_col' => $request->alçada_col,
+                    "temperatura" => $request->temperatura,
+                    "eluent" => $request->eluent,
+                    "diametre_col" => $request->diametre_col,
+                    "tamany" => $request->tamany,
+                    "velocitat" => $request->velocitat,
+                    "detector_uv" => $request->detector_uv,
+                    "neutre" => $request->neutre,
+                    'nom_col' => $request->nom_col,
+                ]);
                 $tasca->condicion_id = $condIncorrecta->id;
                 $tasca->correcta = false;
-                $condIncorrecta->alçada_col = $request->alçada_col;
-                $condIncorrecta->temperatura = $request->temperatura;
-                $condIncorrecta->eluent = $request->eluent;
-                $condIncorrecta->diametre_col = $request->diametre_col;
-                $condIncorrecta->tamany = $request->tamany;
-                $condIncorrecta->velocitat = $request->velocitat;
-                $condIncorrecta->detector_uv = $request->detector_uv;
-                $condIncorrecta->neutre = $request->neutre;
+                $tasca->save();
+                return redirect()->route('tasques_alumne');
                 //return a una vista de error
             }
         } else {
-            $practica = Practica::find($id);
+            $tasca = Tasca::find($id);
+            $practId = $tasca->practica_id;
+            $practica = Practica::find($practId);
             $mccId = $practica->mostra_cond_compost_id;
             $mcc = MostraCondComposts::find($mccId);
             $mostraid = $mcc->mostra_id;
@@ -96,9 +104,10 @@ class AlumneController extends Controller
             }
             $mostra = Mostra::find($mostraGuardar);
             $condicio = Condicio::find($condicioGuardar);
+            $condN = $condicio->neutre;
             $compost_quimic = CompostQuimics::all();
 
-            return view('alumne.fer_practica', ['compost_quimic' => $compost_quimic, 'arrayComposts' => $arrayComposts, 'mostra' => $mostra, 'condicio' => $condicio, 'practica' => $practica]);
+            return view('alumne.fer_practica', ['compost_quimic' => $compost_quimic,'tasca' => $tasca, 'condN' => $condN, 'arrayComposts' => $arrayComposts, 'mostra' => $mostra,'practica' => $practica]);
         }
     }
 }
