@@ -47,7 +47,7 @@
                         </div>
                         <div class="form-group">
                             <label for="labelDiam">Diametre columna (mm)</label>
-                            <input type="number" name="diametre_col" class="form-control" value="{{ old('diametre_col') }}" id="labelDiam"  required>
+                            <input type="number" step="any" name="diametre_col" class="form-control" value="{{ old('diametre_col') }}" id="labelDiam"  required>
                         </div>
                     </div>
                 </div>
@@ -59,11 +59,11 @@
                         </div>
                         <div class="form-group">
                             <label for="labelDetector">Detector UV (nm)</label>
-                            <input type="number" name="detector_uv" class="form-control" value="{{ old('detector_uv') }}" id="labelDetector" required>
+                            <input type="number" step="any" name="detector_uv" class="form-control" value="{{ old('detector_uv') }}" id="labelDetector" required>
                         </div>
                         <div class="form-group">
                             <label for="labelTamany">Tamany de la particula (µm)</label>
-                            <input type="number" name="tamany" class="form-control" value="{{ old('tamany') }}" id="labelTamany"  required>
+                            <input type="number" step="any" name="tamany" class="form-control" value="{{ old('tamany') }}" id="labelTamany"  required>
                         </div>
                         <div class="form-group">
                             <label for="labelNeutre">Neutre</label>
@@ -80,19 +80,19 @@
                         <input type="hidden" value="{{ $compost_quimic[$i]->id }}" name="idCompost{{ $i }}"></br>
                         <div style="display: none;" class="form-group tr{{ $i }}">
                             <label for="labelTR{{ $i }}">Temps de retenció (TR)</label>
-                            <input class="form-control" type="number" name="temps_retencio{{ $i }}" value="{{ old('temps_retencio$i') }}" id="labelTR{{ $i }}">
+                            <input class="form-control" step="any" type="number" name="temps_retencio{{ $i }}" value="{{ old('temps_retencio$i') }}" id="labelTR{{ $i }}">
                         </div>
                         <div style="display: none;" class="form-group algraf{{ $i }}">
                             <label for="labelAlçGrafic{{ $i }}">Alçada del gràfic (mAU)</label>
-                            <input class="form-control" type="number" name="alçada_grafic{{ $i }}" value="{{ old('alçada_grafic$i') }}" id="labelAlçGrafic{{ $i }}">
+                            <input class="form-control" step="any" type="number" name="alçada_grafic{{ $i }}" value="{{ old('alçada_grafic$i') }}" id="labelAlçGrafic{{ $i }}">
                         </div>
                         <div style="display: none;" class="form-group ti{{ $i }}">
                             <label for="labelTI{{ $i }}">Temps Inicial (min)</label>
-                            <input class="form-control" type="number" name="temps_inicial{{ $i }}" value="{{ old('temps_inicial$i') }}" id="labelTI{{ $i }}" >
+                            <input class="form-control" step="any" type="number" name="temps_inicial{{ $i }}" value="{{ old('temps_inicial$i') }}" id="labelTI{{ $i }}" >
                         </div>
                         <div style="display: none;" class="form-group tf{{ $i }}">
                             <label for="labelTF{{ $i }}">Temps Final (min)</label>
-                            <input class="form-control" type="number" name="temps_final{{ $i }}" value="{{ old('temps_final$i') }}" id="labelTF{{ $i }}" >
+                            <input class="form-control" step="any" type="number" name="temps_final{{ $i }}" value="{{ old('temps_final$i') }}" id="labelTF{{ $i }}" >
                         </div>
                         @endfor
                     @else

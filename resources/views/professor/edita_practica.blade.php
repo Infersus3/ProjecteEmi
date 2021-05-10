@@ -47,7 +47,7 @@
                         </div>
                         <div class="form-group">
                             <label for="labelDiam">Diametre columna (mm)</label>
-                            <input type="number" value="{{ $condicio->diametre_col }}" name="diametre_col" class="form-control" id="labelDiam" placeholder="" required>
+                            <input type="number" step="any" value="{{ $condicio->diametre_col }}" name="diametre_col" class="form-control" id="labelDiam" placeholder="" required>
                         </div>
 
                     </div>
@@ -56,15 +56,15 @@
                     <div class="col">
                         <div class="form-group">
                             <label for="labelSpeed">Velocitat (ml/min)</label>
-                            <input type="text" value="{{ $condicio->velocitat }}" name="velocitat" class="form-control" id="labelSpeed" placeholder="" required>
+                            <input type="text" step="any" value="{{ $condicio->velocitat }}" name="velocitat" class="form-control" id="labelSpeed" placeholder="" required>
                         </div>
                         <div class="form-group">
                             <label for="labelDetector">Detector UV (nm)</label>
-                            <input type="number" value="{{ $condicio->detector_uv }}" name="detector_uv" class="form-control" id="labelDetector" placeholder="" required>
+                            <input type="number" step="any" value="{{ $condicio->detector_uv }}" name="detector_uv" class="form-control" id="labelDetector" placeholder="" required>
                         </div>
                         <div class="form-group">
                             <label for="labelTamany">Tamany de la particula (µm)</label>
-                            <input type="number" value="{{ $condicio->tamany }}" name="tamany" class="form-control" id="labelTamany" placeholder="" required>
+                            <input type="number" step="any" value="{{ $condicio->tamany }}" name="tamany" class="form-control" id="labelTamany" placeholder="" required>
                         </div>
                         <div class="form-group">
                             <label for="labelNeutre">Neutre</label>
@@ -83,19 +83,19 @@
 
                         <div class="form-group tr{{ $i }}">
                             <label for="labelTR{{ $i }}">Temps de retenció (TR)</label>
-                            <input class="form-control" value="{{ $arrayComposts[$i]->temps_retencio }}" type="number" name="temps_retencio{{ $i }}" id="labelTR{{ $i }}" placeholder="">
+                            <input class="form-control" step="any" value="{{ $arrayComposts[$i]->temps_retencio }}" type="number" name="temps_retencio{{ $i }}" id="labelTR{{ $i }}" placeholder="">
                         </div>
                         <div class="form-group algraf{{ $i }}">
                             <label for="labelAlçGrafic{{ $i }}">Alçada del gràfic (mAU)</label>
-                            <input class="form-control" value="{{ $arrayComposts[$i]->alçada_grafic }}" type="number" name="alçada_grafic{{ $i }}" id="labelAlçGrafic{{ $i }}" placeholder="">
+                            <input class="form-control" step="any" value="{{ $arrayComposts[$i]->alçada_grafic }}" type="number" name="alçada_grafic{{ $i }}" id="labelAlçGrafic{{ $i }}" placeholder="">
                         </div>
                         <div class="form-group ti{{ $i }}">
                             <label for="labelTI{{ $i }}">Temps Inicial (min)</label>
-                            <input class="form-control" value="{{ $arrayComposts[$i]->temps_inicial }}" type="number" name="temps_inicial{{ $i }}" id="labelTI{{ $i }}" placeholder="">
+                            <input class="form-control" step="any" value="{{ $arrayComposts[$i]->temps_inicial }}" type="number" name="temps_inicial{{ $i }}" id="labelTI{{ $i }}" placeholder="">
                         </div>
                         <div class="form-group tf{{ $i }}">
                             <label for="labelTF{{ $i }}">Temps Final (min)</label>
-                            <input class="form-control" value="{{ $arrayComposts[$i]->temps_final }}" type="number" name="temps_final{{ $i }}" id="labelTF{{ $i }}" placeholder="">
+                            <input class="form-control" step="any" value="{{ $arrayComposts[$i]->temps_final }}" type="number" name="temps_final{{ $i }}" id="labelTF{{ $i }}" placeholder="">
                         </div>
                 </div>
                 @endif
