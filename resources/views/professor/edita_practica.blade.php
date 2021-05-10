@@ -108,6 +108,7 @@
                 </div>
                 <label for="labelVisible">Visible</label>
                 <input type="checkbox" id="labelVisible" value="{{ $practica->visible }}" name="visiblebox"><br><br>
+                <a href="{{ route('admin_practicas')}}" class="btn btn-secondary">Cancelar</a>
                 <input type="submit" name="submit" class="btn btn-dark" onclick="alertame()" value="Envia"></input>
 
                 </form>
