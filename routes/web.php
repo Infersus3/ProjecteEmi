@@ -51,3 +51,11 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
 });
 
 
+//Alumne
+// ----- Fer tasques
+Route::middleware(['auth', 'alumne'])->group(function () {
+Route::get('/alumne/tasques', [App\Http\Controllers\AlumneController::class, 'listTasques'])->name('tasques_alumne');
+
+});
+
+

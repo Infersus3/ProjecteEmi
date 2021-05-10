@@ -6,7 +6,7 @@
         <div class="col-md-4">
             <div class="card">
                 <div class="card-header">
-                    <h5 class="card-title">Practica noseque</h5>
+                    <h5 class="card-title">{{ $practica->titol }}</h5>
                 </div>
                 <div class="card-body">
                     <div class="card-body">

@@ -115,6 +115,7 @@
                 </div>
                 <label for="labelVisible">Visible</label>
                 <input type="checkbox" id="labelVisible" name="visiblebox"><br><br>
+                <a href="{{ route('admin_practicas')}}" class="btn btn-secondary">Cancelar</a>
                 <input type="submit" name="submit" class="btn btn-dark" value="Envia"></input>
                 </form>
             </div>
@@ -139,8 +140,8 @@
                 } else {
                     $('.tr' + tar).css("display", "none");
                     $('.algraf' + tar).css("display", "none");
-                    $('.ti' + tar).css("display", "block");
-                    $('.tf' + tar).css("display", "block");
+                    $('.ti' + tar).css("display", "none");
+                    $('.tf' + tar).css("display", "none");
                 }
             });
             $('input[type="submit"]').click(function(e) {
