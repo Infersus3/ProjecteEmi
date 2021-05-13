@@ -17,18 +17,18 @@ use Illuminate\Support\Facades\Auth;
 class AlumneController extends Controller
 {
     //
-    public function listTasques(){
+    public function listTasques()
+    {
         $alumne_id = Auth::user()->alumne_id;
         $tasques = Tasca::all();
         $practiques = Practica::all();
         $tasquesAlumne = array();
-        foreach ($tasques as $tasca){
-            if($tasca->alumne_id == $alumne_id){
+        foreach ($tasques as $tasca) {
+            if ($tasca->alumne_id == $alumne_id) {
                 array_push($tasquesAlumne, $tasca);
             }
         }
         return view('alumne.administrar_tasques', ['tasques' => $tasquesAlumne, 'practiques' => $practiques]);
-        
     }
     public function realitzaTasca($id, Request $request)
     {
@@ -38,10 +38,10 @@ class AlumneController extends Controller
             $practId = $tasca->practica_id;
             $practica = Practica::find($practId);
             $mccId = $practica->mostra_cond_compost_id;
-            $mcc = MostraCondComposts::find($mccId);
-            $mostraid = $mcc->mostra_id;
+            $mostra_cond_compost = MostraCondComposts::find($mccId);
+            $mostraid = $mostra_cond_compost->mostra_id;
             $totesmcc = MostraCondComposts::all();
-            $cond = $mcc->condicion_id;
+            $cond = $mostra_cond_compost->condicion_id;
             $condicio = Condicio::find($cond);
             $ok = true;
 
@@ -64,8 +64,17 @@ class AlumneController extends Controller
                 $tasca->condicion_id = $cond;
                 $tasca->correcta = true;
                 $tasca->save();
-                return redirect()->route('tasques_alumne');
-                //return a la vista de lista tasques
+                $arrayComposts = array();
+                foreach ($totesmcc as $param) {
+                    if ($param->mostra_id == $mostraid) {
+                        array_push($arrayComposts, $param);
+                        $mostraGuardar = $param->mostra_id;
+                        $condicioGuardar = $param->condicion_id;
+                    }
+                    $compost_quimic = CompostQuimics::all();
+                }
+
+                return view('alumne.veure_grafic', ['compost_quimic' => $compost_quimic, 'mostra_cond_compost' => $mostra_cond_compost, 'tasca' => $tasca, 'arrayComposts' => $arrayComposts]);
             } else {
                 $condIncorrecta = Condicio::create([
                     'alçada_col' => $request->alçada_col,
@@ -82,7 +91,6 @@ class AlumneController extends Controller
                 $tasca->correcta = false;
                 $tasca->save();
                 return redirect()->route('tasques_alumne');
-                //return a una vista de error
             }
         } else {
             $tasca = Tasca::find($id);
@@ -107,7 +115,7 @@ class AlumneController extends Controller
             $condN = $condicio->neutre;
             $compost_quimic = CompostQuimics::all();
 
-            return view('alumne.fer_practica', ['compost_quimic' => $compost_quimic,'tasca' => $tasca, 'condN' => $condN, 'arrayComposts' => $arrayComposts, 'mostra' => $mostra,'practica' => $practica]);
+            return view('alumne.fer_practica', ['compost_quimic' => $compost_quimic, 'tasca' => $tasca, 'condN' => $condN, 'arrayComposts' => $arrayComposts, 'mostra' => $mostra, 'practica' => $practica]);
         }
     }
 }
