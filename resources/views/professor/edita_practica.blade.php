@@ -146,207 +146,45 @@
             </div>
         </div>
     </div>
-    <div id="chart" style="height: 00px; width:auto;"></div>
-    <!-- Charting library -->
-    <script src="https://unpkg.com/echarts/dist/echarts.min.js"></script>
-    <!-- Chartisan -->
-    <script src="https://unpkg.com/@chartisan/echarts/dist/chartisan_echarts.js"></script>
-    <!-- Your application script -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+</div>
+</div>
+@endsection
 
-
-    <div>
-        <canvas id="myChart" style="height: 400px;"></canvas>
-    </div>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-    <script>
-        var ctx = document.getElementById('myChart');
-        var myChart = new Chart(ctx, {
-            type: 'scatter',
-            data: {
-                datasets: [{
-                    fill: false,
-                    tension: 0.5,
-                    symbolSize: 7,
-                    animationEasing: 'cubicInOut',
-                    label: 'Chromatogram',
-                    yAxisID: 'Absorption',
-                    data: [{
-                            x: 0,
-                            y: 0,
-                        }, {
-                            x: 0.2,
-                            y: 2,
-                        }, {
-                            x: 0.6,
-                            y: 0,
-                        }, {
-                            x: 1,
-                            y: 0,
-                        }, {
-                            x: 2,
-                            y: 10,
-                        },
-                        {
-                            x: 2,
-                            y: 0,
-                        }, {
-                            x: 3,
-                            y: 0,
-                        }, {
-                            x: 3.5,
-                            y: 2,
-                        }, {
-                            x: 4,
-                            y: 0,
-                        }, {
-                            x: 5,
-                            y: 0,
-                        }, {
-                            x: 6,
-                            y: 0,
-                        }, {
-                            x: 6.2,
-                            y: 2,
-                        }, {
-                            x: 6.6,
-                            y: 0,
-                        }, {
-                            x: 7,
-                            y: 0,
-                        }, {
-                            x: 8,
-                            y: 10,
-                        },
-                        {
-                            x: 8,
-                            y: 0,
-                        }, {
-                            x: 9,
-                            y: 0,
-                        }, {
-                            x: 9.5,
-                            y: 2,
-                        }, {
-                            x: 10,
-                            y: 0,
-                        }, {
-                            x: 11,
-                            y: 0,
-                        }
-                    ],
-                    borderColor: 'rgb(51, 102, 255)',
-                    showLine: true,
-                    pointRadius: 0,
-                    borderWidth: 2,
-                    cubicInterpolationMode: 'linear',
-                    steppedLine: 'after'
-                }]
-            },
-            options: {
-                responsive: true,
-            }
-        });
-
-        // === include 'setup' then 'config' above ===
-    </script>
-    <script>
-        function alertame() {
-            var values = $('#exampleFormControlSelect1').val();
-            console.log(values);
-        }
-        $(document).ready(function() {
-            $('input[type="checkbox"]').click(function(e) {
-                var tar = e.target.id;
-                if ($(".cbox").is(':checked')) {
-                    $('.tr' + tar).css("display", "block");
-                    $('.algraf' + tar).css("display", "block");
-                    $('.ti' + tar).css("display", "block");
-                    $('.tf' + tar).css("display", "block");
-                } else {
-                    $('.tr' + tar).css("display", "none");
-                    $('.algraf' + tar).css("display", "none");
-                    $('.ti' + tar).css("display", "none");
-                    $('.tf' + tar).css("display", "none");
-                }
-            })
-            if ($('#labelVisible').val()) {
-                $('#labelVisible').prop("checked", true);
-            }
-        });
-
-        function unfoldVariables() {
-            //var values = $(':checkbox');
-            if (document.getElementById("cbox").checked == true) {
-                $('.tr').css("display", "block");
-                $('.algraf').css("display", "block");
+@section('scripts')
+<script>
+    function alertame() {
+        var values = $('#exampleFormControlSelect1').val();
+        console.log(values);
+    }
+    $(document).ready(function() {
+        $('input[type="checkbox"]').click(function(e) {
+            var tar = e.target.id;
+            if ($(".cbox").is(':checked')) {
+                $('.tr' + tar).css("display", "block");
+                $('.algraf' + tar).css("display", "block");
+                $('.ti' + tar).css("display", "block");
+                $('.tf' + tar).css("display", "block");
             } else {
-                $('.tr').css("display", "none");
-                $('.algraf').css("display", "none");
+                $('.tr' + tar).css("display", "none");
+                $('.algraf' + tar).css("display", "none");
+                $('.ti' + tar).css("display", "none");
+                $('.tf' + tar).css("display", "none");
             }
+        })
+        if ($('#labelVisible').val()) {
+            $('#labelVisible').prop("checked", true);
         }
-    </script>
+    });
 
-    <!--<script>
-        
-
-        
-
-        const chart = new Chartisan({
-            el: '#chart',
-            url: "@chart('grafic_tasca')",
-            hooks: new ChartisanHooks()
-                .datasets([{
-                        type: 'line',
-                        smooth: false,
-                        fill: true,
-                        lineStyle: {
-                            width: 2
-                        },
-                        symbolSize: 7,
-                        animationEasing: 'cubicInOut',
-                        areaStyle: {
-                            opacity: 0.8,
-                            color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-                                offset: 0,
-                                color: 'rgba(128, 255, 165)'
-                            }, {
-                                offset: 1,
-                                color: 'rgba(1, 191, 236)'
-                            }])
-                        }
-                    },
-                    'bar',
-                ])
-                .title({
-                    textAlign: 'left',
-                    text: "Grafic de mostres",
-                })
-                .tooltip()
-                .axis({
-                    yAxis: {
-                        type: 'value',
-                        yAxisIndex: 1,
-                        name: 'Alçada',
-                        position: 'left',
-                        axisLine: {
-                            show: true,
-                        },
-                        axisLabel: {
-                            min: 0,
-                            max: 50,
-                        },
-                    },
-                    xAxis: {
-                        xAxisIndex: 1,
-                        name: 'T retencio (min)',
-                        position: 'center',
-                    }
-                })
-
-        });
-    </script>-->
-</div>
-</div>
+    function unfoldVariables() {
+        //var values = $(':checkbox');
+        if (document.getElementById("cbox").checked == true) {
+            $('.tr').css("display", "block");
+            $('.algraf').css("display", "block");
+        } else {
+            $('.tr').css("display", "none");
+            $('.algraf').css("display", "none");
+        }
+    }
+</script>
 @endsection
