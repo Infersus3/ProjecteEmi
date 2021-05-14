@@ -18,10 +18,9 @@ use Illuminate\Support\Facades\Auth;
 
 Auth::routes();
 
+//Admin i Professor 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-
-//Admin i Professor 
 // ----- Administració d'usuaris i rols'
     Route::middleware(['auth', 'professor'])->group(function () {
     Route::get('/admin', [App\Http\Controllers\AdminController::class, 'administrarUsers'])->name('admin_users');
@@ -51,12 +50,13 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
 });
 
 // Alumne
-// ----- Realitzacio de la tasca
-Route::get('/alumne/realitzaTasca/{id}', [App\Http\Controllers\AlumneController::class, 'realitzaTasca'])->name('realitza_tasca');
-
-// ----- Fer tasques
 Route::middleware(['auth', 'alumne'])->group(function () {
-Route::get('/alumne/tasques', [App\Http\Controllers\AlumneController::class, 'listTasques'])->name('tasques_alumne');
+    
+    // ----- Realitzacio de la tasca
+    Route::get('/alumne/realitzaTasca/{id}', [App\Http\Controllers\AlumneController::class, 'realitzaTasca'])->name('realitza_tasca');
+
+    // ----- Fer tasques
+    Route::get('/alumne/tasques', [App\Http\Controllers\AlumneController::class, 'listTasques'])->name('tasques_alumne');
 
 });
 

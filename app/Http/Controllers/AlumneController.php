@@ -37,12 +37,18 @@ class AlumneController extends Controller
             $tasca = Tasca::find($id);
             $practId = $tasca->practica_id;
             $practica = Practica::find($practId);
-            $mccId = $practica->mostra_cond_compost_id;
-            $mostra_cond_compost = MostraCondComposts::find($mccId);
-            $mostraid = $mostra_cond_compost->mostra_id;
             $totesmcc = MostraCondComposts::all();
-            $cond = $mostra_cond_compost->condicion_id;
-            $condicio = Condicio::find($cond);
+            $condicioGuardar = 0;
+            $ok = false;
+            $i = 0;
+            while ($ok != true) {
+                if ($totesmcc[$i]->practica_id == $practId) {
+                    $condicioGuardar = $totesmcc[$i]->condicion_id;
+                    $ok = true;
+                }
+                $i++;
+            }
+            $condicio = Condicio::find($condicioGuardar);
             $ok = true;
 
             if (
@@ -61,20 +67,18 @@ class AlumneController extends Controller
             }
 
             if ($ok == true) {
-                $tasca->condicion_id = $cond;
+                $tasca->condicion_id = $condicioGuardar;
                 $tasca->correcta = true;
                 $tasca->save();
                 $arrayComposts = array();
                 foreach ($totesmcc as $param) {
-                    if ($param->mostra_id == $mostraid) {
+                    if ($param->practica_id == $practId) {
                         array_push($arrayComposts, $param);
-                        $mostraGuardar = $param->mostra_id;
-                        $condicioGuardar = $param->condicion_id;
                     }
-                    $compost_quimic = CompostQuimics::all();
                 }
+                $compost_quimic = CompostQuimics::all();
 
-                return view('alumne.veure_grafic', ['compost_quimic' => $compost_quimic, 'mostra_cond_compost' => $mostra_cond_compost, 'tasca' => $tasca, 'arrayComposts' => $arrayComposts]);
+                return view('alumne.veure_grafic', ['compost_quimic' => $compost_quimic, 'tasca' => $tasca, 'arrayComposts' => $arrayComposts]);
             } else {
                 $condIncorrecta = Condicio::create([
                     'alçada_col' => $request->alçada_col,
@@ -96,15 +100,12 @@ class AlumneController extends Controller
             $tasca = Tasca::find($id);
             $practId = $tasca->practica_id;
             $practica = Practica::find($practId);
-            $mccId = $practica->mostra_cond_compost_id;
-            $mcc = MostraCondComposts::find($mccId);
-            $mostraid = $mcc->mostra_id;
             $totesmcc = MostraCondComposts::all();
             $arrayComposts = array();
             $mostraGuardar = 0;
             $condicioGuardar = 0;
             foreach ($totesmcc as $param) {
-                if ($param->mostra_id == $mostraid) {
+                if ($param->practica_id == $practId) {
                     array_push($arrayComposts, $param);
                     $mostraGuardar = $param->mostra_id;
                     $condicioGuardar = $param->condicion_id;

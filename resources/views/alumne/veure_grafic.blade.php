@@ -28,7 +28,7 @@
                             </div>
                             <div class="form-group" style="display: none;">
                                 <label class="form-check-label" for="labelSelect">Selecció de compost</label><br>
-                                @for ($i = 0; $i < count($arrayComposts); $i++) @if ($compost_quimic[$i]->id == $arrayComposts[$i]->compost_quimic_id)
+                                @for ($i = 0; $i < count($arrayComposts); $i++) @foreach ($compost_quimic as $compostos) @if ($compostos->id == $arrayComposts[$i]->compost_quimic_id)
                                     <label for="{{ $i }}">{{ $compost_quimic[$i]->nom }}</label>
                                     <input class="cbox" type="checkbox" id="{{ $i }}" name="compost_q{{ $i }}" checked>
                                     <input type="hidden" value="{{ $arrayComposts[$i]->id }}" name="idCompost{{ $i }}"></br>
@@ -49,72 +49,11 @@
                                         <label for="labelTF{{ $i }}">Temps Final (min)</label>
                                         <input class="form-control" step="any" value="{{ $arrayComposts[$i]->temps_final }}" type="number" name="temps_final{{ $i }}" id="labelTF{{ $i }}" placeholder="">
                                     </div>
-                            </div>
                             @endif
+                            @endforeach
                             @endfor
-                            <script>
-                                var xIni;
-                                var yIni = 0;
-                                var xRetencio;
-                                var xFinal;
-                                var yFinal = 0;
-                                var yAlçada;
-                                var array1 = [];
-                                var array2 = [];
-                                var array3 = [];
-                                var arrayVariables = [];
-                                
-                                var arra = [10,12,20,52,12,51,62,12,56,78];
-                                var valorMax = document.getElementById("maxArray").value;
-                                for (let i = 0; i < valorMax; i++) {
-                                    array1 = [];
-                                    array2 = [];
-                                    array3 = [];
-                                    xIni = document.getElementById("labelTI" + i).value;
-                                    xRetencio = document.getElementById("labelTR" + i).value;
-                                    xFinal = document.getElementById("labelTF" + i).value;
-                                    yAlçada = document.getElementById("labelAlçGrafic" + i).value;
-                                    array1.push(xIni, yIni);
-                                    array2.push(xRetencio, yAlçada);
-                                    array3.push(xFinal, yFinal);
-                                    arrayVariables.push(array1, array2, array3);
-                                    console.log(array1);
-                                    console.log(array2);
-                                    console.log(array3);
-                                }
-
-                                
-                                var jsonArray = JSON.stringify(arrayVariables);
-                                var ctx = document.getElementById('myChart');
-                                var myChart = new Chart(ctx, {
-                                    type: 'scatter',
-                                    data: {
-                                        datasets: [{
-                                            fill: false,
-                                            tension: 0.5,
-                                            symbolSize: 7,
-                                            animationEasing: 'cubicInOut',
-                                            label: 'Cromatograma HPLC',
-                                            yAxisID: 'Alçada del grafic',
-                                            data: arrayVariables,
-                                            borderColor: 'rgb(51, 102, 255)',
-                                            showLine: true,
-                                            pointRadius: 0,
-                                            borderWidth: 2,
-                                            cubicInterpolationMode: 'linear',
-                                            steppedLine: 'after'
-                                        }]
-                                    },
-                                    options: {
-                                        responsive: true,
-                                    }
-                                });
-                                myChart.render();
-                            </script>
-
-
                             <input type="submit" name="submit" class="btn btn-dark" onclick="alertame()" value="Envia"></input>
-
+                            </div>
                         </form>
                     </div>
                 </div>
@@ -122,8 +61,9 @@
         </div>
     </div>
 </div>
+@endsection
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+@section('scripts')
 <script>
     $(document).ready(function() {
         $('input[type="checkbox"]').click(function(e) {
@@ -143,7 +83,66 @@
         if ($('#labelVisible').val()) {
             $('#labelVisible').prop("checked", true);
         }
+
+
+        var xIni;
+        var yIni = 0;
+        var xRetencio;
+        var xFinal;
+        var yFinal = 0;
+        var yAlçada;
+        var array1 = [];
+        var array2 = [];
+        var array3 = [];
+        var arrayVariables = [];
+
+        var arra = [10, 12, 20, 52, 12, 51, 62, 12, 56, 78];
+        var valorMax = $("#maxArray").val();
+        console.log(valorMax);
+        for (let i = 0; i < valorMax; i++) {
+            array1 = [];
+            array2 = [];
+            array3 = [];
+            xIni = document.getElementById("labelTI" + i).value;
+            xRetencio = document.getElementById("labelTR" + i).value;
+            xFinal = document.getElementById("labelTF" + i).value;
+            yAlçada = document.getElementById("labelAlçGrafic" + i).value;
+            array1.push(xIni, yIni);
+            array2.push(xRetencio, yAlçada);
+            array3.push(xFinal, yFinal);
+            arrayVariables.push(array1, array2, array3);
+            console.log(array1);
+            console.log(array2);
+            console.log(array3);
+        }
+
+        console.log(arrayVariables);
+        var jsonArray = JSON.stringify(arrayVariables);
+        var ctx = document.getElementById('myChart');
+        var myChart = new Chart(ctx, {
+            type: 'scatter',
+            data: {
+                datasets: [{
+                    fill: false,
+                    tension: 0.5,
+                    symbolSize: 7,
+                    animationEasing: 'cubicInOut',
+                    label: 'Cromatograma HPLC',
+                    yAxisID: 'Alçada del grafic',
+                    data: arrayVariables,
+                    borderColor: 'rgb(51, 102, 255)',
+                    showLine: true,
+                    pointRadius: 0,
+                    borderWidth: 2,
+                    cubicInterpolationMode: 'linear',
+                    steppedLine: 'after'
+                }]
+            },
+            options: {
+                responsive: true,
+            }
+        });
+        myChart.render();
     });
 </script>
-
 @endsection
