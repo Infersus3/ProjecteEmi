@@ -201,6 +201,26 @@ class ProfessorController extends Controller
                 } else {
                 }
             }
+            //Validem els compostos que pot haver editat
+            for ($i = 0; $i < count($max); $i++) {
+                $param = 'compost_q0' . $i;
+                $selected = $request->$param;
+                if (isset($selected)) {
+                    $minimCond = true;
+                    $idCompost = 'idCompost0' . $i;
+                    $tr = 'temps_retencio0' . $i;
+                    $alçada = 'alçada_grafic0' . $i;
+                    $ti = 'temps_inicial0' . $i;
+                    $tf = 'temps_final0' . $i;
+                    $validated = $request->validate([
+                        $tr => 'required|min:0.01|max:255|numeric',
+                        $alçada => 'required|min:0.01|max:1000|numeric',
+                        $ti => 'required|min:0|max:255|numeric',
+                        $tf => 'required|min:0.01|max:255|numeric',
+                    ]);
+                } else {
+                }
+            }
             if (!$minimCond) {
                 // Si no ha seleccionat ningún compost dels disponibles
                 return redirect()->back();
