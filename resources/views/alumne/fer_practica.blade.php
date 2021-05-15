@@ -76,8 +76,13 @@
                 </div>
                 @if ($practica->visible)
                 <div class="form-group">
+                @else
+                <div class="form-group" style="display: none;">
+                @endif
                     <label class="form-check-label" for="labelSelect">Selecció de compost</label><br>
-                    @for ($i = 0; $i < count($arrayComposts); $i++) @if ($compost_quimic[$i]->id == $arrayComposts[$i]->compost_quimic_id)
+                    @for ($i = 0; $i < count($arrayComposts); $i++) 
+                    @foreach ($compost_quimic as $compost)
+                    @if ($compost->id == $arrayComposts[$i]->compost_quimic_id)
                         <label for="{{ $i }}">{{ $compost_quimic[$i]->nom }}</label>
                         <input class="cbox" type="checkbox" id="{{ $i }}" name="compost_q{{ $i }}" checked>
                         <input type="hidden" value="{{ $arrayComposts[$i]->id }}" name="idCompost{{ $i }}"></br>
@@ -100,15 +105,15 @@
                         </div>
                 </div>
                 @endif
+                @endforeach
                 @endfor
-                @endif
                 <input type="hidden" value="{{ $mostra->id }}" name="mostraId">
                 <div class="form-group" style="display: none;">
                     <label for="data_entrega">Data d'entrega</label>
                     <input class="form-control" value="{{ $practica->data_entrega }}" name="data_entrega" type="date" id="data_entrega" required>
                 </div>
 
-                <input type="submit" name="submit" class="btn btn-dark" onclick="alertame()" value="Envia"></input>
+                <input type="submit" name="submit" class="btn btn-dark" value="Envia"></input>
 
                 </form>
             </div>
@@ -132,8 +137,5 @@
                     $('.tf' + tar).css("display", "none");
                 }
             })
-            if ($('#labelVisible').val()) {
-                $('#labelVisible').prop("checked", true);
-            }
         });
     </script>

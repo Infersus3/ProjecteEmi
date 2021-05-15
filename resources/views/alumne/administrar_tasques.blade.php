@@ -18,8 +18,17 @@
                             @endforeach
                         </td>
                         <td>
-                            <a href="{{ route('realitza_tasca', ['id' => $tasca->id]) }}" class="btn btn-sm btn-info">Haser el meneo</a>
+                            <a href="{{ route('realitza_tasca', ['id' => $tasca->id]) }}" class="btn btn-sm btn-info">Fer practica</a>
                         </td>
+                        @if ($tasca->grup_id)
+                            @foreach ($alumne->grups as $grups)
+                                @if ($grups->id == $tasca->grup_id)
+                                <td>
+                                    <p> Practica en grup: {{ $grups->nom }} </p>
+                                </td>
+                                @endif
+                            @endforeach
+                        @endif
                         </tr>
                         @endforeach
                 </table>

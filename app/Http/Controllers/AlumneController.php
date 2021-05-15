@@ -20,6 +20,7 @@ class AlumneController extends Controller
     public function listTasques()
     {
         $alumne_id = Auth::user()->alumne_id;
+        $alumne = ALumne::find($alumne_id);
         $tasques = Tasca::all();
         $practiques = Practica::all();
         $tasquesAlumne = array();
@@ -28,7 +29,17 @@ class AlumneController extends Controller
                 array_push($tasquesAlumne, $tasca);
             }
         }
-        return view('alumne.administrar_tasques', ['tasques' => $tasquesAlumne, 'practiques' => $practiques]);
+        
+        //Mirem si pertany a grups que tinguin altres tasques
+        foreach ($tasques as $tasca) {
+            foreach ($alumne->grups as $grup){
+                if ($tasca->grup_id == $grup->id) {
+                        array_push($tasquesAlumne, $tasca);
+                }
+            }
+        }
+        
+        return view('alumne.administrar_tasques', ['tasques' => $tasquesAlumne, 'practiques' => $practiques, 'alumne' => $alumne]);
     }
     public function realitzaTasca($id, Request $request)
     {
@@ -80,6 +91,12 @@ class AlumneController extends Controller
 
                 return view('alumne.veure_grafic', ['compost_quimic' => $compost_quimic, 'tasca' => $tasca, 'arrayComposts' => $arrayComposts]);
             } else {
+                $condicioActual = Condicio::find($tasca->condicion_id);
+                if ($condicioActual){
+                    $tasca->condicion_id = null;
+                    $tasca->save();
+                    $condicioActual->delete();
+                }
                 $condIncorrecta = Condicio::create([
                     'alçada_col' => $request->alçada_col,
                     "temperatura" => $request->temperatura,

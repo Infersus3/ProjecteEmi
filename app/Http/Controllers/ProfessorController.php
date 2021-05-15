@@ -238,12 +238,6 @@ class ProfessorController extends Controller
                 'velocitat' => 'required',
                 'detector_uv' => 'required|numeric',
             ]);
-            $visible = 0;
-            if ($request->visiblebox) {
-                $visible = 1;
-            } else {
-                $visible = null;
-            }
             $mos = $request->mostraId;
             $mostra = Mostra::find($mos);
             $cond = $request->condicioId;

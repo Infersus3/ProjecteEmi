@@ -152,10 +152,6 @@
 
 @section('scripts')
 <script>
-    function alertame() {
-        var values = $('#exampleFormControlSelect1').val();
-        console.log(values);
-    }
     $(document).ready(function() {
         // Composts que estan a la pràctica
         $('input[class="cboxOn"]').click(function(e) {
@@ -188,21 +184,17 @@
                 $('.tf' + tar).css("display", "none");
             }
         });
-
         if ($('#labelVisible').val()) {
             $('#labelVisible').prop("checked", true);
         }
-    });
 
-    function unfoldVariables() {
-        //var values = $(':checkbox');
-        if (document.getElementById("cbox").checked == true) {
-            $('.tr').css("display", "block");
-            $('.algraf').css("display", "block");
-        } else {
-            $('.tr').css("display", "none");
-            $('.algraf').css("display", "none");
-        }
-    }
+        $('#labelVisible').on('click', function() {
+            if ($('#labelVisible').prop("checked")) {
+                $('#labelVisible').val(1);
+            } else {
+                $('#labelVisible').val(null);
+            }
+        });
+    });
 </script>
 @endsection

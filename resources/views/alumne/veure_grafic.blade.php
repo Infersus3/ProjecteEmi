@@ -84,7 +84,6 @@
             $('#labelVisible').prop("checked", true);
         }
 
-
         var xIni;
         var yIni = 0;
         var xRetencio;
@@ -98,7 +97,7 @@
 
         var arra = [10, 12, 20, 52, 12, 51, 62, 12, 56, 78];
         var valorMax = $("#maxArray").val();
-        console.log(valorMax);
+  
         for (let i = 0; i < valorMax; i++) {
             array1 = [];
             array2 = [];
