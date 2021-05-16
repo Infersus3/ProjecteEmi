@@ -10,6 +10,7 @@ class Condicio extends Model
     use HasFactory;
 
     protected $fillable = [
+        'nom_col',
         'alçada_col',
         'temperatura',
         'eluent',

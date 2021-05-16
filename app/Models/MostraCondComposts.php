@@ -11,6 +11,7 @@ class MostraCondComposts extends Model
 
 
     protected $fillable = [
+        'practica_id',
         'mostra_id',
         'condicion_id',
         'compost_quimic_id',

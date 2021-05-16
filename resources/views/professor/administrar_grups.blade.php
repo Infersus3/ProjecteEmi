@@ -66,7 +66,7 @@
                                         @endforeach
                                     @else
                                         @foreach ($grups as $grup) 
-                                            <a class="dropdown-item" href="{{ route('add_alumne_grup', ['idGrup' => $grup->id, 'idAlumne' => $alumne->id]) }}">{{$grup->nom}}1</a>
+                                            <a class="dropdown-item" href="{{ route('add_alumne_grup', ['idGrup' => $grup->id, 'idAlumne' => $alumne->id]) }}">{{$grup->nom}}</a>
                                         @endforeach
                                     @endif
                                     </div>
@@ -93,7 +93,8 @@
 
     $('.delGrup').on('click', function(){
         let grup = $(this).attr('value');
-        return window.confirm('Segur que vols esborrar el grup: '+grup+' ?');
+        return window.confirm('Si borres el grup: '+grup+', s\'eliminaran les activitats asociades a ell'+
+        ' segur que vols esborrar-lo?');
     });
 })
 </script>

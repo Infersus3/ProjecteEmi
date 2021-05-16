@@ -18,10 +18,9 @@ use Illuminate\Support\Facades\Auth;
 
 Auth::routes();
 
+//Admin i Professor 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-
-//Admin i Professor 
 // ----- Administració d'usuaris i rols'
     Route::middleware(['auth', 'professor'])->group(function () {
     Route::get('/admin', [App\Http\Controllers\AdminController::class, 'administrarUsers'])->name('admin_users');
@@ -45,9 +44,20 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
     Route::get('/professor/elimina_practica/{id}', [App\Http\Controllers\ProfessorController::class, 'eliminaPractica'])->name('elimina_practica');
 
 // ----- Administració de tàsques
-    Route::get('/professor/admin_tasca/{id}', [App\Http\Controllers\ProfessorController::class, 'adminTasca'])->name('admin_tasques');
-    Route::get('/professor/delete_tasca/{id}', [App\Http\Controllers\ProfessorController::class, 'deleteTasca'])->name('delete_tasca');
+    Route::get('/professor/admin_tasques/{id}', [App\Http\Controllers\ProfessorController::class, 'adminTasca'])->name('admin_tasques');
+    Route::get('/professor/delete_tasca', [App\Http\Controllers\ProfessorController::class, 'deleteTasca'])->name('delete_tasca');
     Route::get('/professor/createTasca', [App\Http\Controllers\ProfessorController::class, 'createTasca'])->name('create_tasca');
 });
 
+// Alumne
+Route::middleware(['auth', 'alumne'])->group(function () {
+    
+    // ----- Realitzacio de la tasca
+    Route::get('/alumne/realitzaTasca/{id}', [App\Http\Controllers\AlumneController::class, 'realitzaTasca'])->name('realitza_tasca');
+
+    // ----- Fer tasques
+    Route::get('/alumne/tasques', [App\Http\Controllers\AlumneController::class, 'listTasques'])->name('tasques_alumne');
+
+});
+Route::get('/practica_cond/{id}', [App\Http\Controllers\AlumneController::class, 'returnCond'])->name('comprovar_cond');
 

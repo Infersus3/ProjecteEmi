@@ -12,7 +12,6 @@ class Practica extends Model
     protected $fillable = [
         'professor_id',
         'titol',
-        'mostra_cond_compost_id',
         'data_entrega',
         'visible',
     ];

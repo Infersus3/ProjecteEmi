@@ -22,6 +22,7 @@ class CreateTascasTable extends Migration
             $table->string("comentari")->nullable();
             $table->integer("nota")->nullable();
             $table->date("data_lliurament")->nullable();
+            $table->boolean("correcta")->nullable();
             $table->timestamps();
         });
     }
