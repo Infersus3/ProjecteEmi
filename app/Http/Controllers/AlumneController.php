@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Grup;
+use Illuminate\Http\Response;
 use App\Models\Alumne;
 use App\Models\Practica;
 use Illuminate\Http\Request;
@@ -41,9 +41,23 @@ class AlumneController extends Controller
         
         return view('alumne.administrar_tasques', ['tasques' => $tasquesAlumne, 'practiques' => $practiques, 'alumne' => $alumne]);
     }
+
     public function realitzaTasca($id, Request $request)
     {
         if (isset($request->submit)) {
+            $validated = $request->validate([
+                'nom_mostra' => 'required',
+            ]);
+            $validated = $request->validate([
+                'nom_col' => 'required',
+                'alçada_col' => 'required|numeric',
+                'temperatura' => 'required',
+                'eluent' => 'required',
+                'diametre_col' => 'required|numeric',
+                'tamany' => 'required|numeric',
+                'velocitat' => 'required',
+                'detector_uv' => 'required|numeric',
+            ]);
 
             $tasca = Tasca::find($id);
             $practId = $tasca->practica_id;
@@ -81,15 +95,6 @@ class AlumneController extends Controller
                 $tasca->condicion_id = $condicioGuardar;
                 $tasca->correcta = true;
                 $tasca->save();
-                $arrayComposts = array();
-                foreach ($totesmcc as $param) {
-                    if ($param->practica_id == $practId) {
-                        array_push($arrayComposts, $param);
-                    }
-                }
-                $compost_quimic = CompostQuimics::all();
-
-                return view('alumne.veure_grafic', ['compost_quimic' => $compost_quimic, 'tasca' => $tasca, 'arrayComposts' => $arrayComposts]);
             } else {
                 $condicioActual = Condicio::find($tasca->condicion_id);
                 if ($condicioActual){
@@ -111,8 +116,8 @@ class AlumneController extends Controller
                 $tasca->condicion_id = $condIncorrecta->id;
                 $tasca->correcta = false;
                 $tasca->save();
-                return redirect()->route('tasques_alumne');
             }
+            return redirect()->route('tasques_alumne');
         } else {
             $tasca = Tasca::find($id);
             $practId = $tasca->practica_id;
@@ -133,7 +138,19 @@ class AlumneController extends Controller
             $condN = $condicio->neutre;
             $compost_quimic = CompostQuimics::all();
 
-            return view('alumne.fer_practica', ['compost_quimic' => $compost_quimic, 'tasca' => $tasca, 'condN' => $condN, 'arrayComposts' => $arrayComposts, 'mostra' => $mostra, 'practica' => $practica]);
+            return view('alumne.fer_practica', ['compost_quimic' => $compost_quimic, 'tasca_id' => $tasca->id, 'condN' => $condN, 'condicio' => $condicio, 'arrayComposts' => $arrayComposts, 'mostra' => $mostra, 'practica' => $practica]);
         }
+    }
+
+    public function returnCond($id){
+        $mostra_cond_compost = MostraCondComposts::all();
+        $idCondicions = 0;
+        foreach ($mostra_cond_compost as $mostrescc){
+            if ($mostrescc->practica_id == $id){
+                $idCondicions = $mostrescc->condicion_id;
+            }
+        }
+        $condicions = Condicio::find($idCondicions);
+        return response()->json(array('condicio'=> $condicions), 200);
     }
 }
