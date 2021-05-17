@@ -92,10 +92,10 @@ class ProfessorController extends Controller
                     $ti = 'temps_inicial' . $i;
                     $tf = 'temps_final' . $i;
                     $validated = $request->validate([
-                        $tr => 'required|min:0.01|max:255|numeric',
-                        $alçada => 'required|min:0.01|max:1000|numeric',
-                        $ti => 'required|min:0|max:255|numeric',
-                        $tf => 'required|min:0.01|max:255|numeric',
+                        $tr => 'required|max:10000|numeric',
+                        $alçada => 'required|max:10000|numeric',
+                        $ti => 'required|max:10000|numeric',
+                        $tf => 'required|max:10000|numeric',
                     ]);
                 } else {
                 }
@@ -105,17 +105,17 @@ class ProfessorController extends Controller
                 return redirect()->back();
             }
             $validated = $request->validate([
-                'nom_mostra' => 'required',
+                'nom_mostra' => 'required|max:30',
             ]);
             $validated = $request->validate([
-                'nom_col' => 'required',
-                'alçada_col' => 'required|numeric',
-                'temperatura' => 'required',
-                'eluent' => 'required',
-                'diametre_col' => 'required|numeric',
-                'tamany' => 'required|numeric',
-                'velocitat' => 'required',
-                'detector_uv' => 'required|numeric',
+                'nom_col' => 'required|max:30',
+                'alçada_col' => 'required|numeric|max:10000',
+                'temperatura' => 'required|max:10000|numeric',
+                'eluent' => 'required|max:25',
+                'diametre_col' => 'required|numeric|max:10000',
+                'tamany' => 'required|numeric|max:10000',
+                'velocitat' => 'required|max:10',
+                'detector_uv' => 'required|numeric|max:10000',
             ]);
             $mostra = Mostra::create([
                 'nom' => $request->nom_mostra,
@@ -193,10 +193,10 @@ class ProfessorController extends Controller
                     $ti = 'temps_inicial' . $i;
                     $tf = 'temps_final' . $i;
                     $validated = $request->validate([
-                        $tr => 'required|min:0.01|max:255|numeric',
-                        $alçada => 'required|min:0.01|max:1000|numeric',
-                        $ti => 'required|min:0|max:255|numeric',
-                        $tf => 'required|min:0.01|max:255|numeric',
+                        $tr => 'required|max:10000|numeric',
+                        $alçada => 'required|max:10000|numeric',
+                        $ti => 'required|max:10000|numeric',
+                        $tf => 'required|max:10000|numeric',
                     ]);
                 } else {
                 }
@@ -213,10 +213,10 @@ class ProfessorController extends Controller
                     $ti = 'temps_inicial0' . $i;
                     $tf = 'temps_final0' . $i;
                     $validated = $request->validate([
-                        $tr => 'required|min:0.01|max:255|numeric',
-                        $alçada => 'required|min:0.01|max:1000|numeric',
-                        $ti => 'required|min:0|max:255|numeric',
-                        $tf => 'required|min:0.01|max:255|numeric',
+                        $tr => 'required|max:10000|numeric',
+                        $alçada => 'required|max:10000|numeric',
+                        $ti => 'required|max:10000|numeric',
+                        $tf => 'required|max:10000|numeric',
                     ]);
                 } else {
                 }
@@ -226,17 +226,17 @@ class ProfessorController extends Controller
                 return redirect()->back();
             }
             $validated = $request->validate([
-                'nom_mostra' => 'required',
+                'nom_mostra' => 'required|max:30',
             ]);
             $validated = $request->validate([
-                'nom_col' => 'required',
-                'alçada_col' => 'required|numeric',
-                'temperatura' => 'required',
-                'eluent' => 'required',
-                'diametre_col' => 'required|numeric',
-                'tamany' => 'required|numeric',
-                'velocitat' => 'required',
-                'detector_uv' => 'required|numeric',
+                'nom_col' => 'required|max:30',
+                'alçada_col' => 'required|numeric|max:10000',
+                'temperatura' => 'required|max:10000|numeric',
+                'eluent' => 'required|max:25',
+                'diametre_col' => 'required|numeric|max:10000',
+                'tamany' => 'required|numeric|max:10000',
+                'velocitat' => 'required|max:10',
+                'detector_uv' => 'required|numeric|max:10000',
             ]);
             $mos = $request->mostraId;
             $mostra = Mostra::find($mos);

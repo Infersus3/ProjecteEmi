@@ -46,17 +46,17 @@ class AlumneController extends Controller
     {
         if (isset($request->submit)) {
             $validated = $request->validate([
-                'nom_mostra' => 'required',
+                'nom_mostra' => 'required|max:30',
             ]);
             $validated = $request->validate([
-                'nom_col' => 'required',
-                'alçada_col' => 'required|numeric',
-                'temperatura' => 'required',
-                'eluent' => 'required',
-                'diametre_col' => 'required|numeric',
-                'tamany' => 'required|numeric',
-                'velocitat' => 'required',
-                'detector_uv' => 'required|numeric',
+                'nom_col' => 'required|max:30',
+                'alçada_col' => 'required|numeric|max:10000',
+                'temperatura' => 'required|max:10000|numeric',
+                'eluent' => 'required|max:25',
+                'diametre_col' => 'required|numeric|max:10000',
+                'tamany' => 'required|numeric|max:10000',
+                'velocitat' => 'required|max:10',
+                'detector_uv' => 'required|numeric|max:10000',
             ]);
 
             $tasca = Tasca::find($id);
@@ -96,12 +96,18 @@ class AlumneController extends Controller
                 $tasca->correcta = true;
                 $tasca->save();
             } else {
-                $condicioActual = Condicio::find($tasca->condicion_id);
-                if ($condicioActual){
+                if ($tasca->condicion_id != $condicioGuardar){
+                    $condicioActual = Condicio::find($tasca->condicion_id);
+                    if ($condicioActual){
                     $tasca->condicion_id = null;
                     $tasca->save();
                     $condicioActual->delete();
+                    }
+                }else{
+                    $tasca->condicion_id = null;
+                    $tasca->save();
                 }
+                
                 $condIncorrecta = Condicio::create([
                     'alçada_col' => $request->alçada_col,
                     "temperatura" => $request->temperatura,
@@ -117,6 +123,8 @@ class AlumneController extends Controller
                 $tasca->correcta = false;
                 $tasca->save();
             }
+            $tasca->comentari = $request->comentari;
+            $tasca->save();
             return redirect()->route('tasques_alumne');
         } else {
             $tasca = Tasca::find($id);

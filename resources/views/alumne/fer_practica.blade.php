@@ -75,6 +75,9 @@
                             <input type="hidden" id="comprovarCond" action="{{ route ('comprovar_cond' ,['id' => $practica->id]) }}">
                         </div>
                     </div>
+                    <div class="form-group">
+                        <textarea rows="7" cols="85" name="comentari"></textarea>
+                    </div>
                     @if ($practica->visible)
                     <div class="form-group">
                         @else
