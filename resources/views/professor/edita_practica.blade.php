@@ -154,25 +154,9 @@
 <script>
     $(document).ready(function() {
         // Composts que estan a la pràctica
-        $('input[class="cboxOn"]').click(function(e) {
+        $('input[type="checkbox"]').click(function(e) {
             var tar = e.target.id;
-            if ($(".cboxOn").is(':checked')) {
-                $('.tr' + tar).css("display", "block");
-                $('.algraf' + tar).css("display", "block");
-                $('.ti' + tar).css("display", "block");
-                $('.tf' + tar).css("display", "block");
-            } else {
-                $('.tr' + tar).css("display", "none");
-                $('.algraf' + tar).css("display", "none");
-                $('.ti' + tar).css("display", "none");
-                $('.tf' + tar).css("display", "none");
-            }
-        });
-
-        // Composts que no estan a la pràctica
-        $('input[class="cboxOf"]').click(function(e) {
-            var tar = e.target.id;
-            if ($(".cboxOf").is(':checked')) {
+            if ($('#'+tar).is(':checked')) {
                 $('.tr' + tar).css("display", "block");
                 $('.algraf' + tar).css("display", "block");
                 $('.ti' + tar).css("display", "block");

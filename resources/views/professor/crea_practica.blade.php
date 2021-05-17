@@ -121,7 +121,7 @@
     $(document).ready(function() {
         $('input[type="checkbox"]').click(function(e) {
             var tar = e.target.id;
-            if ($(".cbox").is(':checked')) {
+            if ($('#'+tar).is(':checked')) {
                 $('.tr' + tar).css("display", "block");
                 $('.algraf' + tar).css("display", "block");
                 $('.ti' + tar).css("display", "block");
