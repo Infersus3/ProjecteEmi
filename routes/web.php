@@ -58,6 +58,9 @@ Route::middleware(['auth', 'alumne'])->group(function () {
     // ----- Fer tasques
     Route::get('/alumne/tasques', [App\Http\Controllers\AlumneController::class, 'listTasques'])->name('tasques_alumne');
 
+    //Agafar condicions API
+    Route::get('/practica_cond/{id}', [App\Http\Controllers\AlumneController::class, 'returnCond'])->name('comprovar_cond');
 });
-Route::get('/practica_cond/{id}', [App\Http\Controllers\AlumneController::class, 'returnCond'])->name('comprovar_cond');
+
+
 

@@ -145,8 +145,11 @@ class AlumneController extends Controller
             $condicio = Condicio::find($condicioGuardar);
             $condN = $condicio->neutre;
             $compost_quimic = CompostQuimics::all();
-
-            return view('alumne.fer_practica', ['compost_quimic' => $compost_quimic, 'tasca_id' => $tasca->id, 'condN' => $condN, 'condicio' => $condicio, 'arrayComposts' => $arrayComposts, 'mostra' => $mostra, 'practica' => $practica]);
+            $condicioAlumne = null;
+            if ($tasca->condicion_id){
+                $condicioAlumne = Condicio::find($tasca->condicion_id);
+            }
+            return view('alumne.fer_practica', ['condicioAlumne' => $condicioAlumne, 'compost_quimic' => $compost_quimic, 'tasca_id' => $tasca->id, 'condN' => $condN, 'condicio' => $condicio, 'arrayComposts' => $arrayComposts, 'mostra' => $mostra, 'practica' => $practica]);
         }
     }
 

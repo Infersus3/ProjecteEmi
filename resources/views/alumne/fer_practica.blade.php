@@ -29,25 +29,25 @@
                             </div>
                             <div class="form-group">
                                 <label for="labelCol">Alçada de la columna (mm)</label>
-                                <input type="number" name="alçada_col" class="form-control" id="labelCol" required>
+                                <input type="number" name="alçada_col" value="{{ $condicioAlumne->alçada_col ?? '' }}" class="form-control" id="labelCol" required>
                             </div>
                             <div class="form-group">
                                 <label for="labelTemp">Temperatura</label>
-                                <input type="text" name="temperatura" class="form-control" id="labelTemp" required>
+                                <input type="text" name="temperatura" value="{{ $condicioAlumne->temperatura ?? '' }}" class="form-control" id="labelTemp" required>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
                                 <label for="labelNomCol">Nom de la columna</label>
-                                <input type="text" name="nom_col" class="form-control" id="labelNomCol" required>
+                                <input type="text" name="nom_col" value="{{ $condicioAlumne->nom_col ?? '' }}" class="form-control" id="labelNomCol" required>
                             </div>
                             <div class="form-group">
                                 <label for="labelEluent">Eluent</label>
-                                <input type="text" name="eluent" class="form-control" id="labelEluent" required>
+                                <input type="text" name="eluent" value="{{ $condicioAlumne->eluent ?? '' }}" class="form-control" id="labelEluent" required>
                             </div>
                             <div class="form-group">
                                 <label for="labelDiam">Diametre columna (mm)</label>
-                                <input type="number" step="any" name="diametre_col" class="form-control" id="labelDiam" required>
+                                <input type="number" step="any" name="diametre_col" value="{{ $condicioAlumne->diametre_col ?? '' }}" class="form-control" id="labelDiam" required>
                             </div>
 
                         </div>
@@ -56,20 +56,20 @@
                         <div class="col">
                             <div class="form-group">
                                 <label for="labelSpeed">Velocitat (ml/min)</label>
-                                <input type="text" step="any" name="velocitat" class="form-control" id="labelSpeed" required>
+                                <input type="text" step="any" name="velocitat" value="{{ $condicioAlumne->velocitat ?? '' }}" class="form-control" id="labelSpeed" required>
                             </div>
                             <div class="form-group">
                                 <label for="labelDetector">Detector UV (nm)</label>
-                                <input type="number" step="any" name="detector_uv" class="form-control" id="labelDetector" required>
+                                <input type="number" step="any" name="detector_uv" value="{{ $condicioAlumne->detector_uv ?? '' }}" class="form-control" id="labelDetector" required>
                             </div>
                             <div class="form-group">
                                 <label for="labelTamany">Tamany de la particula (µm)</label>
-                                <input type="number" step="any" name="tamany" class="form-control" id="labelTamany" required>
+                                <input type="number" step="any" name="tamany" value="{{ $condicioAlumne->tamany ?? '' }}" class="form-control" id="labelTamany" required>
                             </div>
                             @if($condN)
                             <div class="form-group">
                                 <label for="labelNeutre">Neutre</label>
-                                <input type="text" name="neutre" class="form-control" id="labelNeutre">
+                                <input type="text" name="neutre" value="{{ $condicioAlumne->neutre ?? '' }}" class="form-control" id="labelNeutre">
                             </div>
                             @endif
                             <input type="hidden" id="comprovarCond" action="{{ route ('comprovar_cond' ,['id' => $practica->id]) }}">
@@ -115,8 +115,9 @@
                                     <input class="form-control" value="{{ $practica->data_entrega }}" name="data_entrega" type="date" id="data_entrega" required>
                                 </div>
                         </div>
-                        <input type="button" class="btn btn-secondary" value="Veure Gràfic" id="createButton">
-                        <input type="submit" name="submit" class="btn btn-dark" value="Envia"></input>
+                        <a href="{{ route('tasques_alumne')}}" class="btn btn-secondary">Cancelar</a>
+                        <input type="button" class="btn btn-success" value="Veure Gràfic" id="createButton">
+                        <input type="submit" name="submit" class="btn btn-primary" value="Envia"></input>
                 </form>
             </div>
         </div>
@@ -186,7 +187,6 @@
                 dataResult['condicio']['tamany'] == $('#labelTamany').val() &&
                 dataResult['condicio']['velocitat'] == $('#labelSpeed').val() &&
                 dataResult['condicio']['detector_uv'] == $('#labelDetector').val()){
-                    console.log('OK');
                     makeGrafic(true);
 
                 }else{
