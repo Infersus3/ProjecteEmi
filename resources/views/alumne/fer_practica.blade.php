@@ -20,7 +20,7 @@
 
             <h3>Paràmetres generals</h3>
             <div class="container">
-                <form id="myform" action="{{ route ('realitza_tasca' ,['id' => $tasca_id]) }}">
+                <form id="myform" action="{{ route ('realitza_tasca' ,['id' => $tasca->id]) }}">
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
@@ -76,7 +76,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <textarea rows="7" cols="85" name="comentari"></textarea>
+                        <textarea rows="7" cols="85" name="comentari">{{ $tasca->comentari }}</textarea>
                     </div>
                     @if ($practica->visible)
                     <div class="form-group">
@@ -117,7 +117,9 @@
                         </div>
                         <a href="{{ route('tasques_alumne')}}" class="btn btn-secondary">Cancelar</a>
                         <input type="button" class="btn btn-success" value="Veure Gràfic" id="createButton">
+                        @if ($practica->data_entrega > $data)
                         <input type="submit" name="submit" class="btn btn-primary" value="Envia"></input>
+                        @endif
                 </form>
             </div>
         </div>
@@ -127,7 +129,7 @@
 
 <!--Modal para CRUD CREATE-->
 <div class="modal fade" id="modalCRUD_grafic" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-xl" role="document">
+    <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel"> Gràfic </h5>
@@ -138,7 +140,7 @@
                 <canvas id="myChart"></canvas>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-light" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
             </div>
         </div>
     </div>

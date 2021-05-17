@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Response;
+
 use App\Models\Alumne;
 use App\Models\Practica;
 use Illuminate\Http\Request;
@@ -12,17 +12,55 @@ use App\Models\Mostra;
 use App\Models\Tasca;
 use App\Models\MostraCondComposts;
 use Illuminate\Support\Facades\Auth;
+use DateTime;
 
 
 class AlumneController extends Controller
 {
-    //
+    // Funció per ordenar les tasques per dia d'entrega
+    public function array_sort($array, $on, $order=SORT_ASC)
+    {
+    $new_array = array();
+    $sortable_array = array();
+
+    if (count($array) > 0) {
+        foreach ($array as $k => $v) {
+            if (is_array($v)) {
+                foreach ($v as $k2 => $v2) {
+                    if ($k2 == $on) {
+                        $sortable_array[$k] = $v2;
+                    }
+                }
+            } else {
+                $sortable_array[$k] = $v;
+            }
+        }
+
+        switch ($order) {
+            case SORT_ASC:
+                asort($sortable_array);
+            break;
+            case SORT_DESC:
+                arsort($sortable_array);
+            break;
+        }
+
+        foreach ($sortable_array as $k => $v) {
+            $new_array[$k] = $array[$k];
+        }
+    }
+
+    return $new_array;
+}
+
     public function listTasques()
     {
         $alumne_id = Auth::user()->alumne_id;
         $alumne = ALumne::find($alumne_id);
         $tasques = Tasca::all();
-        $practiques = Practica::all();
+        
+        $practique = Practica::all();
+        $practiques = $this->array_sort($practique, 'data_entrega', SORT_ASC);
         $tasquesAlumne = array();
         foreach ($tasques as $tasca) {
             if ($tasca->alumne_id == $alumne_id) {
@@ -38,8 +76,10 @@ class AlumneController extends Controller
                 }
             }
         }
+        $date = new DateTime('NOW');
+        $data = $date->format('Y-m-d');
         
-        return view('alumne.administrar_tasques', ['tasques' => $tasquesAlumne, 'practiques' => $practiques, 'alumne' => $alumne]);
+        return view('alumne.administrar_tasques', ['tasques' => $tasquesAlumne, 'data' => $data, 'practiques' => $practiques, 'alumne' => $alumne]);
     }
 
     public function realitzaTasca($id, Request $request)
@@ -149,7 +189,11 @@ class AlumneController extends Controller
             if ($tasca->condicion_id){
                 $condicioAlumne = Condicio::find($tasca->condicion_id);
             }
-            return view('alumne.fer_practica', ['condicioAlumne' => $condicioAlumne, 'compost_quimic' => $compost_quimic, 'tasca_id' => $tasca->id, 'condN' => $condN, 'condicio' => $condicio, 'arrayComposts' => $arrayComposts, 'mostra' => $mostra, 'practica' => $practica]);
+            $date = new DateTime('NOW');
+            $data = $date->format('Y-m-d');
+
+            return view('alumne.fer_practica', ['condicioAlumne' => $condicioAlumne, 'compost_quimic' => $compost_quimic, 'tasca' => $tasca, 
+            'condN' => $condN, 'condicio' => $condicio, 'arrayComposts' => $arrayComposts, 'mostra' => $mostra, 'practica' => $practica, 'data' => $data]);
         }
     }
 
