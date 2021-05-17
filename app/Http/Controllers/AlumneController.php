@@ -56,7 +56,7 @@ class AlumneController extends Controller
     public function listTasques()
     {
         $alumne_id = Auth::user()->alumne_id;
-        $alumne = ALumne::find($alumne_id);
+        $alumne = Alumne::find($alumne_id);
         $tasques = Tasca::all();
         
         $practique = Practica::all();

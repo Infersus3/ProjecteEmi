@@ -47,6 +47,7 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
     Route::get('/professor/admin_tasques/{id}', [App\Http\Controllers\ProfessorController::class, 'adminTasca'])->name('admin_tasques');
     Route::get('/professor/delete_tasca', [App\Http\Controllers\ProfessorController::class, 'deleteTasca'])->name('delete_tasca');
     Route::get('/professor/createTasca', [App\Http\Controllers\ProfessorController::class, 'createTasca'])->name('create_tasca');
+    Route::get('/professor/list_tasques', [App\Http\Controllers\ProfessorController::class, 'listTasques'])->name('list_tasques');
 });
 
 // Alumne

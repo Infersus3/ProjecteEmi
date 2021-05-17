@@ -12,6 +12,7 @@ use App\Models\Mostra;
 use App\Models\Tasca;
 use App\Models\MostraCondComposts;
 use Illuminate\Support\Facades\Auth;
+use DateTime;
 
 
 class ProfessorController extends Controller
@@ -378,4 +379,64 @@ class ProfessorController extends Controller
         $tasca->delete();
         return redirect()->route('admin_tasques', ['id' => $practicaId]);
     }
+
+        // Funció per ordenar les tasques per dia d'entrega
+        public function array_sort($array, $on, $order=SORT_ASC)
+        {
+        $new_array = array();
+        $sortable_array = array();
+    
+        if (count($array) > 0) {
+            foreach ($array as $k => $v) {
+                if (is_array($v)) {
+                    foreach ($v as $k2 => $v2) {
+                        if ($k2 == $on) {
+                            $sortable_array[$k] = $v2;
+                        }
+                    }
+                } else {
+                    $sortable_array[$k] = $v;
+                }
+            }
+    
+            switch ($order) {
+                case SORT_ASC:
+                    asort($sortable_array);
+                break;
+                case SORT_DESC:
+                    arsort($sortable_array);
+                break;
+            }
+    
+            foreach ($sortable_array as $k => $v) {
+                $new_array[$k] = $array[$k];
+            }
+        }
+    
+        return $new_array;
+    }
+    
+        public function listTasques()
+        {
+            $professor_id = Auth::user()->professor_id;
+            $tasques = Tasca::all();
+            $alumnes = Alumne::all();
+
+            $grups = Grup::all();
+
+            $practique = Practica::all();
+            $practProfessor = array();
+            foreach ($practique as $practs) {
+                if ($practs->professor_id == $professor_id) {
+                    array_push($practProfessor, $practs);
+                }
+            }
+            $practiques = $this->array_sort($practProfessor, 'data_entrega', SORT_ASC);
+            
+            $date = new DateTime('NOW');
+            $data = $date->format('Y-m-d');
+            
+            return view('professor.list_tasques', ['professor_id' => $professor_id, 'data' => $data,
+             'practiques' => $practiques, 'tasques' => $tasques, 'grups' => $grups, 'alumnes' => $alumnes]);
+        }
 }
