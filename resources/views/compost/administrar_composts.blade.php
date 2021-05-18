@@ -10,21 +10,25 @@
             <div class="card-body">
                 <table class="table table-responsive">
                     @foreach ($compost as $c)
-                    @foreach ($mcc as $mosCondComp) <tr>
-                        <td>
-                            <h5 class="users">{{ $c->nom }}</h5>
-                        </td>
-                        <td>
-                        @if ($c->id == $mosCondComp->compost_quimic_id)
+                    <tr>
+                    <td>
+                        <h5 class="users">{{ $c->nom }}</h5>
+                    </td>
+                    @php $in = 0;
+                    foreach ($mcc as $mosCondComp){
+                            if ($c->id == $mosCondComp->compost_quimic_id){
+                                $in = 1;
+                            }
+                    }
+                    @endphp
+                    <td>
+                    @if ($in)
                         <a class="btn btn-sm btn-warning">Compost Químic en ús</a>
-
-                        </td>
-                        @else 
+                    @else
                         <a href="{{ route('delete_compost', ['id' => $c->id]) }}" class="btn btn-sm btn-danger">Eliminar</a>
-
-                    </tr>
                     @endif
-                    @endforeach
+                    </td>
+                    </tr>
                     @endforeach
                 </table>
             </div>

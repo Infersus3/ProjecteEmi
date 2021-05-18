@@ -28,7 +28,6 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
     Route::get('/admin/add_professor/{id}', [App\Http\Controllers\AdminController::class, 'addProfessor'])->name('add_professor');
     Route::get('/admin/delete_user/{id}', [App\Http\Controllers\AdminController::class, 'deleteUser'])->name('delete_users');
 
-
 //Professor 
 // ----- Administració de grups
     Route::get('/professor/adminGrups', [App\Http\Controllers\ProfessorController::class, 'adminGrups'])->name('admin_grups');
@@ -48,28 +47,26 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
     Route::get('/professor/delete_tasca', [App\Http\Controllers\ProfessorController::class, 'deleteTasca'])->name('delete_tasca');
     Route::get('/professor/createTasca', [App\Http\Controllers\ProfessorController::class, 'createTasca'])->name('create_tasca');
     Route::get('/professor/list_tasques', [App\Http\Controllers\ProfessorController::class, 'listTasques'])->name('list_tasques');
+
+// ----- Administració de composts
+    Route::get('/professor/creacompost', [App\Http\Controllers\ProfessorController::class, 'createCompost'])->name('crear_compost');
+    Route::get('/professor/admin_compost', [App\Http\Controllers\ProfessorController::class, 'adminCompost'])->name('admin_compost');
+    Route::get('/professor/delete_compost/{id}', [App\Http\Controllers\ProfessorController::class, 'eliminaCompost'])->name('delete_compost');
+
 });
 
 // Alumne
 Route::middleware(['auth', 'alumne'])->group(function () {
     
-    // ----- Realitzacio de la tasca
+    // ----- Realitzacio de tàsques
     Route::get('/alumne/realitzaTasca/{id}', [App\Http\Controllers\AlumneController::class, 'realitzaTasca'])->name('realitza_tasca');
-
-    // ----- Fer tasques
     Route::get('/alumne/tasques', [App\Http\Controllers\AlumneController::class, 'listTasques'])->name('tasques_alumne');
 
     //Agafar condicions API
     Route::get('/practica_cond/{id}', [App\Http\Controllers\AlumneController::class, 'returnCond'])->name('comprovar_cond');
 });
 
-//Compost
-// ------ Crear compost
-Route::get('/professor/creacompost', [App\Http\Controllers\ProfessorController::class, 'createCompost'])->name('crear_compost');
-// ------ Administrar compost
-Route::get('/professor/admin_compost', [App\Http\Controllers\ProfessorController::class, 'adminCompost'])->name('admin_compost');
-// ------ Eliminar compost
-Route::get('/professor/delete_compost/{id}', [App\Http\Controllers\ProfessorController::class, 'eliminaCompost'])->name('delete_compost');
+
 
 
 
