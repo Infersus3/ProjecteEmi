@@ -12,7 +12,7 @@
             <div class="card-body">
                 <table class="table table-responsive">
                     <tr>
-                        <p> {{ $practica->data_entrega }} </p>
+                        <p> {{ date("d-m-Y", strtotime($practica->data_entrega)) }} </p>
                     </tr>
                     @foreach ($tasques as $tasca) 
                     @if ($practica->id == $tasca->practica_id)
