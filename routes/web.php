@@ -18,10 +18,9 @@ use Illuminate\Support\Facades\Auth;
 
 Auth::routes();
 
+//Admin i Professor 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-
-//Admin i Professor 
 // ----- Administració d'usuaris i rols'
     Route::middleware(['auth', 'professor'])->group(function () {
     Route::get('/admin', [App\Http\Controllers\AdminController::class, 'administrarUsers'])->name('admin_users');
@@ -48,16 +47,20 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
     Route::get('/professor/admin_tasques/{id}', [App\Http\Controllers\ProfessorController::class, 'adminTasca'])->name('admin_tasques');
     Route::get('/professor/delete_tasca', [App\Http\Controllers\ProfessorController::class, 'deleteTasca'])->name('delete_tasca');
     Route::get('/professor/createTasca', [App\Http\Controllers\ProfessorController::class, 'createTasca'])->name('create_tasca');
+    Route::get('/professor/list_tasques', [App\Http\Controllers\ProfessorController::class, 'listTasques'])->name('list_tasques');
 });
 
 // Alumne
-// ----- Realitzacio de la tasca
-Route::get('/alumne/realitzaTasca/{id}', [App\Http\Controllers\AlumneController::class, 'realitzaTasca'])->name('realitza_tasca');
-
-// ----- Fer tasques
 Route::middleware(['auth', 'alumne'])->group(function () {
-Route::get('/alumne/tasques', [App\Http\Controllers\AlumneController::class, 'listTasques'])->name('tasques_alumne');
+    
+    // ----- Realitzacio de la tasca
+    Route::get('/alumne/realitzaTasca/{id}', [App\Http\Controllers\AlumneController::class, 'realitzaTasca'])->name('realitza_tasca');
 
+    // ----- Fer tasques
+    Route::get('/alumne/tasques', [App\Http\Controllers\AlumneController::class, 'listTasques'])->name('tasques_alumne');
+
+    //Agafar condicions API
+    Route::get('/practica_cond/{id}', [App\Http\Controllers\AlumneController::class, 'returnCond'])->name('comprovar_cond');
 });
 
 //Compost
@@ -67,6 +70,7 @@ Route::get('/professor/creacompost', [App\Http\Controllers\ProfessorController::
 Route::get('/professor/admin_compost', [App\Http\Controllers\ProfessorController::class, 'adminCompost'])->name('admin_compost');
 // ------ Eliminar compost
 Route::get('/professor/delete_compost/{id}', [App\Http\Controllers\ProfessorController::class, 'eliminaCompost'])->name('delete_compost');
+
 
 
 

@@ -10,6 +10,7 @@
             <div class="card-body">
                 <table class="table table-responsive">
                     @for ($i = 0; $i < count($practica); $i++) <tr>
+                    @if ($practica[$i]->professor_id == Auth::user()->professor_id || Auth::user()->admin)
                         <td>
                             <h5 class="users">Practica {{ $i+1 }}</h5>
                         </td>
@@ -23,7 +24,8 @@
                             <a href="{{ route('elimina_practica', ['id' => $practica[$i]->id]) }}" class="btn btn-sm btn-danger btn-secondary" value="{{ $practica[$i]->titol }}"> Eliminar </a>
                         </td>
                         </tr>
-                        @endfor
+                    @endif
+                    @endfor
                 </table>
             </div>
         </div>

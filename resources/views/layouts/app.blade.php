@@ -70,7 +70,7 @@
                                 </a>
                             </li>
                             <li class="nav-item dropdown">
-                                <a  class="nav-link" href="#">
+                                <a  class="nav-link" href="{{ route('list_tasques')}}">
                                     Avaluar
                                 </a>
                             </li>

@@ -77,7 +77,7 @@
                     <label class="form-check-label" for="labelSelect">Selecció de compost</label><br>
                     @for ($i = 0; $i < count($arrayComposts); $i++) @foreach ($compost_quimic as $compost) @if ($compost->id == $arrayComposts[$i]->compost_quimic_id)
                         <label for="{{ $i }}">{{ $compost->nom }}</label>
-                        <input class="cbox" type="checkbox" id="{{ $i }}" name="compost_q{{ $i }}" checked>
+                        <input class="cboxOn" type="checkbox" id="{{ $i }}" name="compost_q{{ $i }}" checked>
                         <input type="hidden" value="{{ $compost->id }}" name="idCompost{{ $i }}"></br>
                         <input type="hidden" value="{{ $arrayComposts[$i]->id }}" name="idMostraCondCompost{{ $i }}">
                         <div class="form-group tr{{ $i }}">
@@ -107,24 +107,24 @@
                             @endphp
 
                             @if ($in == 0)
-                            <label for="{{ $i }}0">{{ $compost_quimic[$i]->nom }}</label>
-                            <input class="cbox" type="checkbox" id="0{{ $i }}" name="compost_q0{{ $i }}">
+                            <label for="0{{ $i }}">{{ $compost_quimic[$i]->nom }}</label>
+                            <input class="cboxOf" type="checkbox" id="0{{ $i }}" name="compost_q0{{ $i }}">
                             <input type="hidden" value="{{ $compost_quimic[$i]->id }}" name="idCompost0{{ $i }}"></br>
 
-                            <div class="form-group tr{{ $i }}0" style="display:none">
-                                <label for="labelTR0{{ $i }}">Temps de retenció (TR)</label>
+                            <div class="form-group tr0{{ $i }}" style="display:none">
+                                <label for="labelTR{{ $i }}">Temps de retenció (TR)</label>
                                 <input class="form-control" step="any" type="number" name="temps_retencio0{{ $i }}" id="labelTR0{{ $i }}">
                             </div>
-                            <div class="form-group algraf{{ $i }}0" style="display:none">
-                                <label for="labelAlçGrafic0{{ $i }}">Alçada del gràfic (mAU)</label>
+                            <div class="form-group algraf0{{ $i }}" style="display:none">
+                                <label for="labelAlçGrafic{{ $i }}">Alçada del gràfic (mAU)</label>
                                 <input class="form-control" step="any" type="number" name="alçada_grafic0{{ $i }}" id="labelAlçGrafic0{{ $i }}">
                             </div>
-                            <div class="form-group ti{{ $i }}0" style="display:none">
-                                <label for="labelTI0{{ $i }}">Temps Inicial (min)</label>
+                            <div class="form-group ti0{{ $i }}" style="display:none">
+                                <label for="labelTI{{ $i }}">Temps Inicial (min)</label>
                                 <input class="form-control" step="any" type="number" name="temps_inicial0{{ $i }}" id="labelTI0{{ $i }}">
                             </div>
-                            <div class="form-group tf{{ $i }}0" style="display:none">
-                                <label for="labelTF0{{ $i }}">Temps Final (min)</label>
+                            <div class="form-group tf0{{ $i }}" style="display:none">
+                                <label for="labelTF{{ $i }}">Temps Final (min)</label>
                                 <input class="form-control" step="any" type="number" name="temps_final0{{ $i }}" id="labelTF0{{ $i }}">
                             </div>
                 </div>
@@ -152,14 +152,11 @@
 
 @section('scripts')
 <script>
-    function alertame() {
-        var values = $('#exampleFormControlSelect1').val();
-        console.log(values);
-    }
     $(document).ready(function() {
+        // Composts que estan a la pràctica
         $('input[type="checkbox"]').click(function(e) {
             var tar = e.target.id;
-            if ($(".cbox").is(':checked')) {
+            if ($('#'+tar).is(':checked')) {
                 $('.tr' + tar).css("display", "block");
                 $('.algraf' + tar).css("display", "block");
                 $('.ti' + tar).css("display", "block");
@@ -170,21 +167,18 @@
                 $('.ti' + tar).css("display", "none");
                 $('.tf' + tar).css("display", "none");
             }
-        })
+        });
         if ($('#labelVisible').val()) {
             $('#labelVisible').prop("checked", true);
         }
-    });
 
-    function unfoldVariables() {
-        //var values = $(':checkbox');
-        if (document.getElementById("cbox").checked == true) {
-            $('.tr').css("display", "block");
-            $('.algraf').css("display", "block");
-        } else {
-            $('.tr').css("display", "none");
-            $('.algraf').css("display", "none");
-        }
-    }
+        $('#labelVisible').on('click', function() {
+            if ($('#labelVisible').prop("checked")) {
+                $('#labelVisible').val(1);
+            } else {
+                $('#labelVisible').val(null);
+            }
+        });
+    });
 </script>
 @endsection
