@@ -47,6 +47,7 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
     Route::get('/professor/delete_tasca', [App\Http\Controllers\ProfessorController::class, 'deleteTasca'])->name('delete_tasca');
     Route::get('/professor/createTasca', [App\Http\Controllers\ProfessorController::class, 'createTasca'])->name('create_tasca');
     Route::get('/professor/list_tasques', [App\Http\Controllers\ProfessorController::class, 'listTasques'])->name('list_tasques');
+    Route::get('/professor/avaluar/{id}', [App\Http\Controllers\ProfessorController::class, 'avaluarTasca'])->name('avaluar');
 
 // ----- Administració de composts
     Route::get('/professor/creacompost', [App\Http\Controllers\ProfessorController::class, 'createCompost'])->name('crear_compost');

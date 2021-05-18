@@ -164,6 +164,9 @@ class AlumneController extends Controller
                 $tasca->save();
             }
             $tasca->comentari = $request->comentari;
+            $date = new DateTime('NOW');
+            $data = $date->format('Y-m-d H:i:s');
+            $tasca->data_lliurament = $data;
             $tasca->save();
             return redirect()->route('tasques_alumne');
         } else {

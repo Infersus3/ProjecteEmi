@@ -20,12 +20,6 @@
                                     <h5 class="users">{{ $alumne->nom }}</h5>
                                 </td>
                                 <td>
-                                    <button type="button" class="btn btn-sm btn-secondary dropdown-toggle" data-toggle="dropdown"> Assignar </button>
-                                    <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                        <a class="dropdown-item">Professor</a>
-                                    </div>
-                                </td>
-                                <td>
                                     <a class="btn btn-sm btn-danger delAlumne" href="{{ route('delete_tasca', ['practica_id' => $practica->id, 'tasca_id' => $tasca->id]) }}" value="{{ $alumne->nom }}"> Eliminar </a>
                                 </td>
                             </tr>
@@ -41,12 +35,6 @@
                             <tr>
                                 <td>
                                     <h5 class="users">{{ $grup->nom }}</h5>
-                                </td>
-                                <td>
-                                    <button type="button" class="btn btn-sm btn-secondary dropdown-toggle" data-toggle="dropdown"> Assignar </button>
-                                    <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                        <a class="dropdown-item">Professor</a>
-                                    </div>
                                 </td>
                                 <td>
                                     <a class="btn btn-sm btn-danger delGrup" href="{{ route('delete_tasca', ['practica_id' => $practica->id, 'tasca_id' => $tasca->id]) }}" value="{{ $grup->nom }}"> Eliminar </a>

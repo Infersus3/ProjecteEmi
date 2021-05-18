@@ -8,7 +8,7 @@
         </div>
         <div class="card-body">
             @foreach ($practiques as $practica)
-
+                @php $in = 0; @endphp
             <div class="card-body">
                 <table class="table table-responsive">
                     <tr>
@@ -21,11 +21,12 @@
                         @if ($tasca->alumne_id)
                         @foreach ($alumnes as $alumne)
                         @if ($alumne->id == $tasca->alumne_id)
+                        @php $in = 1; @endphp
                         <td>
-                            <h5>Alumne: {{ $alumne->nom }}</h5>
+                            <p>Alumne: {{ $alumne->nom }}</p>
                         </td>
                         <td>
-                            <a href="#" class="btn btn-sm btn-info">Avaluar</a>
+                            <a href="{{ route('avaluar', ['id' => $tasca->id]) }}" class="btn btn-sm btn-info">Avaluar</a>
                         </td>
                         @endif
                         @endforeach
@@ -35,10 +36,12 @@
                         @endforeach
                 </table>
                 <table class="table table-responsive">
+                    @if ($in == 0)
                     <tr>
                         <p> {{ date("d-m-Y", strtotime($practica->data_entrega)) }} </p>
                         <h5>{{ $practica->titol }}</h5>
                     </tr>
+                    @endif
                     @foreach ($tasques as $tasca)
                     @if ($practica->id == $tasca->practica_id)
                     <tr>
@@ -46,10 +49,10 @@
                         @foreach ($grups as $grup)
                         @if ($grup->id == $tasca->grup_id)
                         <td>
-                            <h5> Grup: {{ $grup->nom }} </h5>
+                            <p> Grup: {{ $grup->nom }} </p>
                         </td>
                         <td>
-                            <a href="#" class="btn btn-sm btn-info">Avaluar</a>
+                            <a href="{{ route('avaluar', ['id' => $tasca->id]) }}" class="btn btn-sm btn-info">Avaluar</a>
                         </td>
                         @endif
                         @endforeach

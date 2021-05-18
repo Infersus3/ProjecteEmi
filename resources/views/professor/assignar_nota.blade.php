@@ -20,34 +20,34 @@
 
             <h3>Paràmetres generals</h3>
             <div class="container">
-                <form id="myform" action="{{ route ('realitza_tasca' ,['id' => $tasca->id]) }}">
+                <form id="myform" action="{{ route ('avaluar' ,['id' => $tasca->id]) }}">
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
                                 <label for="labelNom">Nom de la mostra</label>
-                                <input type="text" readonly value="{{ $mostra->nom }}" name="nom_mostra" class="form-control" id="labelNom" required>
+                                <input type="text" readonly value="{{ $mostra->nom }}" name="nom_mostra" class="form-control" id="labelNom" readonly>
                             </div>
                             <div class="form-group">
                                 <label for="labelCol">Alçada de la columna (mm)</label>
-                                <input type="number" name="alçada_col" value="{{ $condicioAlumne->alçada_col ?? '' }}" class="form-control" id="labelCol" required>
+                                <input type="number" name="alçada_col" value="{{ $condicioAlumne->alçada_col ?? '' }}" class="form-control" id="labelCol" readonly>
                             </div>
                             <div class="form-group">
                                 <label for="labelTemp">Temperatura</label>
-                                <input type="text" name="temperatura" value="{{ $condicioAlumne->temperatura ?? '' }}" class="form-control" id="labelTemp" required>
+                                <input type="text" name="temperatura" value="{{ $condicioAlumne->temperatura ?? '' }}" class="form-control" id="labelTemp" readonly>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
                                 <label for="labelNomCol">Nom de la columna</label>
-                                <input type="text" name="nom_col" value="{{ $condicioAlumne->nom_col ?? '' }}" class="form-control" id="labelNomCol" required>
+                                <input type="text" name="nom_col" value="{{ $condicioAlumne->nom_col ?? '' }}" class="form-control" id="labelNomCol" readonly>
                             </div>
                             <div class="form-group">
                                 <label for="labelEluent">Eluent</label>
-                                <input type="text" name="eluent" value="{{ $condicioAlumne->eluent ?? '' }}" class="form-control" id="labelEluent" required>
+                                <input type="text" name="eluent" value="{{ $condicioAlumne->eluent ?? '' }}" class="form-control" id="labelEluent" readonly>
                             </div>
                             <div class="form-group">
                                 <label for="labelDiam">Diametre columna (mm)</label>
-                                <input type="number" step="any" name="diametre_col" value="{{ $condicioAlumne->diametre_col ?? '' }}" class="form-control" id="labelDiam" required>
+                                <input type="number" step="any" name="diametre_col" value="{{ $condicioAlumne->diametre_col ?? '' }}" class="form-control" id="labelDiam" readonly>
                             </div>
 
                         </div>
@@ -56,15 +56,15 @@
                         <div class="col">
                             <div class="form-group">
                                 <label for="labelSpeed">Velocitat (ml/min)</label>
-                                <input type="text" step="any" name="velocitat" value="{{ $condicioAlumne->velocitat ?? '' }}" class="form-control" id="labelSpeed" required>
+                                <input type="text" step="any" name="velocitat" value="{{ $condicioAlumne->velocitat ?? '' }}" class="form-control" id="labelSpeed" readonly>
                             </div>
                             <div class="form-group">
                                 <label for="labelDetector">Detector UV (nm)</label>
-                                <input type="number" step="any" name="detector_uv" value="{{ $condicioAlumne->detector_uv ?? '' }}" class="form-control" id="labelDetector" required>
+                                <input type="number" step="any" name="detector_uv" value="{{ $condicioAlumne->detector_uv ?? '' }}" class="form-control" id="labelDetector" readonly>
                             </div>
                             <div class="form-group">
                                 <label for="labelTamany">Tamany de la particula (µm)</label>
-                                <input type="number" step="any" name="tamany" value="{{ $condicioAlumne->tamany ?? '' }}" class="form-control" id="labelTamany" required>
+                                <input type="number" step="any" name="tamany" value="{{ $condicioAlumne->tamany ?? '' }}" class="form-control" id="labelTamany" readonly>
                             </div>
                             @if($condN)
                             <div class="form-group">
@@ -77,50 +77,48 @@
                     </div>
                     <div class="form-group">
                         <label for="labelComent">Comentari</label>
-                        <textarea rows="7" cols="85" name="comentari" id="labelComent">{{ $tasca->comentari }}</textarea>
+                        <textarea rows="7" cols="85" name="comentari" id="labelComent" readonly>{{ $tasca->comentari }}</textarea>
                     </div>
-                    @if ($practica->visible)
                     <div class="form-group">
-                        @else
-                        <div class="form-group" style="display: none;">
-                            @endif
                             <label class="form-check-label" for="labelSelect">Selecció de compost</label><br>
                             @for ($i = 0; $i < count($arrayComposts); $i++) @foreach ($compost_quimic as $compost) @if ($compost->id == $arrayComposts[$i]->compost_quimic_id)
                                 <label for="{{ $i }}">{{ $compost_quimic[$i]->nom }}</label>
-                                <input class="cbox" type="checkbox" id="{{ $i }}" name="compost_q{{ $i }}" checked>
+                                <input class="cbox" type="checkbox" id="{{ $i }}" name="compost_q{{ $i }}">
                                 <input type="hidden" value="{{ $arrayComposts[$i]->id }}" name="idCompost{{ $i }}"></br>
                                 <input type="hidden" value="{{ count($arrayComposts) }}" id="maxArray">
 
-                                <div class="form-group tr{{ $i }}">
+                                <div class="form-group tr{{ $i }}" style="display:none">
                                     <label for="labelTR{{ $i }}">Temps de retenció (TR)</label>
-                                    <input class="form-control" step="any" value="{{ $arrayComposts[$i]->temps_retencio }}" type="number" name="temps_retencio{{ $i }}" id="labelTR{{ $i }}" readonly>
+                                    <input class="form-control" step="any" value="{{ $arrayComposts[$i]->temps_retencio }}" type="number" id="labelTR{{ $i }}" readonly>
                                 </div>
-                                <div class="form-group algraf{{ $i }}">
+                                <div class="form-group algraf{{ $i }}" style="display:none">
                                     <label for="labelAlçGrafic{{ $i }}">Alçada del gràfic (mAU)</label>
-                                    <input class="form-control" step="any" value="{{ $arrayComposts[$i]->alçada_grafic }}" type="number" name="alçada_grafic{{ $i }}" id="labelAlçGrafic{{ $i }}" readonly>
+                                    <input class="form-control" step="any" value="{{ $arrayComposts[$i]->alçada_grafic }}" type="number" id="labelAlçGrafic{{ $i }}" readonly>
                                 </div>
-                                <div class="form-group ti{{ $i }}">
+                                <div class="form-group ti{{ $i }}" style="display:none">
                                     <label for="labelTI{{ $i }}">Temps Inicial (min)</label>
-                                    <input class="form-control" step="any" value="{{ $arrayComposts[$i]->temps_inicial }}" type="number" name="temps_inicial{{ $i }}" id="labelTI{{ $i }}" readonly>
+                                    <input class="form-control" step="any" value="{{ $arrayComposts[$i]->temps_inicial }}" type="number" id="labelTI{{ $i }}" readonly>
                                 </div>
-                                <div class="form-group tf{{ $i }}">
+                                <div class="form-group tf{{ $i }}" style="display:none">
                                     <label for="labelTF{{ $i }}">Temps Final (min)</label>
-                                    <input class="form-control" step="any" value="{{ $arrayComposts[$i]->temps_final }}" type="number" name="temps_final{{ $i }}" id="labelTF{{ $i }}" readonly>
+                                    <input class="form-control" step="any" value="{{ $arrayComposts[$i]->temps_final }}" type="number" id="labelTF{{ $i }}" readonly>
                                 </div>
                                 @endif
                                 @endforeach
                                 @endfor
+                                <div class="form-group">
+                                    <label for="labelNota">Nota</label>
+                                    <input type="number" name="nota" class="form-control" value="{{ $condicioAlumne->neutre ?? '' }}" id="labelNota">
+                                </div>
                                 <input type="hidden" value="{{ $mostra->id }}" name="mostraId">
                                 <div class="form-group" style="display: none;">
                                     <label for="data_entrega">Data d'entrega</label>
-                                    <input class="form-control" value="{{ $practica->data_entrega }}" name="data_entrega" type="date" id="data_entrega" required>
+                                    <input class="form-control" value="{{ $practica->data_entrega }}" name="data_entrega" type="date" id="data_entrega" readonly>
                                 </div>
                         </div>
-                        <a href="{{ route('tasques_alumne')}}" class="btn btn-secondary">Cancelar</a>
+                        <a href="{{ route('list_tasques')}}" class="btn btn-secondary">Cancelar</a>
                         <input type="button" class="btn btn-success" value="Veure Gràfic" id="createButton">
-                        @if ($practica->data_entrega > $data)
                         <input type="submit" name="submit" class="btn btn-primary" value="Envia"></input>
-                        @endif
                 </form>
             </div>
         </div>
@@ -159,6 +157,7 @@
 
         $('input[type="checkbox"]').click(function(e) {
             var tar = e.target.id;
+            
             if ($("#"+tar).is(':checked')) {
                 $('.tr' + tar).css("display", "block");
                 $('.algraf' + tar).css("display", "block");

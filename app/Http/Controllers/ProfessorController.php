@@ -395,7 +395,7 @@ class ProfessorController extends Controller
 
     public function eliminaCompost($id)
     {
-        $comp = CompostQuimics::find($id);        
+        CompostQuimics::find($id);
         CompostQuimics::destroy($id);
 
         return redirect()->route('admin_compost');
@@ -407,12 +407,12 @@ class ProfessorController extends Controller
         $mcc = MostraCondComposts::all();
         return view('compost.administrar_composts', ['compost' => $compost, 'mcc' => $mcc]);
     }
-        // Funció per ordenar les tasques per dia d'entrega
-        public function array_sort($array, $on, $order=SORT_ASC)
-        {
+    // Funció per ordenar les tasques per dia d'entrega
+    public function array_sort($array, $on, $order = SORT_ASC)
+    {
         $new_array = array();
         $sortable_array = array();
-    
+
         if (count($array) > 0) {
             foreach ($array as $k => $v) {
                 if (is_array($v)) {
@@ -425,45 +425,85 @@ class ProfessorController extends Controller
                     $sortable_array[$k] = $v;
                 }
             }
-    
+
             switch ($order) {
                 case SORT_ASC:
                     asort($sortable_array);
-                break;
+                    break;
                 case SORT_DESC:
                     arsort($sortable_array);
-                break;
+                    break;
             }
-    
+
             foreach ($sortable_array as $k => $v) {
                 $new_array[$k] = $array[$k];
             }
         }
-    
+
         return $new_array;
     }
-    
-        public function listTasques()
-        {
-            $professor_id = Auth::user()->professor_id;
-            $tasques = Tasca::all();
-            $alumnes = Alumne::all();
 
-            $grups = Grup::all();
+    public function listTasques()
+    {
+        $professor_id = Auth::user()->professor_id;
+        $tasques = Tasca::all();
+        $alumnes = Alumne::all();
 
-            $practique = Practica::all();
-            $practProfessor = array();
-            foreach ($practique as $practs) {
-                if ($practs->professor_id == $professor_id) {
-                    array_push($practProfessor, $practs);
+        $grups = Grup::all();
+
+        $practique = Practica::all();
+        $practProfessor = array();
+        foreach ($practique as $practs) {
+            if ($practs->professor_id == $professor_id) {
+                array_push($practProfessor, $practs);
+            }
+        }
+        $practiques = $this->array_sort($practProfessor, 'data_entrega', SORT_ASC);
+
+        $date = new DateTime('NOW');
+        $data = $date->format('Y-m-d');
+
+        return view('professor.list_tasques', [
+            'professor_id' => $professor_id, 'data' => $data,
+            'practiques' => $practiques, 'tasques' => $tasques, 'grups' => $grups, 'alumnes' => $alumnes
+        ]);
+    }
+
+    public function avaluarTasca($id, Request $request)
+    {
+        $tasca = Tasca::find($id);
+
+        if (isset($request->submit)) {
+            $tasca->nota = $request->nota;
+            $tasca->save();
+            return redirect()->route('list_tasques');
+        } else {
+            $practId = $tasca->practica_id;
+            $practica = Practica::find($practId);
+            $totesmcc = MostraCondComposts::all();
+            $arrayComposts = array();
+            $mostraGuardar = 0;
+            $condicioGuardar = 0;
+            foreach ($totesmcc as $param) {
+                if ($param->practica_id == $practId) {
+                    array_push($arrayComposts, $param);
+                    $mostraGuardar = $param->mostra_id;
+                    $condicioGuardar = $param->condicion_id;
                 }
             }
-            $practiques = $this->array_sort($practProfessor, 'data_entrega', SORT_ASC);
-            
-            $date = new DateTime('NOW');
-            $data = $date->format('Y-m-d');
-            
-            return view('professor.list_tasques', ['professor_id' => $professor_id, 'data' => $data,
-             'practiques' => $practiques, 'tasques' => $tasques, 'grups' => $grups, 'alumnes' => $alumnes]);
+            $mostra = Mostra::find($mostraGuardar);
+            $condicio = Condicio::find($condicioGuardar);
+            $condN = $condicio->neutre;
+            $compost_quimic = CompostQuimics::all();
+            $condicioAlumne = null;
+            if ($tasca->condicion_id) {
+                $condicioAlumne = Condicio::find($tasca->condicion_id);
+            }
+
+            return view('professor.assignar_nota', [
+                'condicioAlumne' => $condicioAlumne, 'compost_quimic' => $compost_quimic, 'tasca' => $tasca,
+                'condN' => $condN, 'condicio' => $condicio, 'arrayComposts' => $arrayComposts, 'mostra' => $mostra, 'practica' => $practica
+            ]);
         }
+    }
 }
