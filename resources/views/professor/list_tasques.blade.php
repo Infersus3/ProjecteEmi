@@ -4,7 +4,7 @@
 <div class="container">
     <div class="card">
         <div class="card-header">
-            <h5 class="card-title">Pràctiques</h5>
+            <h5 class="card-title">Tàsques d'alumnes</h5>
         </div>
         <div class="card-body">
             @foreach ($practiques as $practica)

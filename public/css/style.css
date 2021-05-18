@@ -1,0 +1,21 @@
+.users {
+    margin: 0px;
+    margin-right: 10px;
+}
+
+.wrapper {
+    max-width: 80%;
+    margin: auto;
+}
+
+.logo_emi {
+    height: 50px;
+}
+
+.grups_table {
+    margin: 20px;
+}
+
+.create_grup {
+    padding-left: 20px;
+}
