@@ -60,4 +60,13 @@ Route::get('/alumne/tasques', [App\Http\Controllers\AlumneController::class, 'li
 
 });
 
+//Compost
+// ------ Crear compost
+Route::get('/professor/creacompost', [App\Http\Controllers\ProfessorController::class, 'createCompost'])->name('crear_compost');
+// ------ Administrar compost
+Route::get('/professor/admin_compost', [App\Http\Controllers\ProfessorController::class, 'adminCompost'])->name('admin_compost');
+// ------ Eliminar compost
+Route::get('/professor/delete_compost/{id}', [App\Http\Controllers\ProfessorController::class, 'eliminaCompost'])->name('delete_compost');
+
+
 

@@ -364,4 +364,33 @@ class ProfessorController extends Controller
         $tasca->delete();
         return redirect()->route('admin_tasques', ['id' => $practicaId]);
     }
+
+    public function createCompost(Request $request)
+    {
+
+        if (isset($request->submit)) {
+            CompostQuimics::create([
+                'nom' => $request->nom_compost,
+                'formula' => $request->formula,
+            ]);
+            return redirect()->route('admin_compost');
+        } else {
+            return view('compost.crear_compost');
+        }
+    }
+
+    public function eliminaCompost($id)
+    {
+        $comp = CompostQuimics::find($id);        
+        CompostQuimics::destroy($id);
+
+        return redirect()->route('admin_compost');
+    }
+
+    public function adminCompost()
+    {
+        $compost = CompostQuimics::all();
+        $mcc = MostraCondComposts::all();
+        return view('compost.administrar_composts', ['compost' => $compost, 'mcc' => $mcc]);
+    }
 }
