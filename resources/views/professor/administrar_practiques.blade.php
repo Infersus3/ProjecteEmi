@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="wrapper-sm">
     <div class="card">
         <div class="card-header">
             <h5 class="card-title">Pràctiques &nbsp; <a href="{{ route('crear_practica') }}" class="btn btn-sm btn-info"> Crear Pràctica</a> <a href="{{ route('admin_compost') }}" class="btn btn-sm btn-info"> Administrar CQ</a> </h5> 
@@ -12,7 +12,7 @@
                     @for ($i = 0; $i < count($practica); $i++) <tr>
                     @if ($practica[$i]->professor_id == Auth::user()->professor_id || Auth::user()->admin)
                         <td>
-                            <h5 class="users">Practica {{ $i+1 }}</h5>
+                            <h5 class="users"> {{ $practica[$i]->titol }}</h5>
                         </td>
                         <td>
                             <a href="{{ route('edita_practica', ['id' => $practica[$i]->id]) }}" class="btn btn-sm btn-info">Editar</a>

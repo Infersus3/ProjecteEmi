@@ -20,9 +20,10 @@
 
             <h3>Paràmetres generals</h3>
             <div class="container">
+            <form id="myform" action="{{ route ('crear_practica') }}">
                 <div class="row">
                     <div class="col">
-                        <form id="myform" action="{{ route ('crear_practica') }}">
+                        
                             <div class="form-group">
                                 <label for="labelNom">Nom de la mostra</label>
                                 <input type="text" name="nom_mostra" class="form-control" value="{{ old('nom_mostra') }}" id="labelNom" required>
@@ -83,7 +84,7 @@
                             <input class="form-control" step="any" type="number" name="temps_retencio{{ $i }}" value="{{ old('temps_retencio$i') }}" id="labelTR{{ $i }}">
                         </div>
                         <div style="display: none;" class="form-group algraf{{ $i }}">
-                            <label for="labelAlçGrafic{{ $i }}">Alçada del gràfic (mAU)</label>
+                            <label for="labelAlçGrafic{{ $i }}">Alçada del gràfic (mm)</label>
                             <input class="form-control" step="any" type="number" name="alçada_grafic{{ $i }}" value="{{ old('alçada_grafic$i') }}" id="labelAlçGrafic{{ $i }}">
                         </div>
                         <div style="display: none;" class="form-group ti{{ $i }}">
@@ -107,12 +108,11 @@
                 <label for="labelVisible">Visible</label>
                 <input type="checkbox" id="labelVisible" name="visiblebox"><br><br>
                 <a href="{{ route('admin_practicas')}}" class="btn btn-secondary">Cancelar</a>
-                <input type="submit" name="submit" class="btn btn-dark" value="Envia"></input>
+                <input type="submit" name="submit" class="btn btn-primary" value="Envia"></input>
                 </form>
             </div>
         </div>
     </div>
-</div>
 </div>
 @endsection
 

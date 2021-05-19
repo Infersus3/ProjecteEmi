@@ -1,19 +1,27 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="wrapper-sm">
     <div class="card">
         <div class="card-header">
             <h5 class="card-title">Pràctiques</h5> 
         </div>
         <div class="card-body">
         @foreach ($practiques as $practica)
-        
-            <div class="card-body">
+            
                 <table class="table table-responsive">
+                    @foreach ($tasques as $tasca) 
+                    @php $in = 0;
+                    if ($practica->id == $tasca->practica_id){
+                        $in = 1;
+                    }
+                    @endphp
+                    @endforeach
+                    @if ($in)
                     <tr>
                         <p> {{ date("d-m-Y", strtotime($practica->data_entrega)) }} </p>
                     </tr>
+                    @endif
                     @foreach ($tasques as $tasca) 
                     @if ($practica->id == $tasca->practica_id)
                     <tr>
@@ -55,8 +63,7 @@
                         @endif
                         @endforeach
                 </table>
-            </div>
-            
+        
             @endforeach
         </div>
     </div>

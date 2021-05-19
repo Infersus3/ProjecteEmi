@@ -41,17 +41,17 @@ class ProfessorController extends Controller
         return redirect()->route('admin_grups');
     }
 
-    public function addAlumneGrup($idAlumne, $idGrup)
+    public function addAlumneGrup(Request $request)
     {
-        $grup = Grup::find($idGrup);
-        $grup->alumnes()->attach($idAlumne);
+        $grup = Grup::find($request->idGrup);
+        $grup->alumnes()->attach($request->idAlumne);
         return redirect()->route('admin_grups');
     }
 
-    public function deleteAlumneGrup($idAlumne, $idGrup)
+    public function deleteAlumneGrup(Request $request)
     {
-        $grup = Grup::find($idGrup);
-        $grup->alumnes()->detach($idAlumne);
+        $grup = Grup::find($request->idGrup);
+        $grup->alumnes()->detach($request->idAlumne);
         return redirect()->route('admin_grups');
     }
 

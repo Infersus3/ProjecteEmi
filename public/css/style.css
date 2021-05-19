@@ -8,6 +8,43 @@
     margin: auto;
 }
 
+.wrapper-sm {
+    max-width: 50%;
+    margin: auto;
+}
+
+.card-header {
+    background-color: rgb(202, 36, 48, 0.9);
+    color: white;
+}
+
+.navbar {
+    background-color: rgb(202, 36, 48)!important;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: white;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: white;
+    font-weight: 500;
+}
+
+.dropdown-menu {
+    background-color: rgb(202, 36, 48)!important;
+    color: white!important;
+}
+
+.dropdown-item {
+    color: white!important;
+}
+
+.dropdown-item:hover {
+    color: #212529!important;
+    background-color: rgb(202, 36, 48)!important;
+}
+
 .logo_emi {
     height: 50px;
 }
@@ -16,6 +53,23 @@
     margin: 20px;
 }
 
+.grups_alumne {
+    margin-top: 20px;
+}
+
 .create_grup {
     padding-left: 20px;
+}
+
+.card-header .btn-danger {
+    border: solid black 1px;
+}
+
+.grup-input {
+    max-width: 400px;
+}
+
+.input-grup {
+    max-width: 250px;
+    display: inline;
 }

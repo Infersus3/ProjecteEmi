@@ -74,7 +74,7 @@ class AdminController extends Controller
         return redirect()->route('admin_users');
     }
 
-    public function deleteUser(Request $request, $id){
+    public function deleteUserRol($id){
         $user = User::find($id);
         if ($user->alumne_id != null){
             $alumne = Alumne::find($user->alumne_id);
@@ -92,13 +92,11 @@ class AdminController extends Controller
                 $grup->alumnes()->detach($alumne->id);
             }
             $alumne->delete();
-            $user->delete();
         }else if ($user->professor_id != null){
             $professor = Professor::find($user->professor_id);
             $user->professor_id = null;
             $user->save();
             $professor->delete();
-            $user->delete();
         }else{
             $user->delete();
         }

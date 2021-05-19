@@ -24,7 +24,7 @@
                     </div>
                 </td>
                 <td>
-                    <a href="{{ route('delete_users', ['id' => $professor->id]) }}" class="btn btn-sm btn-danger btn-secondary" value="{{ $professor->name }}"> Eliminar </button>
+                    <a href="{{ route('delete_users_rols', ['id' => $professor->id]) }}" class="btn btn-sm btn-danger btn-secondary" value="{{ $professor->name }}"> Eliminar </button>
                 </td>
                 </tr>
                 @endforeach
@@ -56,7 +56,7 @@
                 </td>
                 @endif
                 <td>
-                    <a href="{{ route('delete_users', ['id' => $alumne->id]) }}" class="btn btn-sm btn-danger btn-secondary" value="{{ $alumne->name }}"> Eliminar </a>
+                    <a href="{{ route('delete_users_rols', ['id' => $alumne->id]) }}" class="btn btn-sm btn-danger btn-secondary" value="{{ $alumne->name }}"> Eliminar </a>
                 </td>
                 </tr>
                 @endforeach
@@ -88,7 +88,7 @@
                     </div>
                 </td>
                 <td>
-                    <a href="{{ route('delete_users', ['id' => $user->id]) }}" class="btn btn-sm btn-danger btn-secondary" value="{{ $user->name }}"> Eliminar </a>
+                    <a href="{{ route('delete_users_rols', ['id' => $user->id]) }}" class="btn btn-sm btn-danger btn-secondary" value="{{ $user->name }}"> Eliminar </a>
                 </td>
                 </tr>
                 @endforeach

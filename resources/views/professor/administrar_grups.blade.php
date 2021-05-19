@@ -1,20 +1,22 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="wrapper">
+<div class="container">
     <form action="{{ route('crear_grup') }}" class="create_grup">
-        <input type="text" name="nom" required placeholder="Nom del grup">
-        <input type="submit" class="btn btn-sm btn-primary" value="Crear Grup">
+        <div class="grup-input">
+        <input type="text" name="nom" class="form-control input-grup" required placeholder="Nom del grup">
+        <input type="submit" class="btn btn-primary" value="Crear Grup">
+        </div>
     </form>
     <div class="row">
         <div class="col-8">
-        <div class="row grups-card">
+        <div class="row">
             @foreach ($grups as $grup)
                 <div class="col-md-5 grups_table">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">{{$grup->nom}}</h3>
-                            <a href="{{ route('eliminar_grup', ['id' => $grup->id]) }}" value="{{ $grup->nom }}" class="btn btn-sm btn-danger btn-secondary delGrup"> Eliminar </a>
+                            <h3 class="card-title">{{$grup->nom}}
+                            <a href="{{ route('eliminar_grup', ['id' => $grup->id]) }}" value="{{ $grup->nom }}" class="btn btn-sm btn-danger btn-secondary delGrup"> Eliminar </a> </h3>
                         </div>
                         <div class="card-body">
                             @foreach ($grup->alumnes as $alumne)

@@ -26,15 +26,15 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
     Route::get('/admin', [App\Http\Controllers\AdminController::class, 'administrarUsers'])->name('admin_users');
     Route::get('/admin/add_alumne/{id}', [App\Http\Controllers\AdminController::class, 'addAlumne'])->name('add_alumne');
     Route::get('/admin/add_professor/{id}', [App\Http\Controllers\AdminController::class, 'addProfessor'])->name('add_professor');
-    Route::get('/admin/delete_user/{id}', [App\Http\Controllers\AdminController::class, 'deleteUser'])->name('delete_users');
+    Route::get('/admin/delete_user/{id}', [App\Http\Controllers\AdminController::class, 'deleteUserRol'])->name('delete_users_rols');
 
 //Professor 
 // ----- Administració de grups
     Route::get('/professor/adminGrups', [App\Http\Controllers\ProfessorController::class, 'adminGrups'])->name('admin_grups');
     Route::get('/professor/crearGrups', [App\Http\Controllers\ProfessorController::class, 'crearGrup'])->name('crear_grup');
     Route::get('/professor/eliminar_grups/{id}', [App\Http\Controllers\ProfessorController::class, 'eliminarGrup'])->name('eliminar_grup');
-    Route::get('/professor/alumne/add_grup/{idAlumne}{idGrup}', [App\Http\Controllers\ProfessorController::class, 'addAlumneGrup'])->name('add_alumne_grup');
-    Route::get('/professor/alumne/delete_grup/{idAlumne}{idGrup}', [App\Http\Controllers\ProfessorController::class, 'deleteAlumneGrup'])->name('delete_alumne_grup');
+    Route::get('/professor/alumne/add_grup', [App\Http\Controllers\ProfessorController::class, 'addAlumneGrup'])->name('add_alumne_grup');
+    Route::get('/professor/alumne/delete_grup', [App\Http\Controllers\ProfessorController::class, 'deleteAlumneGrup'])->name('delete_alumne_grup');
 
 // ----- Administració de pràtiques
     Route::get('/professor/admin_practica', [App\Http\Controllers\ProfessorController::class, 'adminPractica'])->name('admin_practicas');
