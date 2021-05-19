@@ -10,13 +10,13 @@
         @foreach ($practiques as $practica)
             
                 <table class="table table-responsive">
-                    @foreach ($tasques as $tasca) 
                     @php $in = 0;
+                    foreach ($tasques as $tasca){
                     if ($practica->id == $tasca->practica_id){
                         $in = 1;
                     }
+                    }
                     @endphp
-                    @endforeach
                     @if ($in)
                     <tr>
                         <p> {{ date("d-m-Y", strtotime($practica->data_entrega)) }} </p>

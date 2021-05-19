@@ -37,7 +37,7 @@
             @endforeach
             </div>
         </div>
-        <div class="col-4">
+        <div class="col-4 grup-alumnes">
             <div class="card">
                 <div class="card-header">
                     <h5 class="card-title">Alumnes</h5>

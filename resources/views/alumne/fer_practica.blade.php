@@ -77,7 +77,7 @@
                     </div>
                     <div class="form-group">
                         <label for="labelComent">Comentari</label>
-                        <textarea rows="7" cols="85" name="comentari" id="labelComent">{{ $tasca->comentari }}</textarea>
+                        <textarea rows="7" cols="85" name="comentari" class="form-control" id="labelComent">{{ $tasca->comentari }}</textarea>
                     </div>
                     @if ($practica->visible)
                     <div class="form-group">
