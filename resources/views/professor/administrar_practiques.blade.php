@@ -4,9 +4,10 @@
 <div class="wrapper-sm">
     <div class="card">
         <div class="card-header">
-            <h5 class="card-title">Pràctiques &nbsp; <a href="{{ route('crear_practica') }}" class="btn btn-sm btn-info"> Crear Pràctica</a> <a href="{{ route('admin_compost') }}" class="btn btn-sm btn-info"> Administrar CQ</a> </h5> 
+            <h5 class="card-title">Pràctiques </h5> 
         </div>
         <div class="card-body">
+        <a href="{{ route('crear_practica') }}" class="btn btn-sm btn-dark"> Crear Pràctica</a> <a href="{{ route('admin_compost') }}" class="btn btn-sm btn-dark"> Administrar CQ</a>
             <div class="card-body">
                 <table class="table table-responsive">
                     @for ($i = 0; $i < count($practica); $i++) <tr>

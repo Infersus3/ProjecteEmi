@@ -50,9 +50,14 @@
 }
 
 .grups_table {
-    margin: 20px;
+    margin-left: 20px;
+    margin-top: 20px;
+    min-width: 430px;
 }
 
+.sm-card {
+    min-height: 250px;
+}
 .grup-alumnes {
     margin-top: 20px;
 }
@@ -67,6 +72,19 @@
 
 .grup-input {
     max-width: 400px;
+    padding: 10px;
+}
+
+.card-pers {
+    position: relative;
+    flex-direction: column;
+    min-width: 0;
+    max-width: 400px;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    border-radius: 0.25rem;
 }
 
 .input-grup {

@@ -107,8 +107,6 @@ class ProfessorController extends Controller
             }
             $validated = $request->validate([
                 'nom_mostra' => 'required|max:30',
-            ]);
-            $validated = $request->validate([
                 'nom_col' => 'required|max:30',
                 'alçada_col' => 'required|numeric|max:10000',
                 'temperatura' => 'required|max:10000|numeric',
@@ -228,8 +226,6 @@ class ProfessorController extends Controller
             }
             $validated = $request->validate([
                 'nom_mostra' => 'required|max:30',
-            ]);
-            $validated = $request->validate([
                 'nom_col' => 'required|max:30',
                 'alçada_col' => 'required|numeric|max:10000',
                 'temperatura' => 'required|max:10000|numeric',

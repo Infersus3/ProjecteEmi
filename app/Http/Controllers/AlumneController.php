@@ -87,8 +87,6 @@ class AlumneController extends Controller
         if (isset($request->submit)) {
             $validated = $request->validate([
                 'nom_mostra' => 'required|max:30',
-            ]);
-            $validated = $request->validate([
                 'nom_col' => 'required|max:30',
                 'alçada_col' => 'required|numeric|max:10000',
                 'temperatura' => 'required|max:10000|numeric',
@@ -97,8 +95,11 @@ class AlumneController extends Controller
                 'tamany' => 'required|numeric|max:10000',
                 'velocitat' => 'required|max:10',
                 'detector_uv' => 'required|numeric|max:10000',
-            ]);
-
+            ]); 
+            if (strlen($request->doc->getClientOriginalName()) > 100){
+                // Si el document té un nom superior a 100 caràcters.
+                return redirect()->back();
+            }
             $tasca = Tasca::find($id);
             $practId = $tasca->practica_id;
             $practica = Practica::find($practId);
@@ -167,6 +168,15 @@ class AlumneController extends Controller
             $date = new DateTime('NOW');
             $data = $date->format('Y-m-d H:i:s');
             $tasca->data_lliurament = $data;
+
+            //Guardem el arxiu a 'documents' i li posem el nom de doc_<id_alumne>_<data_hora_segons>
+            if ($request->doc){
+                $nomFile = $request->doc->getClientOriginalName();
+                $dataFile = explode(' ', $data);
+                $alumne = Auth::user()->name;
+                $url = $request->file('doc')->storeAs('documents', $alumne.'_'.$dataFile[0].'_'.$dataFile[1].'_'.$nomFile);
+                $tasca->document = $url;
+            }
             $tasca->save();
             return redirect()->route('tasques_alumne');
         } else {

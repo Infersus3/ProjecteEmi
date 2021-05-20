@@ -2,18 +2,23 @@
 
 @section('content')
 <div class="container">
+    
     <form action="{{ route('crear_grup') }}" class="create_grup">
+    <div class="card-pers">
+        <div class="card-header"> Crear Grup </div>
         <div class="grup-input">
         <input type="text" name="nom" class="form-control input-grup" required placeholder="Nom del grup">
-        <input type="submit" class="btn btn-primary" value="Crear Grup">
+        <input type="submit" class="btn btn-secondary" value="Crear Grup">
+        </div>
         </div>
     </form>
+   
     <div class="row">
         <div class="col-8">
         <div class="row">
             @foreach ($grups as $grup)
                 <div class="col-md-5 grups_table">
-                    <div class="card">
+                    <div class="card sm-card">
                         <div class="card-header">
                             <h3 class="card-title">{{$grup->nom}}
                             <a href="{{ route('eliminar_grup', ['id' => $grup->id]) }}" value="{{ $grup->nom }}" class="btn btn-sm btn-danger btn-secondary delGrup"> Eliminar </a> </h3>
@@ -38,12 +43,11 @@
             </div>
         </div>
         <div class="col-4 grup-alumnes">
-            <div class="card">
+            <div class="card sm-card">
                 <div class="card-header">
                     <h5 class="card-title">Alumnes</h5>
                 </div>
                 <div class="card-body">
-                    <div class="card-body">
                         <table class="table table-responsive">
                             @foreach ($alumnes as $alumne)
                             <tr>
@@ -77,7 +81,6 @@
                             </tr>
                             @endforeach
                         </table>
-                    </div>
                 </div>
             </div>
         </div>

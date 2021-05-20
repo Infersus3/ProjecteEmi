@@ -20,7 +20,8 @@
 
             <h3>Paràmetres generals</h3>
             <div class="container">
-                <form id="myform" action="{{ route ('realitza_tasca' ,['id' => $tasca->id]) }}">
+                <form id="myform" method="POST" action="{{ route ('realitza_tasca_post' ,['id' => $tasca->id]) }}" enctype="multipart/form-data">
+                @csrf
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
@@ -79,7 +80,11 @@
                         <label for="labelComent">Comentari</label>
                         <textarea rows="7" cols="85" name="comentari" class="form-control" id="labelComent">{{ $tasca->comentari }}</textarea>
                     </div>
-                    @if ($practica->visible)
+                    <div class="form-group">
+                        <label for="labelDoc">Pujar arxiu amb fórmules</label>
+                        <input type="file" name="doc" class="form-control" id="labelDoc"></input>
+                    </div>
+                    @if ($practica->visible || $practica->data_entrega < $data)
                     <div class="form-group">
                         @else
                         <div class="form-group" style="display: none;">

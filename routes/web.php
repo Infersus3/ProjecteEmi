@@ -61,10 +61,14 @@ Route::middleware(['auth', 'alumne'])->group(function () {
     
     // ----- Realitzacio de tàsques
     Route::get('/alumne/realitzaTasca/{id}', [App\Http\Controllers\AlumneController::class, 'realitzaTasca'])->name('realitza_tasca');
+    Route::post('/alumne/realitzaTasca/{id}', [App\Http\Controllers\AlumneController::class, 'realitzaTasca'])->name('realitza_tasca_post');
     Route::get('/alumne/tasques', [App\Http\Controllers\AlumneController::class, 'listTasques'])->name('tasques_alumne');
 
     //Agafar condicions API
     Route::get('/practica_cond/{id}', [App\Http\Controllers\AlumneController::class, 'returnCond'])->name('comprovar_cond');
+
+    //Pujar arxius 
+    Route::post('/alumne', [App\Http\Controllers\UploadController::class, 'index'])->name('post_file');
 });
 
 

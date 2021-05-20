@@ -17,6 +17,7 @@ class Tasca extends Model
         'comentari',
         'nota',
         'data_lliurament',
+        'document',
         'correcta',
     ];
 }

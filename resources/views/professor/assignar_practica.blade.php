@@ -88,7 +88,7 @@
                     </div>
                 </div>
             </div>
-            <div class="card">
+            <div class="card" style="margin-top: 20px;">
                 <div class="card-header">
                     <h5 class="card-title">Grups</h5>
                 </div>
