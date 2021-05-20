@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Models\CompostQuimics;
 use App\Models\Condicio;
 use App\Models\Mostra;
+use App\Models\Grup;
 use App\Models\Tasca;
 use App\Models\MostraCondComposts;
 use Illuminate\Support\Facades\Auth;
@@ -95,11 +96,15 @@ class AlumneController extends Controller
                 'tamany' => 'required|numeric|max:10000',
                 'velocitat' => 'required|max:10',
                 'detector_uv' => 'required|numeric|max:10000',
+                'doc' => 'max:10000'
             ]); 
-            if (strlen($request->doc->getClientOriginalName()) > 100){
-                // Si el document té un nom superior a 100 caràcters.
-                return redirect()->back();
+            if (!is_string($request->doc) && $request->doc != null ){
+                if (strlen($request->doc->getClientOriginalName()) > 100){
+                    // Si el document té un nom superior a 100 caràcters.
+                    return redirect()->back();
+                }
             }
+            
             $tasca = Tasca::find($id);
             $practId = $tasca->practica_id;
             $practica = Practica::find($practId);
@@ -171,11 +176,19 @@ class AlumneController extends Controller
 
             //Guardem el arxiu a 'documents' i li posem el nom de doc_<id_alumne>_<data_hora_segons>
             if ($request->doc){
-                $nomFile = $request->doc->getClientOriginalName();
+                if (!is_string($request->doc) && $request->doc != null){
+                    $nomFile = $request->doc->getClientOriginalName();
                 $dataFile = explode(' ', $data);
-                $alumne = Auth::user()->name;
-                $url = $request->file('doc')->storeAs('documents', $alumne.'_'.$dataFile[0].'_'.$dataFile[1].'_'.$nomFile);
-                $tasca->document = $url;
+                $name = Auth::user()->name;
+                if (!$tasca->alumne_id){
+                    $name = Grup::find($tasca->grup_id)->nom;
+                }
+                $url = $request->file('doc')->storeAs('public', $name.'_'.$dataFile[0].'_'.$dataFile[1].'_'.$nomFile);
+                $urlValida = preg_replace('/public/', 'storage', $url);
+                $tasca->document = $urlValida;
+                }else{
+                    $tasca->document = $request->doc;
+                }
             }
             $tasca->save();
             return redirect()->route('tasques_alumne');

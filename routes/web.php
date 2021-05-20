@@ -54,6 +54,8 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
     Route::get('/professor/admin_compost', [App\Http\Controllers\ProfessorController::class, 'adminCompost'])->name('admin_compost');
     Route::get('/professor/delete_compost/{id}', [App\Http\Controllers\ProfessorController::class, 'eliminaCompost'])->name('delete_compost');
 
+    Route::get('/professor/download/{url}', [App\Http\Controllers\UploadController::class, 'download'])->name('download_file');
+
 });
 
 // Alumne
@@ -66,10 +68,8 @@ Route::middleware(['auth', 'alumne'])->group(function () {
 
     //Agafar condicions API
     Route::get('/practica_cond/{id}', [App\Http\Controllers\AlumneController::class, 'returnCond'])->name('comprovar_cond');
-
-    //Pujar arxius 
-    Route::post('/alumne', [App\Http\Controllers\UploadController::class, 'index'])->name('post_file');
 });
+
 
 
 

@@ -81,8 +81,11 @@
                         <textarea rows="7" cols="85" name="comentari" class="form-control" id="labelComent">{{ $tasca->comentari }}</textarea>
                     </div>
                     <div class="form-group">
-                        <label for="labelDoc">Pujar arxiu amb fórmules</label>
-                        <input type="file" name="doc" class="form-control" id="labelDoc"></input>
+                        <label for="labelDoc">Pujar arxiu amb fórmules</label> <br>
+                        @if ($tasca->document)
+                           <p class=" btn btn-success"> Arxiu pujat correctament </p> <p> {{ $tasca->document }} </p>
+                        @endif
+                        <input type="file" name="doc" class="form-control" id="labelDoc">
                     </div>
                     @if ($practica->visible || $practica->data_entrega < $data)
                     <div class="form-group">

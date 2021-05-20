@@ -91,3 +91,7 @@
     max-width: 250px;
     display: inline;
 }
+
+.download_icon {
+    max-width: 25px;
+}

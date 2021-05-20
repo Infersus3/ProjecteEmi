@@ -80,6 +80,14 @@
                         <textarea rows="7" cols="85" name="comentari" class="form-control" id="labelComent" readonly>{{ $tasca->comentari }}</textarea>
                     </div>
                     <div class="form-group">
+                        <label for="labelDoc">Document amb fórmules</label><br>
+                        @if ($tasca->document)
+                        <a href="{{ asset($tasca->document) }}" download> Descarregar document <img src="{{ asset('img/download_icon.png')}}" class="download_icon" alt=""></a>
+                        @else
+                        <a href="#"> Ningún document pujat <img src="{{ asset('img/download_icon.png')}}" class="download_icon" alt=""></a>
+                        @endif
+                    </div>
+                    <div class="form-group">
                             <label class="form-check-label" for="labelSelect">Selecció de compost</label><br>
                             @for ($i = 0; $i < count($arrayComposts); $i++) @foreach ($compost_quimic as $compost) @if ($compost->id == $arrayComposts[$i]->compost_quimic_id)
                                 <label for="{{ $i }}">{{ $compost_quimic[$i]->nom }}</label>
