@@ -12,11 +12,13 @@ use App\Models\Mostra;
 use App\Models\Tasca;
 use App\Models\MostraCondComposts;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use DateTime;
 
 
 class ProfessorController extends Controller
 {
+    
     public function index()
     {
         return view('professor.crea_tasques');
@@ -332,6 +334,10 @@ class ProfessorController extends Controller
         $mostra_cond_comp = MostraCondComposts::find($mccid);
         $mostra_cond_comp->delete();
 
+        //per cada práctica eliminar el pdf
+        //Canviar storage per public ja està ben fet en el preg match
+       // $urlValida = preg_replace('/storage/', 'public', $url);
+        Storage::delete('public/DDED_2021-05-20_20:55:51_Horaris.pdf');
         return redirect()->route('admin_practicas');
     }
 
