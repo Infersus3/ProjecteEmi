@@ -1,0 +1,30 @@
+@extends('layouts.app')
+
+@section('content')
+<div class="wrapper-sm">
+    <div class="card">
+        <div class="card-header">
+            <h5 class="card-title">Avaluar pràctiques</h5>
+        </div>
+        <div class="card-body">
+            @foreach ($practiques as $practica)
+            @if ($practica->data_entrega < $data)
+            <div class="card-body">
+                <table class="table table-responsive">
+                    <tr>
+                        <p> {{ date("d-m-Y", strtotime($practica->data_entrega)) }} </p>
+                        <td>
+                            <h5>{{ $practica->titol }}</h5>
+                        </td>
+                        <td>
+                            <a href="{{ route('avaluar_tasques', ['id' => $practica->id]) }}" class="btn btn-sm btn-info">Avaluar</a>
+                        </td>
+                    <tr>
+                </table>
+            </div>
+            @endif
+            @endforeach
+        </div>
+    </div>
+</div>
+@endsection

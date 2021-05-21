@@ -57,7 +57,6 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
 body {
   margin: 0;
   font-family: "Nunito", sans-serif;
-  font-size: 0.9rem;
   font-weight: 400;
   line-height: 1.6;
   color: #212529;
@@ -565,6 +564,11 @@ pre code {
 @media (min-width: 1200px) {
   .container-xl, .container-lg, .container-md, .container-sm, .container {
     max-width: 1140px;
+  }
+}
+@media (min-width: 1400px) {
+  .container-xl, .container-lg, .container {
+    max-width: 1400px;
   }
 }
 .row {
@@ -2902,7 +2906,6 @@ fieldset:disabled a.btn {
 
 .btn-sm, .btn-group-sm > .btn {
   padding: 0.25rem 0.5rem;
-  font-size: 0.7875rem;
   line-height: 1.5;
   border-radius: 0.2rem;
 }

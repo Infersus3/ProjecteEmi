@@ -12,10 +12,13 @@ use App\Models\Mostra;
 use App\Models\Tasca;
 use App\Models\MostraCondComposts;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use DateTime;
 
 
 class ProfessorController extends Controller
 {
+    
     public function index()
     {
         return view('professor.crea_tasques');
@@ -40,17 +43,17 @@ class ProfessorController extends Controller
         return redirect()->route('admin_grups');
     }
 
-    public function addAlumneGrup($idAlumne, $idGrup)
+    public function addAlumneGrup(Request $request)
     {
-        $grup = Grup::find($idGrup);
-        $grup->alumnes()->attach($idAlumne);
+        $grup = Grup::find($request->idGrup);
+        $grup->alumnes()->attach($request->idAlumne);
         return redirect()->route('admin_grups');
     }
 
-    public function deleteAlumneGrup($idAlumne, $idGrup)
+    public function deleteAlumneGrup(Request $request)
     {
-        $grup = Grup::find($idGrup);
-        $grup->alumnes()->detach($idAlumne);
+        $grup = Grup::find($request->idGrup);
+        $grup->alumnes()->detach($request->idAlumne);
         return redirect()->route('admin_grups');
     }
 
@@ -92,10 +95,10 @@ class ProfessorController extends Controller
                     $ti = 'temps_inicial' . $i;
                     $tf = 'temps_final' . $i;
                     $validated = $request->validate([
-                        $tr => 'required|min:0.01|max:255|numeric',
-                        $alçada => 'required|min:0.01|max:1000|numeric',
-                        $ti => 'required|min:0|max:255|numeric',
-                        $tf => 'required|min:0.01|max:255|numeric',
+                        $tr => 'required|max:10000|numeric',
+                        $alçada => 'required|max:10000|numeric',
+                        $ti => 'required|max:10000|numeric',
+                        $tf => 'required|max:10000|numeric',
                     ]);
                 } else {
                 }
@@ -105,17 +108,15 @@ class ProfessorController extends Controller
                 return redirect()->back();
             }
             $validated = $request->validate([
-                'nom_mostra' => 'required',
-            ]);
-            $validated = $request->validate([
-                'nom_col' => 'required',
-                'alçada_col' => 'required|numeric',
-                'temperatura' => 'required',
-                'eluent' => 'required',
-                'diametre_col' => 'required|numeric',
-                'tamany' => 'required|numeric',
-                'velocitat' => 'required',
-                'detector_uv' => 'required|numeric',
+                'nom_mostra' => 'required|max:30',
+                'nom_col' => 'required|max:30',
+                'alçada_col' => 'required|numeric|max:10000',
+                'temperatura' => 'required|max:10000|numeric',
+                'eluent' => 'required|max:25',
+                'diametre_col' => 'required|numeric|max:10000',
+                'tamany' => 'required|numeric|max:10000',
+                'velocitat' => 'required|max:10',
+                'detector_uv' => 'required|numeric|max:10000',
             ]);
             $mostra = Mostra::create([
                 'nom' => $request->nom_mostra,
@@ -193,10 +194,10 @@ class ProfessorController extends Controller
                     $ti = 'temps_inicial' . $i;
                     $tf = 'temps_final' . $i;
                     $validated = $request->validate([
-                        $tr => 'required|min:0.01|max:255|numeric',
-                        $alçada => 'required|min:0.01|max:1000|numeric',
-                        $ti => 'required|min:0|max:255|numeric',
-                        $tf => 'required|min:0.01|max:255|numeric',
+                        $tr => 'required|max:10000|numeric',
+                        $alçada => 'required|max:10000|numeric',
+                        $ti => 'required|max:10000|numeric',
+                        $tf => 'required|max:10000|numeric',
                     ]);
                 } else {
                 }
@@ -213,10 +214,10 @@ class ProfessorController extends Controller
                     $ti = 'temps_inicial0' . $i;
                     $tf = 'temps_final0' . $i;
                     $validated = $request->validate([
-                        $tr => 'required|min:0.01|max:255|numeric',
-                        $alçada => 'required|min:0.01|max:1000|numeric',
-                        $ti => 'required|min:0|max:255|numeric',
-                        $tf => 'required|min:0.01|max:255|numeric',
+                        $tr => 'required|max:10000|numeric',
+                        $alçada => 'required|max:10000|numeric',
+                        $ti => 'required|max:10000|numeric',
+                        $tf => 'required|max:10000|numeric',
                     ]);
                 } else {
                 }
@@ -226,17 +227,15 @@ class ProfessorController extends Controller
                 return redirect()->back();
             }
             $validated = $request->validate([
-                'nom_mostra' => 'required',
-            ]);
-            $validated = $request->validate([
-                'nom_col' => 'required',
-                'alçada_col' => 'required|numeric',
-                'temperatura' => 'required',
-                'eluent' => 'required',
-                'diametre_col' => 'required|numeric',
-                'tamany' => 'required|numeric',
-                'velocitat' => 'required',
-                'detector_uv' => 'required|numeric',
+                'nom_mostra' => 'required|max:30',
+                'nom_col' => 'required|max:30',
+                'alçada_col' => 'required|numeric|max:10000',
+                'temperatura' => 'required|max:10000|numeric',
+                'eluent' => 'required|max:25',
+                'diametre_col' => 'required|numeric|max:10000',
+                'tamany' => 'required|numeric|max:10000',
+                'velocitat' => 'required|max:10',
+                'detector_uv' => 'required|numeric|max:10000',
             ]);
             $mos = $request->mostraId;
             $mostra = Mostra::find($mos);
@@ -329,12 +328,43 @@ class ProfessorController extends Controller
 
     public function eliminaPractica($id)
     {
+        $mostra_id = 0;
+        $condicio_id = 0;
+        $tasques = Tasca::all();
+        $mostra_cond_compostos = MostraCondComposts::all();
+        foreach ($mostra_cond_compostos as $mostra_cond){
+            if ($mostra_cond->practica_id == $id){
+                $mostra_id = $mostra_cond->mostra_id;
+                $condicio_id = $mostra_cond->condicion_id;
+                $mostra_cond->delete();
+            }
+        }
+        if ($mostra_id){
+            Mostra::find($mostra_id)->delete();
+        }
+        $condicionsDel = array($condicio_id);
+        $documents = array($condicio_id);
+        foreach ($tasques as $tasca){
+            if ($tasca->practica_id == $id){
+                array_push($condicionsDel, $tasca->condicion_id);
+                array_push($documents, $tasca->document);
+                $tasca->delete();
+            }
+        }
+        foreach ($condicionsDel as $condicions_id){
+            $cond = Condicio::find($condicions_id);
+            if ($cond){
+                $cond->delete();
+            }
+        }
         $pract = Practica::find($id);
-        Practica::destroy($id);
-        $mccid = $pract->mostra_cond_compost_id;
-        $mostra_cond_comp = MostraCondComposts::find($mccid);
-        $mostra_cond_comp->delete();
-
+        $pract->delete($id);
+        
+        //Per cada tasca de la pràctica eliminar el document
+        foreach ($documents as $doc){
+            $urlValida = preg_replace('/storage/', 'public', $doc);
+            Storage::delete($urlValida);
+        }
         return redirect()->route('admin_practicas');
     }
 
@@ -377,5 +407,150 @@ class ProfessorController extends Controller
         $tasca = Tasca::find($request->tasca_id);
         $tasca->delete();
         return redirect()->route('admin_tasques', ['id' => $practicaId]);
+    }
+
+    public function createCompost(Request $request)
+    {
+        if (isset($request->submit)) {
+            CompostQuimics::create([
+                'nom' => $request->nom_compost,
+                'formula' => $request->formula,
+            ]);
+            return redirect()->route('admin_compost');
+        } else {
+            return view('compost.crear_compost');
+        }
+    }
+
+    public function eliminaCompost($id)
+    {
+        CompostQuimics::find($id);
+        CompostQuimics::destroy($id);
+
+        return redirect()->route('admin_compost');
+    }
+
+    public function adminCompost()
+    {
+        $compost = CompostQuimics::all();
+        $mcc = MostraCondComposts::all();
+        return view('compost.administrar_composts', ['compost' => $compost, 'mcc' => $mcc]);
+    }
+    // Funció per ordenar les tasques per dia d'entrega
+    public function array_sort($array, $on, $order = SORT_ASC)
+    {
+        $new_array = array();
+        $sortable_array = array();
+
+        if (count($array) > 0) {
+            foreach ($array as $k => $v) {
+                if (is_array($v)) {
+                    foreach ($v as $k2 => $v2) {
+                        if ($k2 == $on) {
+                            $sortable_array[$k] = $v2;
+                        }
+                    }
+                } else {
+                    $sortable_array[$k] = $v;
+                }
+            }
+
+            switch ($order) {
+                case SORT_ASC:
+                    asort($sortable_array);
+                    break;
+                case SORT_DESC:
+                    arsort($sortable_array);
+                    break;
+            }
+
+            foreach ($sortable_array as $k => $v) {
+                $new_array[$k] = $array[$k];
+            }
+        }
+
+        return $new_array;
+    }
+
+    public function listTasques()
+    {
+        $professor_id = Auth::user()->professor_id;
+
+        $practique = Practica::all();
+        $practProfessor = array();
+        foreach ($practique as $practs) {
+            if ($practs->professor_id == $professor_id) {
+                array_push($practProfessor, $practs);
+            }
+        }
+        $practiques = $this->array_sort($practProfessor, 'data_entrega', SORT_ASC);
+
+        $date = new DateTime('NOW');
+        $data = $date->format('Y-m-d');
+
+        return view('professor.list_tasques', [ 'data' => $data, 'practiques' => $practiques]);
+    }
+
+    public function avaluarTasques($id)
+    {
+        $professor_id = Auth::user()->professor_id;
+        $tasques = Tasca::all();
+        $alumnes = Alumne::all();
+        $practica = Practica::find($id);
+
+        $grups = Grup::all();
+        $tascs = array();
+
+        foreach ($tasques as $tasca) {
+            if ($tasca->practica_id == $id) {
+                array_push($tascs, $tasca);
+            }
+        }
+        $tasquesOrd = $this->array_sort($tascs, 'data_lliurament', SORT_ASC);
+
+        $date = new DateTime('NOW');
+        $data = $date->format('Y-m-d');
+
+        return view('professor.avaluar_tasques', [
+            'data' => $data, 'practica' => $practica, 'tasquesOrd' => $tasquesOrd, 'grups' => $grups, 'alumnes' => $alumnes
+        ]);
+    }
+
+    public function avaluarTasca($id, Request $request)
+    {
+        $tasca = Tasca::find($id);
+
+        if (isset($request->submit)) {
+            $tasca->nota = $request->nota;
+            $tasca->save();
+            return redirect()->route('list_tasques');
+        } else {
+            $practId = $tasca->practica_id;
+            $practica = Practica::find($practId);
+            $totesmcc = MostraCondComposts::all();
+            $arrayComposts = array();
+            $mostraGuardar = 0;
+            $condicioGuardar = 0;
+            foreach ($totesmcc as $param) {
+                if ($param->practica_id == $practId) {
+                    array_push($arrayComposts, $param);
+                    $mostraGuardar = $param->mostra_id;
+                    $condicioGuardar = $param->condicion_id;
+                }
+            }
+            $mostra = Mostra::find($mostraGuardar);
+            $condicio = Condicio::find($condicioGuardar);
+            $condN = $condicio->neutre;
+            $compost_quimic = CompostQuimics::all();
+            $condicioAlumne = null;
+            if ($tasca->condicion_id) {
+                $condicioAlumne = Condicio::find($tasca->condicion_id);
+            }
+
+            return view('professor.assignar_nota', [
+                'condicioAlumne' => $condicioAlumne, 'compost_quimic' => $compost_quimic, 'tasca' => $tasca,
+                'condN' => $condN, 'condicio' => $condicio, 'arrayComposts' => $arrayComposts, 'mostra' => $mostra, 'practica' => $practica
+            ]);
+        }
     }
 }

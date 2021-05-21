@@ -1,0 +1,121 @@
+.users {
+    margin: 0px;
+    margin-right: 10px;
+}
+
+.wrapper {
+    max-width: 80%;
+    margin: auto;
+}
+
+.wrapper-sm {
+    max-width: 50%;
+    margin: auto;
+}
+
+.card-header {
+    background-color: rgb(202, 36, 48, 0.9);
+    color: white;
+}
+
+.navbar {
+    background-color: rgb(202, 36, 48)!important;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: white;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: white;
+    font-weight: 500;
+}
+
+.dropdown-menu {
+    background-color: rgb(202, 36, 48)!important;
+    color: white!important;
+}
+
+.dropdown-item {
+    color: white!important;
+}
+
+.dropdown-item:hover {
+    color: #212529!important;
+    background-color: rgb(202, 36, 48)!important;
+}
+
+.logo_emi {
+    height: 50px;
+}
+
+.grups_table {
+    margin-left: 20px;
+    margin-top: 20px;
+    min-width: 430px;
+}
+
+.sm-card {
+    min-height: 250px;
+}
+.grup-alumnes {
+    margin-top: 20px;
+}
+
+.create_grup {
+    padding-left: 20px;
+}
+
+.card-header .btn-danger {
+    border: solid black 1px;
+}
+
+.card-header {
+    padding-top: 15px;
+}
+
+.grup-input {
+    max-width: 400px;
+    padding: 10px;
+}
+
+.card-pers {
+    position: relative;
+    flex-direction: column;
+    min-width: 0;
+    max-width: 400px;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    border-radius: 0.25rem;
+}
+
+.input-grup {
+    max-width: 250px;
+    display: inline;
+}
+
+.download_icon {
+    max-width: 25px;
+}
+
+.data {
+    margin-bottom: 30px;
+}
+
+.card-form {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-clip: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    border-radius: 0.25rem;
+}
+
+input[type=file] {
+    margin-bottom: 40px;
+    margin-top: 10px;
+}

@@ -20,13 +20,7 @@
                                     <h5 class="users">{{ $alumne->nom }}</h5>
                                 </td>
                                 <td>
-                                    <button type="button" class="btn btn-sm btn-secondary dropdown-toggle" data-toggle="dropdown"> Assignar </button>
-                                    <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                        <a class="dropdown-item">Professor</a>
-                                    </div>
-                                </td>
-                                <td>
-                                    <a class="btn btn-sm btn-danger delAlumne" href="{{ route('delete_tasca', ['practica_id' => $practica->id, 'tasca_id' => $tasca->id]) }}" value="{{ $alumne->nom }}"> Eliminar </a>
+                                    <a class="btn btn-sm btn-danger delAlumne" href="{{ route('delete_alumne_tasca', ['practica_id' => $practica->id, 'tasca_id' => $tasca->id]) }}" value="{{ $alumne->nom }}"> Eliminar </a>
                                 </td>
                             </tr>
                             @endif
@@ -43,13 +37,7 @@
                                     <h5 class="users">{{ $grup->nom }}</h5>
                                 </td>
                                 <td>
-                                    <button type="button" class="btn btn-sm btn-secondary dropdown-toggle" data-toggle="dropdown"> Assignar </button>
-                                    <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                        <a class="dropdown-item">Professor</a>
-                                    </div>
-                                </td>
-                                <td>
-                                    <a class="btn btn-sm btn-danger delGrup" href="{{ route('delete_tasca', ['practica_id' => $practica->id, 'tasca_id' => $tasca->id]) }}" value="{{ $grup->nom }}"> Eliminar </a>
+                                    <a class="btn btn-sm btn-danger delGrup" href="{{ route('delete_alumne_tasca', ['practica_id' => $practica->id, 'tasca_id' => $tasca->id]) }}" value="{{ $grup->nom }}"> Eliminar </a>
                                 </td>
                             </tr>
                             @endif
@@ -81,7 +69,7 @@
                                 @endphp
                                 @if (!$in)
                                 <td>
-                                    <a class="btn btn-sm btn-primary" href="{{ route('create_tasca', ['practica_id' => $practica->id, 'alumne_id' => $alumne->id])}}"> Assignar </a>
+                                    <a class="btn btn-sm btn-primary" href="{{ route('create_alumne_tasca', ['practica_id' => $practica->id, 'alumne_id' => $alumne->id])}}"> Assignar </a>
                                 </td>
                                 @else
                                 <td>
@@ -91,7 +79,7 @@
                                 @endif
                                 @else
                                 <td>
-                                    <a class="btn btn-sm btn-primary" href="{{ route('create_tasca', ['practica_id' => $practica->id, 'alumne_id' => $alumne->id])}}"> Assignar </a>
+                                    <a class="btn btn-sm btn-primary" href="{{ route('create_alumne_tasca', ['practica_id' => $practica->id, 'alumne_id' => $alumne->id])}}"> Assignar </a>
                                 </td>
                             </tr>
                             @endif
@@ -100,7 +88,7 @@
                     </div>
                 </div>
             </div>
-            <div class="card">
+            <div class="card" style="margin-top: 20px;">
                 <div class="card-header">
                     <h5 class="card-title">Grups</h5>
                 </div>
@@ -121,7 +109,7 @@
                                 @endphp
                                 @if (!$in)
                                 <td>
-                                    <a class="btn btn-sm btn-primary" href="{{ route('create_tasca', ['practica_id' => $practica->id, 'grup_id' => $grup->id])}}"> Assignar </a>
+                                    <a class="btn btn-sm btn-primary" href="{{ route('create_alumne_tasca', ['practica_id' => $practica->id, 'grup_id' => $grup->id])}}"> Assignar </a>
                                 </td>
                                 @else
                                 <td>
@@ -130,7 +118,7 @@
                                 @endif
                                 @else
                                 <td>
-                                    <a class="btn btn-sm btn-primary" href="{{ route('create_tasca', ['practica_id' => $practica->id, 'grup_id' => $grup->id])}}"> Assignar </a>
+                                    <a class="btn btn-sm btn-primary" href="{{ route('create_alumne_tasca', ['practica_id' => $practica->id, 'grup_id' => $grup->id])}}"> Assignar </a>
                                 </td>
                             </tr>
                             @endif
@@ -149,12 +137,12 @@
     $(function() {
         $('.delAlumne').on('click', function() {
             let alumne = $(this).attr('value');
-            return window.confirm('Segur que vols esborrar la tasca de l\'usuari: \'' + alumne + '\'?');
+            return window.confirm('Segur que vols esborrar la tasca de l\'usuari: \'' + alumne + '\' ? S\'eliminarà l\'informació de la tasca que ha fet.');
         });
 
         $('.delGrup').on('click', function() {
             let grup = $(this).attr('value');
-            return window.confirm('Segur que vols esborrar la tasca del grup: ' + grup + ' ?');
+            return window.confirm('Segur que vols esborrar la tasca del grup: ' + grup + ' ? S\'eliminarà l\'informació de la tasca que han fet.');
         });
     })
 </script>
