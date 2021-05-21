@@ -73,7 +73,7 @@
                                 </td>
                                 @else
                                 <td>
-                                    <p>ja té la pràctica assignada</p>
+                                    <p>Ja té la pràctica assignada.</p>
 
                                 </td>
                                 @endif
@@ -113,7 +113,7 @@
                                 </td>
                                 @else
                                 <td>
-                                    <p>ja té la pràctica assignada</p>
+                                    <p>Ja té la pràctica assignada.</p>
                                 </td>
                                 @endif
                                 @else

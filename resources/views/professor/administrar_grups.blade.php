@@ -21,7 +21,7 @@
                     <div class="card sm-card">
                         <div class="card-header">
                             <h3 class="card-title">{{$grup->nom}}
-                            <a href="{{ route('eliminar_grup', ['id' => $grup->id]) }}" value="{{ $grup->nom }}" class="btn btn-sm btn-danger btn-secondary delGrup"> Eliminar </a> </h3>
+                            <a href="{{ route('eliminar_grup', ['id' => $grup->id]) }}" value="{{ $grup->nom }}" class="btn btn-eliminar btn-sm btn-danger btn-secondary delGrup"><i class="fas fa-trash-alt"></i> Eliminar </a> </h3>
                         </div>
                         <div class="card-body">
                             @foreach ($grup->alumnes as $alumne)
@@ -31,7 +31,7 @@
                                         <h5 class="users">{{ $alumne->nom }} </h5>
                                     </td>
                                     <td>
-                                        <a href="{{ route('delete_alumne_grup', ['idAlumne' => $alumne->id, 'idGrup' => $grup->id]) }}" class="btn btn-sm btn-danger btn-secondary delAlumnes" value="{{ $alumne->nom }}" value2="{{$grup->nom}}"> Eliminar del grup </a>
+                                        <a href="{{ route('delete_alumne_grup', ['idAlumne' => $alumne->id, 'idGrup' => $grup->id]) }}" class="btn-eliminar btn-sm delAlumnes" value="{{ $alumne->nom }}" value2="{{$grup->nom}}"><i class="fas fa-trash-alt"></i> Eliminar</a>
                                     </td>
                                 </tr>
                             </table>
@@ -55,7 +55,7 @@
                                     <h5 class="users">{{ $alumne->nom }}</h5>
                                 </td>
                                 <td>
-                                    <button id="btnGroupDrop1" type="button" class="btn btn-sm btn-secondary dropdown-toggle" data-toggle="dropdown"> Assignar </button>
+                                    <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"> Assignar </button>
                                     <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
                                         <!-- Mostrem els grups on el alumne no pertany solament -->
                                         <!-- Si el alumne està en un grup determinat posem la variable 'in' com a 1, així no mostrem el nom del grup-->
