@@ -26,11 +26,11 @@
                     @if ($practica->id == $tasca->practica_id)
                     <tr>
                         <td>
-                                <h5 class="users">{{ $practica->titol }}</h5>
+                        <div class="btn"><h5 class="users">{{ $practica->titol }}</h5></div>
                         </td>
                         <td>
                         @if ($practica->data_entrega >= $data)
-                            <a href="{{ route('realitza_tasca', ['id' => $tasca->id]) }}" class="btn-edit btn-sm btn-info"><i class="fas fa-pen"></i> Fer practica</a>
+                            <a href="{{ route('realitza_tasca', ['id' => $tasca->id]) }}" class="btn btn-sm btn-info"><i class="fas fa-pen"></i> Fer practica</a>
                         @else
                         <a href="{{ route('realitza_tasca', ['id' => $tasca->id]) }}" class="btn btn-warning"><i class="fas fa-search"></i> Veure practica</a>
                             @endif

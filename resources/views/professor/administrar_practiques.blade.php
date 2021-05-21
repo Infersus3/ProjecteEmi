@@ -13,18 +13,17 @@
                     @for ($i = 0; $i < count($practica); $i++) <tr>
                         @if ($practica[$i]->professor_id == Auth::user()->professor_id || Auth::user()->admin)
                         <td>
-                            <h5 class="users"> {{ $practica[$i]->titol }}</h5>
+                            <div class="btn"><h5 class="users"> {{ $practica[$i]->titol }}</h5></div>
                         </td>
                         <td>
-                            <!--a href="{{ route('edita_practica', ['id' => $practica[$i]->id]) }}" class="btn btn-sm btn-info">Editar</a-->
-                            <a href="{{ route('edita_practica', ['id' => $practica[$i]->id]) }}" class="btn-edit" ><i class="fas fa-edit"></i> Editar</a>
+                            <a href="{{ route('edita_practica', ['id' => $practica[$i]->id]) }}" class="btn btn-sm btn-primary"><i class="fas fa-edit"></i> Editar</a>
                             
                         </td>
                         <td>
-                            <a href="{{ route('admin_tasques', ['id' => $practica[$i]->id]) }}" class="btn-asignar"><i class="fas fa-angle-double-right"></i> Asignar</a>
+                            <a href="{{ route('admin_tasques', ['id' => $practica[$i]->id]) }}" class="btn btn-sm btn-success"><i class="fas fa-angle-double-right"></i> Asignar</a>
                         </td>
                         <td>
-                            <a href="{{ route('elimina_practica', ['id' => $practica[$i]->id]) }}" class="btn-eliminar" value="{{ $practica[$i]->titol }}"><i class="fas fa-trash-alt"></i> Eliminar </a>
+                            <a href="{{ route('elimina_practica', ['id' => $practica[$i]->id]) }}" class="btn btn-sm btn-danger" value="{{ $practica[$i]->titol }}"><i class="fas fa-trash-alt"></i> Eliminar </a>
                         </td>
                         </tr>
                         @endif

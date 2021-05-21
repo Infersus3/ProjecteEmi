@@ -66,6 +66,7 @@
                                 Grups
                             </a>
                         </li>
+                        @if (Auth::user()->professor_id)
                         <li class="nav-item dropdown">
                             <a class="nav-link" href="{{ route('admin_practicas')}}">
                                 Activitats
@@ -76,6 +77,7 @@
                                 Avaluar
                             </a>
                         </li>
+                        @endif
                         @elseif (Auth::user()->alumne_id)
                         <li class="nav-item dropdown">
                             <a class="nav-link" href="{{ route('tasques_alumne')}}">

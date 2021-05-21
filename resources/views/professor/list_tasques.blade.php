@@ -14,10 +14,10 @@
                     <tr>
                         <p> {{ date("d-m-Y", strtotime($practica->data_entrega)) }} </p>
                         <td>
-                            <h5>{{ $practica->titol }}</h5>
+                            <div class="btn"><h5>{{ $practica->titol }}</h5></div>
                         </td>
                         <td>
-                            <a href="{{ route('avaluar_tasques', ['id' => $practica->id]) }}" class="btn btn-info">Avaluar</a>
+                            <a href="{{ route('avaluar_tasques', ['id' => $practica->id]) }}" class="btn btn-info"><i class="fas fa-tasks"></i> Avaluar</a>
                         </td>
                     <tr>
                 </table>

@@ -493,7 +493,6 @@ class ProfessorController extends Controller
 
     public function avaluarTasques($id)
     {
-        $professor_id = Auth::user()->professor_id;
         $tasques = Tasca::all();
         $alumnes = Alumne::all();
         $practica = Practica::find($id);

@@ -25,7 +25,7 @@
                     @if ($in)
                         <a class="btn btn-warning">Compost Químic en ús</a>
                     @else
-                        <a href="{{ route('delete_compost', ['id' => $c->id]) }}" value="{{ $c->nom }}" class="btn btn-sm btn-danger">Eliminar</a>
+                        <a href="{{ route('delete_compost', ['id' => $c->id]) }}" value="{{ $c->nom }}" class="btn btn-sm btn-danger"><i class="fas fa-trash-alt"></i> Eliminar</a>
                     @endif
                     </td>
                     </tr>

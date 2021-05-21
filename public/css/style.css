@@ -121,69 +121,7 @@ input[type=file] {
     margin-top: 10px;
 }
 
-
-.btn-edit {
+.titol_grups {
     display: inline-block;
-    padding: 0.3em 1.2em;
-    margin: 0 0.3em 0.3em 0;
-    border-radius: 0.5em;
-    box-sizing: border-box;
-    text-decoration: none;
-    font-family: 'Roboto', sans-serif;
-    font-weight: 500;
-    color:white;
-    background-color: #4eb5f1;
-    text-align: center;
-    transition: all 0.2s;
-}
-
-.btn-edit:hover {
-    color:white;
-    background-color: #4095c6;
-    text-decoration: none;
-
-}
-
-
-.btn-eliminar {
-    display: inline-block;
-    padding: 0.3em 1.2em;
-    margin: 0 0.3em 0.3em 0;
-    border-radius: 0.5em;
-    box-sizing: border-box;
-    text-decoration: none;
-    font-family: 'Roboto', sans-serif;
-    font-weight: 500;
-    color:white;
-    background-color: #e63333;
-    text-align: center;
-    transition: all 0.2s;
-}
-
-.btn-eliminar:hover {
-    color:white;
-    background-color: #ca2e2e;
-    text-decoration: none;
-}
-
-
-.btn-asignar {
-    display: inline-block;
-    padding: 0.3em 1.2em;
-    margin: 0 0.3em 0.3em 0;
-    border-radius: 0.5em;
-    box-sizing: border-box;
-    text-decoration: none;
-    font-family: 'Roboto', sans-serif;
-    color:white;
-    font-weight: 500;
-    background-color: #36bd6e;
-    text-align: center;
-    transition: all 0.2s;
-}
-
-.btn-asignar:hover {
-    color:white;
-    background-color: #2d995b;
-    text-decoration: none;
+    min-width: 20%
 }
