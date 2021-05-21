@@ -17,7 +17,7 @@
                             <h5>{{ $practica->titol }}</h5>
                         </td>
                         <td>
-                            <a href="{{ route('avaluar_tasques', ['id' => $practica->id]) }}" class="btn btn-sm btn-info">Avaluar</a>
+                            <a href="{{ route('avaluar_tasques', ['id' => $practica->id]) }}" class="btn btn-info">Avaluar</a>
                         </td>
                     <tr>
                 </table>

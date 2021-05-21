@@ -24,7 +24,7 @@
                     </div>
                 </td>
                 <td>
-                    <a href="{{ route('delete_users_rols', ['id' => $professor->id]) }}" class="btn btn-sm btn-danger btn-secondary" value="{{ $professor->name }}"> Eliminar </button>
+                    <a href="{{ route('delete_users_rols', ['id' => $professor->id]) }}" class="btn-eliminar" value="{{ $professor->name }}"><i class="fas fa-trash-alt"></i> Eliminar </button>
                 </td>
                 </tr>
                 @endforeach
@@ -56,7 +56,7 @@
                 </td>
                 @endif
                 <td>
-                    <a href="{{ route('delete_users_rols', ['id' => $alumne->id]) }}" class="btn btn-sm btn-danger btn-secondary" value="{{ $alumne->name }}"> Eliminar </a>
+                    <a href="{{ route('delete_users_rols', ['id' => $alumne->id]) }}" class="btn-eliminar" value="{{ $alumne->name }}"><i class="fas fa-trash-alt"></i> Eliminar </a>
                 </td>
                 </tr>
                 @endforeach
@@ -79,7 +79,7 @@
                     <h5 class="users">{{ $user->name }} </h5>
                 </td>
                 <td>
-                    <button id="btnGroupDrop1" type="button" class="btn btn-sm btn-secondary dropdown-toggle" data-toggle="dropdown"> Assignar </button>
+                    <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"> Assignar </button>
                     <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
                         <a class="dropdown-item" href="{{ route('add_alumne', ['id' => $user->id]) }}">Alumne</a>
                         @if (Auth::user()->admin)
@@ -88,7 +88,7 @@
                     </div>
                 </td>
                 <td>
-                    <a href="{{ route('delete_users_rols', ['id' => $user->id]) }}" class="btn btn-sm btn-danger btn-secondary" value="{{ $user->name }}"> Eliminar </a>
+                    <a href="{{ route('delete_users_rols', ['id' => $user->id]) }}" class="btn-eliminar" value="{{ $user->name }}"><i class="fas fa-trash-alt"></i> Eliminar </a>
                 </td>
                 </tr>
                 @endforeach

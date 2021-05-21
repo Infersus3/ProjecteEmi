@@ -4,7 +4,7 @@
 <div class="container">
     <div class="card">
         <div class="card-header">
-            <h4 class="card-title">Compostos Químics &nbsp; <a href="{{ route('crear_compost') }}" class="btn btn-sm btn-dark"> Crear Compost</a></h4>
+            <h4 class="card-title">Compostos Químics &nbsp; <a href="{{ route('crear_compost') }}" class="btn btn-dark"><i class="fas fa-vial"></i> Crear Compost</a></h4>
         </div>
         <div class="card-body">
             <div class="card-body">
@@ -23,7 +23,7 @@
                     @endphp
                     <td>
                     @if ($in)
-                        <a class="btn btn-sm btn-warning">Compost Químic en ús</a>
+                        <a class="btn btn-warning">Compost Químic en ús</a>
                     @else
                         <a href="{{ route('delete_compost', ['id' => $c->id]) }}" value="{{ $c->nom }}" class="btn btn-sm btn-danger">Eliminar</a>
                     @endif

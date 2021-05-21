@@ -25,7 +25,7 @@
                             <p> {{ $alumne->nom }}</p>
                         </td>
                         <td>
-                            <a href="{{ route('avaluar', ['id' => $tasca->id]) }}" class="btn btn-sm btn-info">Avaluar</a>
+                            <a href="{{ route('avaluar', ['id' => $tasca->id]) }}" class="btn btn-info">Avaluar</a>
                         </td>
                         @endif
                         @endforeach
@@ -46,7 +46,7 @@
                             <p> {{ $grup->nom }} </p>
                         </td>
                         <td>
-                            <a href="{{ route('avaluar', ['id' => $tasca->id]) }}" class="btn btn-sm btn-info">Avaluar</a>
+                            <a href="{{ route('avaluar', ['id' => $tasca->id]) }}" class="btn btn-info">Avaluar</a>
                         </td>
                         @endif
                         @endforeach
