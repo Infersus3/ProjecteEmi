@@ -7,7 +7,7 @@
         <div class="col-md-4">
             <div class="card">
                 <div class="card-header">
-                    <h5 class="card-title">Professors</h5>
+                    <h4 class="card-title">Professors</h4>
                 </div>
                 <div class="card-body">
                     <div class="card-body">
@@ -37,7 +37,7 @@
         <div class="col-md-4">
         <div class="card">
                 <div class="card-header">
-                    <h5 class="card-title">Alumnes</h5>
+                    <h4 class="card-title">Alumnes</h4>
                 </div>
                 <div class="card-body">
                     <div class="card-body">
@@ -68,7 +68,7 @@
         <div class="col-md-4">
         <div class="card">
                 <div class="card-header">
-                    <h5 class="card-title">Usuaris</h5>
+                    <h4 class="card-title">Usuaris</h4>
                 </div>
                 <div class="card-body">
                     <div class="card-body">

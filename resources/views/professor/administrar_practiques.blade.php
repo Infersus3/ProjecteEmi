@@ -4,7 +4,7 @@
 <div class="wrapper-sm">
     <div class="card">
         <div class="card-header">
-            <h5 class="card-title">Pràctiques </h5> 
+            <h4> Pràctiques </h4> 
         </div>
         <div class="card-body">
         <a href="{{ route('crear_practica') }}" class="btn btn-sm btn-dark"> Crear Pràctica</a> <a href="{{ route('admin_compost') }}" class="btn btn-sm btn-dark"> Administrar CQ</a>

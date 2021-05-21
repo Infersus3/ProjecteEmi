@@ -18,7 +18,9 @@
                 @endif
             </div>
 
-            <h3>Paràmetres generals</h3>
+            <div class="card-form">
+            <div class="card-header"> <h3>Paràmetres generals</h3> </div>
+            <div class="card-body">
             <div class="container">
                 <form id="myform" action="{{ route ('edita_practica' ,['id' => $practica->id]) }}">
                     <div class="row">
@@ -142,6 +144,8 @@
                     <a href="{{ route('admin_practicas')}}" class="btn btn-secondary">Cancelar</a>
                     <input type="submit" name="submit" class="btn btn-primary" value="Envia"></input>
                 </form>
+            </div>
+            </div>
             </div>
         </div>
     </div>

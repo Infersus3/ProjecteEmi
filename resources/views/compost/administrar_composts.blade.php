@@ -4,7 +4,7 @@
 <div class="container">
     <div class="card">
         <div class="card-header">
-            <h5 class="card-title">Compostos Químics &nbsp; <a href="{{ route('crear_compost') }}" class="btn btn-sm btn-dark"> Crear Compost</a></h5>
+            <h4 class="card-title">Compostos Químics &nbsp; <a href="{{ route('crear_compost') }}" class="btn btn-sm btn-dark"> Crear Compost</a></h4>
         </div>
         <div class="card-body">
             <div class="card-body">
@@ -25,7 +25,7 @@
                     @if ($in)
                         <a class="btn btn-sm btn-warning">Compost Químic en ús</a>
                     @else
-                        <a href="{{ route('delete_compost', ['id' => $c->id]) }}" class="btn btn-sm btn-danger">Eliminar</a>
+                        <a href="{{ route('delete_compost', ['id' => $c->id]) }}" value="{{ $c->nom }}" class="btn btn-sm btn-danger">Eliminar</a>
                     @endif
                     </td>
                     </tr>
@@ -35,4 +35,15 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('scripts')
+<script>
+    $(function(){
+    $('.btn-danger').on('click', function(){
+    let nom = $(this).attr('value');
+    return window.confirm('Segur que vols esborrar el compost: '+nom+'?');
+    });
+})
+</script>
 @endsection

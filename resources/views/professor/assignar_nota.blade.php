@@ -18,7 +18,11 @@
                 @endif
             </div>
 
+            <div class="card-form">
+            <div class="card-header">
             <h3>Paràmetres generals</h3>
+            </div>
+            <div class="card-body">
             <div class="container">
                 <form id="myform" action="{{ route ('avaluar' ,['id' => $tasca->id]) }}">
                     <div class="row">
@@ -129,6 +133,8 @@
                         <input type="submit" name="submit" class="btn btn-primary" value="Envia"></input>
                 </form>
             </div>
+            </div>
+            </div>
         </div>
     </div>
 </div>
@@ -196,7 +202,8 @@
                 dataResult['condicio']['diametre_col'] == $('#labelDiam').val() &&
                 dataResult['condicio']['tamany'] == $('#labelTamany').val() &&
                 dataResult['condicio']['velocitat'] == $('#labelSpeed').val() &&
-                dataResult['condicio']['detector_uv'] == $('#labelDetector').val()){
+                dataResult['condicio']['detector_uv'] == $('#labelDetector').val() &&
+                dataResult['condicio']['neutre'] == $('#labelNeutre').val()){
                     makeGrafic(true);
 
                 }else{

@@ -4,7 +4,11 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <h3>Creació Compost Químic</h3>
+        <div class="card-form">
+        <div class="card-header">
+            <h4>Creació Compost Químic</h4>
+            </div>
+            <div class="card-body">
             <div class="container">
                 <div class="row">
                     <div class="col">
@@ -23,6 +27,8 @@
                 <input type="submit" name="submit" class="btn btn-dark" value="Envia"></input>
                 </form>
             </div>
+        </div>
+        </div>
         </div>
     </div>
 </div>

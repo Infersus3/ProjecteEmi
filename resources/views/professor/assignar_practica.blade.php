@@ -137,12 +137,12 @@
     $(function() {
         $('.delAlumne').on('click', function() {
             let alumne = $(this).attr('value');
-            return window.confirm('Segur que vols esborrar la tasca de l\'usuari: \'' + alumne + '\'?');
+            return window.confirm('Segur que vols esborrar la tasca de l\'usuari: \'' + alumne + '\' ? S\'eliminarà l\'informació de la tasca que ha fet.');
         });
 
         $('.delGrup').on('click', function() {
             let grup = $(this).attr('value');
-            return window.confirm('Segur que vols esborrar la tasca del grup: ' + grup + ' ?');
+            return window.confirm('Segur que vols esborrar la tasca del grup: ' + grup + ' ? S\'eliminarà l\'informació de la tasca que han fet.');
         });
     })
 </script>

@@ -5,7 +5,7 @@
     
     <form action="{{ route('crear_grup') }}" class="create_grup">
     <div class="card-pers">
-        <div class="card-header"> Crear Grup </div>
+        <div class="card-header"><h4> Crear Grup </h4></div>
         <div class="grup-input">
         <input type="text" name="nom" class="form-control input-grup" required placeholder="Nom del grup">
         <input type="submit" class="btn btn-secondary" value="Crear Grup">
@@ -45,7 +45,7 @@
         <div class="col-4 grup-alumnes">
             <div class="card sm-card">
                 <div class="card-header">
-                    <h5 class="card-title">Alumnes</h5>
+                    <h4>Alumnes</h4>
                 </div>
                 <div class="card-body">
                         <table class="table table-responsive">

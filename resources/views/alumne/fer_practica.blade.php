@@ -18,7 +18,11 @@
                 @endif
             </div>
 
+            <div class="card-form">
+            <div class="card-header">
             <h3>Paràmetres generals</h3>
+            </div>
+            <div class="card-body">
             <div class="container">
                 <form id="myform" method="POST" action="{{ route ('realitza_tasca_post' ,['id' => $tasca->id]) }}" enctype="multipart/form-data">
                 @csrf
@@ -132,6 +136,8 @@
                         @endif
                 </form>
             </div>
+            </div>
+            </div>
         </div>
     </div>
 </div>
@@ -198,7 +204,8 @@
                 dataResult['condicio']['diametre_col'] == $('#labelDiam').val() &&
                 dataResult['condicio']['tamany'] == $('#labelTamany').val() &&
                 dataResult['condicio']['velocitat'] == $('#labelSpeed').val() &&
-                dataResult['condicio']['detector_uv'] == $('#labelDetector').val()){
+                dataResult['condicio']['detector_uv'] == $('#labelDetector').val() &&
+                dataResult['condicio']['neutre'] == $('#labelNeutre').val()){
                     makeGrafic(true);
 
                 }else{
