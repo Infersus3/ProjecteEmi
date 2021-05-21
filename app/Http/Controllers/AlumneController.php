@@ -223,15 +223,4 @@ class AlumneController extends Controller
         }
     }
 
-    public function returnCond($id){
-        $mostra_cond_compost = MostraCondComposts::all();
-        $idCondicions = 0;
-        foreach ($mostra_cond_compost as $mostrescc){
-            if ($mostrescc->practica_id == $id){
-                $idCondicions = $mostrescc->condicion_id;
-            }
-        }
-        $condicions = Condicio::find($idCondicions);
-        return response()->json(array('condicio'=> $condicions), 200);
-    }
 }
