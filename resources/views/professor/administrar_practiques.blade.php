@@ -39,7 +39,7 @@
     $(function(){
     $('.btn-danger').on('click', function(){
     let titol = $(this).attr('value');
-   return window.confirm('Segur que vols esborrar la pràctica: '+titol);
+   return window.confirm('Segur que vols esborrar la pràctica: '+titol+', S\'esborraran TOTES les activitats asociades dels alumnes');
     });
 })
 </script>

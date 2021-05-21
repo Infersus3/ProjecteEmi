@@ -4,7 +4,7 @@
 <div class="container">
     <div class="card">
         <div class="card-header">
-            <h5 class="card-title">Compostos Químics &nbsp; <a href="{{ route('crear_compost') }}" class="btn btn-sm btn-info"> Crear Compost</a></h5>
+            <h5 class="card-title">Compostos Químics &nbsp; <a href="{{ route('crear_compost') }}" class="btn btn-sm btn-dark"> Crear Compost</a></h5>
         </div>
         <div class="card-body">
             <div class="card-body">

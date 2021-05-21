@@ -43,16 +43,16 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
 
 // ----- Administració de tàsques
     Route::get('/professor/admin_tasques/{id}', [App\Http\Controllers\ProfessorController::class, 'adminTasca'])->name('admin_tasques');
-    Route::get('/professor/delete_tasca', [App\Http\Controllers\ProfessorController::class, 'deleteTasca'])->name('delete_tasca');
-    Route::get('/professor/createTasca', [App\Http\Controllers\ProfessorController::class, 'createTasca'])->name('create_tasca');
+    Route::get('/professor/delete_tasca', [App\Http\Controllers\ProfessorController::class, 'deleteTasca'])->name('delete_alumne_tasca');
+    Route::get('/professor/createTasca', [App\Http\Controllers\ProfessorController::class, 'createTasca'])->name('create_alumne_tasca');
     Route::get('/professor/list_tasques', [App\Http\Controllers\ProfessorController::class, 'listTasques'])->name('list_tasques');
-    Route::get('/professor/avaluar/{id}', [App\Http\Controllers\ProfessorController::class, 'avaluarTasca'])->name('avaluar');
+    Route::get('/professor/tasques/avaluar/{id}', [App\Http\Controllers\ProfessorController::class, 'avaluarTasques'])->name('avaluar_tasques');
+    Route::get('/professor/tasca/avaluar/{id}', [App\Http\Controllers\ProfessorController::class, 'avaluarTasca'])->name('avaluar');
 
 // ----- Administració de composts
     Route::get('/professor/creacompost', [App\Http\Controllers\ProfessorController::class, 'createCompost'])->name('crear_compost');
     Route::get('/professor/admin_compost', [App\Http\Controllers\ProfessorController::class, 'adminCompost'])->name('admin_compost');
     Route::get('/professor/delete_compost/{id}', [App\Http\Controllers\ProfessorController::class, 'eliminaCompost'])->name('delete_compost');
-
     Route::get('/professor/download/{url}', [App\Http\Controllers\UploadController::class, 'download'])->name('download_file');
 
 });

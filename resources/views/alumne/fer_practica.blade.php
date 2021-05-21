@@ -83,7 +83,8 @@
                     <div class="form-group">
                         <label for="labelDoc">Pujar arxiu amb fórmules</label> <br>
                         @if ($tasca->document)
-                           <p class=" btn btn-success"> Arxiu pujat correctament </p> <p> {{ $tasca->document }} </p>
+                           <p class=" btn btn-success"> Arxiu pujat correctament </p> <br>
+                           <a href="{{ asset($tasca->document) }}" download> {{ $tasca->document }} <img src="{{ asset('img/download_icon.png')}}" class="download_icon" alt=""></a>
                         @endif
                         <input type="file" name="doc" class="form-control" id="labelDoc">
                     </div>

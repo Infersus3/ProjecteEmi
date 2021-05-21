@@ -328,16 +328,43 @@ class ProfessorController extends Controller
 
     public function eliminaPractica($id)
     {
+        $mostra_id = 0;
+        $condicio_id = 0;
+        $tasques = Tasca::all();
+        $mostra_cond_compostos = MostraCondComposts::all();
+        foreach ($mostra_cond_compostos as $mostra_cond){
+            if ($mostra_cond->practica_id == $id){
+                $mostra_id = $mostra_cond->mostra_id;
+                $condicio_id = $mostra_cond->condicion_id;
+                $mostra_cond->delete();
+            }
+        }
+        if ($mostra_id){
+            Mostra::find($mostra_id)->delete();
+        }
+        $condicionsDel = array($condicio_id);
+        $documents = array($condicio_id);
+        foreach ($tasques as $tasca){
+            if ($tasca->practica_id == $id){
+                array_push($condicionsDel, $tasca->condicion_id);
+                array_push($documents, $tasca->document);
+                $tasca->delete();
+            }
+        }
+        foreach ($condicionsDel as $condicions_id){
+            $cond = Condicio::find($condicions_id);
+            if ($cond){
+                $cond->delete();
+            }
+        }
         $pract = Practica::find($id);
-        Practica::destroy($id);
-        $mccid = $pract->mostra_cond_compost_id;
-        $mostra_cond_comp = MostraCondComposts::find($mccid);
-        $mostra_cond_comp->delete();
-
-        //per cada práctica eliminar el pdf
-        //Canviar storage per public ja està ben fet en el preg match
-       // $urlValida = preg_replace('/storage/', 'public', $url);
-        Storage::delete('public/DDED_2021-05-20_20:55:51_Horaris.pdf');
+        $pract->delete($id);
+        
+        //Per cada tasca de la pràctica eliminar el document
+        foreach ($documents as $doc){
+            $urlValida = preg_replace('/storage/', 'public', $doc);
+            Storage::delete($urlValida);
+        }
         return redirect()->route('admin_practicas');
     }
 
@@ -448,10 +475,6 @@ class ProfessorController extends Controller
     public function listTasques()
     {
         $professor_id = Auth::user()->professor_id;
-        $tasques = Tasca::all();
-        $alumnes = Alumne::all();
-
-        $grups = Grup::all();
 
         $practique = Practica::all();
         $practProfessor = array();
@@ -465,9 +488,31 @@ class ProfessorController extends Controller
         $date = new DateTime('NOW');
         $data = $date->format('Y-m-d');
 
-        return view('professor.list_tasques', [
-            'professor_id' => $professor_id, 'data' => $data,
-            'practiques' => $practiques, 'tasques' => $tasques, 'grups' => $grups, 'alumnes' => $alumnes
+        return view('professor.list_tasques', [ 'data' => $data, 'practiques' => $practiques]);
+    }
+
+    public function avaluarTasques($id)
+    {
+        $professor_id = Auth::user()->professor_id;
+        $tasques = Tasca::all();
+        $alumnes = Alumne::all();
+        $practica = Practica::find($id);
+
+        $grups = Grup::all();
+        $tascs = array();
+
+        foreach ($tasques as $tasca) {
+            if ($tasca->practica_id == $id) {
+                array_push($tascs, $tasca);
+            }
+        }
+        $tasquesOrd = $this->array_sort($tascs, 'data_lliurament', SORT_ASC);
+
+        $date = new DateTime('NOW');
+        $data = $date->format('Y-m-d');
+
+        return view('professor.avaluar_tasques', [
+            'data' => $data, 'practica' => $practica, 'tasquesOrd' => $tasquesOrd, 'grups' => $grups, 'alumnes' => $alumnes
         ]);
     }
 

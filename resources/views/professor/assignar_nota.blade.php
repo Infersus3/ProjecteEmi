@@ -124,7 +124,7 @@
                                     <input class="form-control" value="{{ $practica->data_entrega }}" name="data_entrega" type="date" id="data_entrega" readonly>
                                 </div>
                         </div>
-                        <a href="{{ route('list_tasques')}}" class="btn btn-secondary">Cancelar</a>
+                        <a href="{{ route('avaluar_tasques', ['id' => $tasca->practica_id])}}" class="btn btn-secondary">Cancelar</a>
                         <input type="button" class="btn btn-success" value="Veure Gràfic" id="createButton">
                         <input type="submit" name="submit" class="btn btn-primary" value="Envia"></input>
                 </form>
