@@ -68,10 +68,25 @@
 </div>
 <footer>
 <div class="container footer-container">
-  <div class="row justify-content-center">
-  <div class="wrapper-footer">
-    yeeeee
-  </div>
+  <div class="row justify-content-center wrapper-footer">
+  <img class="vallbona" src="{{ asset('img/logo_vallbona.png') }}">
+    <span class="developers">
+    <h6> Desenvolupadors Web 2DAW (IES Carles Vallbona)</h6>
+    <ul>
+        <li> Saleamlak Secoruún </li>
+        <li> David Morcillo </li>
+        <li style="visibility: hidden;"> David Morcillo </li>
+    </ul>
+</span>
+    <span class="quimics">
+    <h6> Colaboradors (Alumnes de Quimica del IES EMT)</h6>
+    <ul>
+        <li> Jonathan Aranda </li>
+        <li> Alex Santiago </li>
+        <li> Dalvin Melissa </li>
+    </ul>
+</span>
+<img class="emt" src="{{ asset('img/logo_emi_footer.png') }}"> 
   </div>
   </div>
 </footer>
@@ -79,9 +94,59 @@
 
 @section('style')
 <style>
- 
   body{
     background-color: white;
+  }
+
+  .py-4{
+    padding-bottom: 0px!important;
+  } 
+  .wrapper-footer {
+    text-align: center;
+    position: relative;
+  }
+
+  footer {
+    background-color: #343a40;
+}
+
+.footer-container {
+    padding: 50px;
+    margin-top: 150px;
+}
+  
+  h6{
+    color: white;
+  }
+
+  footer li {
+    font-size: 13px;
+    color: white;
+    text-align: left;
+  }
+
+  .developers {
+    display: inline-block;
+    padding: 15px;
+  }
+
+  .quimics {
+    display: inline-block;
+    padding: 15px;
+  }
+
+  .vallbona {
+    position: absolute;
+    top: 20px;
+    left: 0;
+    width: 200px;
+  }
+
+  .emt {
+    position: absolute;
+    top: 20px;
+    right: 0;
+    width: 250px;
   }
   </style>
 @endsection
