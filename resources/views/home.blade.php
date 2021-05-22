@@ -4,13 +4,7 @@
 <div class="container">
   <div class="row justify-content-center">
   <div class="wrapper-carousel">
-      <h1>HPLC</h1>
-      Previous
-      Next
-
-
-
-      HTML
+      <h1>Projecte HPLC</h1>
       <!--Carousel Wrapper-->
       <div id="carousel-thumb" class="carousel slide carousel-fade carousel-thumbnails" data-ride="carousel">
         <!--Slides-->
@@ -20,8 +14,7 @@
               <img class="d-block w-100" src="{{ asset('img/detector_UV_HPLC.jpg') }}" alt="">
             </div>
             <div class="carousel-caption">
-              <h3 class="h3-responsive">Light mask</h3>
-              <p>First text</p>
+              <h3 class="h3-responsive">Detector UV HPLC</h3>     
             </div>
           </div>
           <div class="carousel-item">
@@ -29,26 +22,7 @@
               <img class="d-block w-100" src="{{ asset('img/columnas.jpg') }}" alt="">
             </div>
             <div class="carousel-caption">
-              <h3 class="h3-responsive">Light mask</h3>
-              <p>First text</p>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <div class="view">
-              <img class="d-block w-100" src="{{ asset('img/bomba_hplc.jpg') }}" alt="">
-            </div>
-            <div class="carousel-caption">
-              <h3 class="h3-responsive">Light mask</h3>
-              <p>First text</p>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <div class="view">
-              <img class="d-block w-100" src="{{ asset('img/cromatografo.jpg') }}" alt="">
-            </div>
-            <div class="carousel-caption">
-              <h3 class="h3-responsive">Light mask</h3>
-              <p>First text</p>
+              <h3 class="h3-responsive">Columnes</h3>
             </div>
           </div>
           <div class="carousel-item">
@@ -56,8 +30,23 @@
               <img class="d-block w-100" src="{{ asset('img/imagen_3.jpeg') }}" alt="">
             </div>
             <div class="carousel-caption">
-              <h3 class="h3-responsive">Light mask</h3>
-              <p>First text</p>
+              <h3 class="h3-responsive">Injector</h3>            
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="view">
+              <img class="d-block w-100" src="{{ asset('img/cromatografo.jpg') }}" alt="">
+            </div>
+            <div class="carousel-caption">
+              <h3 class="h3-responsive">Cromatògraf</h3>          
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="view">
+              <img class="d-block w-100" src="{{ asset('img/bomba_hplc.jpg') }}" alt="">
+            </div>
+            <div class="carousel-caption">
+              <h3 class="h3-responsive">Bomba HPLC</h3>           
             </div>
           </div>
         </div>
@@ -77,6 +66,15 @@
       </div>
 </div>
 </div>
+<footer>
+<div class="container footer-container">
+  <div class="row justify-content-center">
+  <div class="wrapper-footer">
+    yeeeee
+  </div>
+  </div>
+  </div>
+</footer>
 @endsection
 
 @section('style')

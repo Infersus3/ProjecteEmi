@@ -157,7 +157,7 @@ input[type=file] {
 }
 
 .carousel-caption {
-    color: grey;
+    color: rgb(92, 91, 91);
     position: inherit;
     padding-bottom: 150px;
     margin: auto;
@@ -166,8 +166,25 @@ input[type=file] {
 
 
 .wrapper-carousel {
-    max-width: 70%;
+    width: 70%;
     margin: auto;
 }
 
+h1 {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+footer {
+    background-color: #343a40;
+}
+
+.footer-container {
+    background-color: #343a40;
+}
+
+.wrapper-footer {
+    background-color: #343a40;
+}
 
