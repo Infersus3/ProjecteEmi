@@ -4,7 +4,7 @@
 <div class="wrapper-sm">
     <div class="card">
         <div class="card-header">
-            <h5 class="card-title">Pràctiques d'alumnes:  {{ $practica[0]->titol ?? '' }}</h5>
+            <h4>Pràctiques d'alumnes: {{ $practica[0]->titol ?? '' }}</h4>
         </div>
         <div class="card-body">
             <div class="card-body">
@@ -22,10 +22,12 @@
                         @if ($alumne->id == $tasca->alumne_id)
                         @php $in = 1; @endphp
                         <td>
-                            <p> {{ $alumne->nom }}</p>
+                            <div class="btn">
+                                <h5> {{ $alumne->nom }}</h5>
+                            </div>
                         </td>
                         <td>
-                            <a href="{{ route('avaluar', ['id' => $tasca->id]) }}" class="btn btn-sm btn-info">Avaluar</a>
+                            <a href="{{ route('avaluar', ['id' => $tasca->id]) }}" class="btn btn-info"><i class="fas fa-tasks"></i> Avaluar</a>
                         </td>
                         @endif
                         @endforeach
@@ -43,10 +45,12 @@
                         @foreach ($grups as $grup)
                         @if ($grup->id == $tasca->grup_id)
                         <td>
-                            <p> {{ $grup->nom }} </p>
+                            <div class="btn">
+                                <h5> {{ $grup->nom }}</h5>
+                            </div>
                         </td>
                         <td>
-                            <a href="{{ route('avaluar', ['id' => $tasca->id]) }}" class="btn btn-sm btn-info">Avaluar</a>
+                            <a href="{{ route('avaluar', ['id' => $tasca->id]) }}" class="btn btn-info"><i class="fas fa-tasks"></i> Avaluar</a>
                         </td>
                         @endif
                         @endforeach

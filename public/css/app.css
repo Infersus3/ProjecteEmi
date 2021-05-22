@@ -5909,10 +5909,10 @@ a.close.disabled {
   top: 0;
   bottom: 0;
   z-index: 1;
-  display: flex;
+  margin-top: 300px;
   align-items: center;
   justify-content: center;
-  width: 15%;
+  width: 5%;
   color: #fff;
   text-align: center;
   opacity: 0.5;
@@ -5938,7 +5938,7 @@ a.close.disabled {
 }
 
 .carousel-control-next {
-  right: 0;
+  right: 30px;
 }
 
 .carousel-control-prev-icon,

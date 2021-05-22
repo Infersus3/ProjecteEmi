@@ -58,6 +58,7 @@
 .sm-card {
     min-height: 250px;
 }
+
 .grup-alumnes {
     margin-top: 20px;
 }
@@ -119,3 +120,59 @@ input[type=file] {
     margin-bottom: 40px;
     margin-top: 10px;
 }
+
+.titol_grups {
+    display: inline-block;
+    min-width: 20%;
+    margin-right: 10px;
+}
+
+.min-grafic {
+    margin-top: 10px;
+    color: grey;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  height: 60px;
+  width: 60px;
+  outline: black;
+  background-size: 100%, 100%;
+  border-radius: 50%;
+  border: 1px solid black;
+  background-image: none;
+}
+
+.carousel-control-next-icon:after
+{
+  content: '>';
+  font-size: 35px;
+  color: grey;
+}
+
+.carousel-control-prev-icon:after {
+  content: '<';
+  font-size: 35px;
+  color: grey;
+}
+
+.carousel-caption {
+    color: rgb(92, 91, 91);
+    position: inherit;
+    margin: auto;
+    left: 0;
+}
+
+
+.wrapper-carousel {
+    width: 70%;
+    margin: auto;
+}
+
+h1 {
+    margin-top: 50px;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+
