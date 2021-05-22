@@ -4,7 +4,7 @@
 <div class="wrapper-sm">
     <div class="card">
         <div class="card-header">
-            <h5 class="card-title">Pràctiques</h5>
+            <h4>Pràctiques</h4>
         </div>
         <div class="card-body">
             @foreach ($practiques as $practica)

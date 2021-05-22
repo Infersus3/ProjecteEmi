@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="wrapper-sm">
     <div class="card">
         <div class="card-header">
-            <h4 class="card-title">Compostos Químics &nbsp; <a href="{{ route('crear_compost') }}" class="btn btn-dark"><i class="fas fa-vial"></i> Crear Compost</a></h4>
+            <h4>Compostos Químics &nbsp; <a href="{{ route('crear_compost') }}" class="btn btn-dark"><i class="fas fa-vial"></i> Crear Compost</a></h4>
         </div>
         <div class="card-body">
             <div class="card-body">

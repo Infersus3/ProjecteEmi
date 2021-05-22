@@ -19,7 +19,7 @@
             </div>
             <div class="card-form">
                 <div class="card-header">
-                    <h3>Paràmetres generals</h3>
+                    <h4>Paràmetres generals</h4>
                 </div>
                 <div class="card-body">
                     <div class="container">
