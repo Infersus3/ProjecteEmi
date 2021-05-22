@@ -436,54 +436,18 @@ class ProfessorController extends Controller
         $mcc = MostraCondComposts::all();
         return view('compost.administrar_composts', ['compost' => $compost, 'mcc' => $mcc]);
     }
-    // Funció per ordenar les tasques per dia d'entrega
-    public function array_sort($array, $on, $order = SORT_ASC)
-    {
-        $new_array = array();
-        $sortable_array = array();
-
-        if (count($array) > 0) {
-            foreach ($array as $k => $v) {
-                if (is_array($v)) {
-                    foreach ($v as $k2 => $v2) {
-                        if ($k2 == $on) {
-                            $sortable_array[$k] = $v2;
-                        }
-                    }
-                } else {
-                    $sortable_array[$k] = $v;
-                }
-            }
-
-            switch ($order) {
-                case SORT_ASC:
-                    asort($sortable_array);
-                    break;
-                case SORT_DESC:
-                    arsort($sortable_array);
-                    break;
-            }
-
-            foreach ($sortable_array as $k => $v) {
-                $new_array[$k] = $array[$k];
-            }
-        }
-
-        return $new_array;
-    }
 
     public function listTasques()
     {
         $professor_id = Auth::user()->professor_id;
 
-        $practique = Practica::all();
-        $practProfessor = array();
+        $practique = Practica::orderBy('data_entrega')->get();
+        $practiques = array();
         foreach ($practique as $practs) {
             if ($practs->professor_id == $professor_id) {
-                array_push($practProfessor, $practs);
+                array_push($practiques, $practs);
             }
         }
-        $practiques = $this->array_sort($practProfessor, 'data_entrega', SORT_ASC);
 
         $date = new DateTime('NOW');
         $data = $date->format('Y-m-d');
@@ -493,19 +457,18 @@ class ProfessorController extends Controller
 
     public function avaluarTasques($id)
     {
-        $tasques = Tasca::all();
+        $tasques = Tasca::orderBy('data_lliurament')->get();
         $alumnes = Alumne::all();
         $practica = Practica::find($id);
 
         $grups = Grup::all();
-        $tascs = array();
+        $tasquesOrd = array();
 
         foreach ($tasques as $tasca) {
             if ($tasca->practica_id == $id) {
-                array_push($tascs, $tasca);
+                array_push($tasquesOrd, $tasca);
             }
         }
-        $tasquesOrd = $this->array_sort($tascs, 'data_lliurament', SORT_ASC);
 
         $date = new DateTime('NOW');
         $data = $date->format('Y-m-d');

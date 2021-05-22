@@ -29,20 +29,20 @@ class HomeController extends Controller
         return view('home');
     }
 
-    public function returnCond($id, Request $request){
-        if ($request->_token){
-        $mostra_cond_compost = MostraCondComposts::all();
-        $idCondicions = 0;
-        foreach ($mostra_cond_compost as $mostrescc){
-            if ($mostrescc->practica_id == $id){
-                $idCondicions = $mostrescc->condicion_id;
+    public function returnCond($id, Request $request)
+    {
+        if ($request->_token) {
+            $mostra_cond_compost = MostraCondComposts::all();
+            $idCondicions = 0;
+            foreach ($mostra_cond_compost as $mostrescc) {
+                if ($mostrescc->practica_id == $id) {
+                    $idCondicions = $mostrescc->condicion_id;
+                }
             }
-        }
-        $condicions = Condicio::find($idCondicions);
-        return response()->json(array('condicio'=> $condicions), 200);
-        }else{
+            $condicions = Condicio::find($idCondicions);
+            return response()->json(array('condicio' => $condicions), 200);
+        } else {
             abort(403, "Sol·licitud denegada");
         }
-        
     }
 }

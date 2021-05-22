@@ -11,23 +11,23 @@
                 <table class="table table-responsive">
                     @foreach ($compost as $c)
                     <tr>
-                    <td>
-                        <h5 class="users">{{ $c->nom }}</h5>
-                    </td>
-                    @php $in = 0;
-                    foreach ($mcc as $mosCondComp){
-                            if ($c->id == $mosCondComp->compost_quimic_id){
-                                $in = 1;
-                            }
-                    }
-                    @endphp
-                    <td>
-                    @if ($in)
-                        <a class="btn btn-warning">Compost Químic en ús</a>
-                    @else
-                        <a href="{{ route('delete_compost', ['id' => $c->id]) }}" value="{{ $c->nom }}" class="btn btn-sm btn-danger"><i class="fas fa-trash-alt"></i> Eliminar</a>
-                    @endif
-                    </td>
+                        <td>
+                            <h5 class="users">{{ $c->nom }}</h5>
+                        </td>
+                        @php $in = 0;
+                        foreach ($mcc as $mosCondComp){
+                        if ($c->id == $mosCondComp->compost_quimic_id){
+                        $in = 1;
+                        }
+                        }
+                        @endphp
+                        <td>
+                            @if ($in)
+                            <a class="btn btn-warning">Compost Químic en ús</a>
+                            @else
+                            <a href="{{ route('delete_compost', ['id' => $c->id]) }}" value="{{ $c->nom }}" class="btn btn-sm btn-danger"><i class="fas fa-trash-alt"></i> Eliminar</a>
+                            @endif
+                        </td>
                     </tr>
                     @endforeach
                 </table>
@@ -39,11 +39,11 @@
 
 @section('scripts')
 <script>
-    $(function(){
-    $('.btn-danger').on('click', function(){
-    let nom = $(this).attr('value');
-    return window.confirm('Segur que vols esborrar el compost: '+nom+'?');
-    });
-})
+    $(function() {
+        $('.btn-danger').on('click', function() {
+            let nom = $(this).attr('value');
+            return window.confirm('Segur que vols esborrar el compost: ' + nom + '?');
+        });
+    })
 </script>
 @endsection

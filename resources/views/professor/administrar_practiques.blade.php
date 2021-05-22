@@ -13,11 +13,13 @@
                     @for ($i = 0; $i < count($practica); $i++) <tr>
                         @if ($practica[$i]->professor_id == Auth::user()->professor_id || Auth::user()->admin)
                         <td>
-                            <div class="btn"><h5 class="users"> {{ $practica[$i]->titol }}</h5></div>
+                            <div class="btn">
+                                <h5 class="users"> {{ $practica[$i]->titol }}</h5>
+                            </div>
                         </td>
                         <td>
                             <a href="{{ route('edita_practica', ['id' => $practica[$i]->id]) }}" class="btn btn-sm btn-primary"><i class="fas fa-edit"></i> Editar</a>
-                            
+
                         </td>
                         <td>
                             <a href="{{ route('admin_tasques', ['id' => $practica[$i]->id]) }}" class="btn btn-sm btn-success"><i class="fas fa-angle-double-right"></i> Asignar</a>
