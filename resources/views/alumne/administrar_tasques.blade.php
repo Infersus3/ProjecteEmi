@@ -32,9 +32,9 @@
                     </td>
                     <td>
                         @if ($practica->data_entrega >= $data)
-                        <a href="{{ route('realitza_tasca', ['id' => $tasca->id]) }}" class="btn btn-sm btn-info"><i class="fas fa-pen"></i> Fer practica</a>
+                        <a href="{{ route('realitza_tasca', ['id' => $tasca->id]) }}" class="btn btn-sm btn-info"><i class="fas fa-pen"></i> Fer pràctica</a>
                         @else
-                        <a href="{{ route('realitza_tasca', ['id' => $tasca->id]) }}" class="btn btn-warning"><i class="fas fa-search"></i> Veure practica</a>
+                        <a href="{{ route('realitza_tasca', ['id' => $tasca->id]) }}" class="btn btn-warning"><i class="fas fa-search"></i> Veure pràctica</a>
                         @endif
                     </td>
                     @if ($tasca->nota)

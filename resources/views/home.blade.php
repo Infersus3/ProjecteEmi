@@ -79,7 +79,7 @@
     </ul>
 </span>
     <span class="quimics">
-    <h6> Colaboradors (Alumnes de Quimica del IES EMT)</h6>
+    <h6> Col·laboradors (Alumnes de Quimica del IES EMT)</h6>
     <ul>
         <li> Jonathan Aranda </li>
         <li> Alex Santiago </li>
