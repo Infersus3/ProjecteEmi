@@ -22,7 +22,7 @@
 
                         </td>
                         <td>
-                            <a href="{{ route('admin_tasques', ['id' => $practica[$i]->id]) }}" class="btn btn-sm btn-success"><i class="fas fa-angle-double-right"></i> Asignar</a>
+                            <a href="{{ route('admin_tasques', ['id' => $practica[$i]->id]) }}" class="btn btn-sm btn-success"><i class="fas fa-angle-double-right"></i> Assignar</a>
                         </td>
                         <td>
                             <a href="{{ route('elimina_practica', ['id' => $practica[$i]->id]) }}" class="btn btn-sm btn-danger" value="{{ $practica[$i]->titol }}"><i class="fas fa-trash-alt"></i> Eliminar </a>

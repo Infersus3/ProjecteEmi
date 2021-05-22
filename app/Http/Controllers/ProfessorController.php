@@ -483,6 +483,9 @@ class ProfessorController extends Controller
         $tasca = Tasca::find($id);
 
         if (isset($request->submit)) {
+            $validated = $request->validate([
+                'nota' => 'required|max:100|numeric',
+            ]);
             $tasca->nota = $request->nota;
             $tasca->save();
             return redirect()->route('list_tasques');
