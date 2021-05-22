@@ -28,11 +28,11 @@
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
-                                <label for="labelNom">Nom de la mostra</label>
+                                <label for="labelNom">Nom mostra</label>
                                 <input type="text" readonly value="{{ $mostra->nom }}" name="nom_mostra" class="form-control" id="labelNom" readonly>
                             </div>
                             <div class="form-group">
-                                <label for="labelCol">Alçada de la columna (mm)</label>
+                                <label for="labelCol">Longitud columna (mm)</label>
                                 <input type="number" name="alçada_col" value="{{ $condicioAlumne->alçada_col ?? '' }}" class="form-control" id="labelCol" readonly>
                             </div>
                             <div class="form-group">
@@ -42,7 +42,7 @@
                         </div>
                         <div class="col">
                             <div class="form-group">
-                                <label for="labelNomCol">Nom de la columna</label>
+                                <label for="labelNomCol">Nom columna</label>
                                 <input type="text" name="nom_col" value="{{ $condicioAlumne->nom_col ?? '' }}" class="form-control" id="labelNomCol" readonly>
                             </div>
                             <div class="form-group">
@@ -50,7 +50,7 @@
                                 <input type="text" name="eluent" value="{{ $condicioAlumne->eluent ?? '' }}" class="form-control" id="labelEluent" readonly>
                             </div>
                             <div class="form-group">
-                                <label for="labelDiam">Diametre columna (mm)</label>
+                                <label for="labelDiam">Diàmetre columna (mm)</label>
                                 <input type="number" step="any" name="diametre_col" value="{{ $condicioAlumne->diametre_col ?? '' }}" class="form-control" id="labelDiam" readonly>
                             </div>
 
@@ -59,7 +59,7 @@
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
-                                <label for="labelSpeed">Velocitat (ml/min)</label>
+                                <label for="labelSpeed">Velocitat de flux (ml/min)</label>
                                 <input type="text" step="any" name="velocitat" value="{{ $condicioAlumne->velocitat ?? '' }}" class="form-control" id="labelSpeed" readonly>
                             </div>
                             <div class="form-group">
@@ -94,7 +94,7 @@
                     <div class="form-group">
                             <label class="form-check-label" for="labelSelect">Selecció de compost</label><br>
                             @for ($i = 0; $i < count($arrayComposts); $i++) @foreach ($compost_quimic as $compost) @if ($compost->id == $arrayComposts[$i]->compost_quimic_id)
-                                <label for="{{ $i }}">{{ $compost_quimic[$i]->nom }}</label>
+                                <label for="{{ $i }}">{{ $compost->nom }}</label>
                                 <input class="cbox" type="checkbox" id="{{ $i }}" name="compost_q{{ $i }}">
                                 <input type="hidden" value="{{ $arrayComposts[$i]->id }}" name="idCompost{{ $i }}"></br>
                                 <input type="hidden" value="{{ count($arrayComposts) }}" id="maxArray">

@@ -26,11 +26,11 @@
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
-                                <label for="labelNom">Nom de la mostra</label>
+                                <label for="labelNom">Nom mostra</label>
                                 <input type="text" value="{{ $mostra->nom }}" name="nom_mostra" class="form-control" id="labelNom" required>
                             </div>
                             <div class="form-group">
-                                <label for="labelCol">Alçada de la columna (mm)</label>
+                                <label for="labelCol">Longitud columna (mm)</label>
                                 <input type="number" value="{{ $condicio->alçada_col }}" name="alçada_col" class="form-control" id="labelCol" required>
                             </div>
                             <div class="form-group">
@@ -40,7 +40,7 @@
                         </div>
                         <div class="col">
                             <div class="form-group">
-                                <label for="labelNomCol">Nom de la columna</label>
+                                <label for="labelNomCol">Nom columna</label>
                                 <input type="text" value="{{ $condicio->nom_col }}" name="nom_col" class="form-control" id="labelNomCol" required>
                             </div>
                             <div class="form-group">
@@ -48,7 +48,7 @@
                                 <input type="text" value="{{ $condicio->eluent }}" name="eluent" class="form-control" id="labelEluent" required>
                             </div>
                             <div class="form-group">
-                                <label for="labelDiam">Diametre columna (mm)</label>
+                                <label for="labelDiam">Diàmetre columna (mm)</label>
                                 <input type="number" step="any" value="{{ $condicio->diametre_col }}" name="diametre_col" class="form-control" id="labelDiam" required>
                             </div>
                         </div>
@@ -56,7 +56,7 @@
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
-                                <label for="labelSpeed">Velocitat (ml/min)</label>
+                                <label for="labelSpeed">Velocitat de flux (ml/min)</label>
                                 <input type="text" step="any" value="{{ $condicio->velocitat }}" name="velocitat" class="form-control" id="labelSpeed" required>
                             </div>
                             <div class="form-group">

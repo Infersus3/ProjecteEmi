@@ -26,21 +26,21 @@
                     <div class="col">
                         
                             <div class="form-group">
-                                <label for="labelNom">Nom de la mostra</label>
+                                <label for="labelNom">Nom mostra</label>
                                 <input type="text" name="nom_mostra" class="form-control" value="{{ old('nom_mostra') }}" id="labelNom" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="labelCol">Longitud columna (mm)</label>
+                                <input type="number" name="alçada_col" class="form-control" value="{{ old('alçada_col') }}" id="labelCol" required>
                             </div>
                             <div class="form-group">
                                 <label for="labelTemp">Temperatura</label>
                                 <input type="text" name="temperatura" class="form-control" value="{{ old('temperatura') }}" id="labelTemp" required>
                             </div>
-                            <div class="form-group">
-                                <label for="labelCol">Alçada de la columna (mm)</label>
-                                <input type="number" name="alçada_col" class="form-control" value="{{ old('alçada_col') }}" id="labelCol" required>
-                            </div>
                     </div>
                     <div class="col">
                         <div class="form-group">
-                            <label for="labelNomCol">Nom de la columna</label>
+                            <label for="labelNomCol">Nom columna</label>
                             <input type="text" name="nom_col" class="form-control" value="{{ old('nom_col') }}" id="labelNomCol" required>
                         </div>
                         <div class="form-group">
@@ -48,7 +48,7 @@
                             <input type="text" name="eluent" class="form-control" value="{{ old('eluent') }}" id="labelEluent" required>
                         </div>
                         <div class="form-group">
-                            <label for="labelDiam">Diametre columna (mm)</label>
+                            <label for="labelDiam">Diàmetre columna (mm)</label>
                             <input type="number" step="any" name="diametre_col" class="form-control" value="{{ old('diametre_col') }}" id="labelDiam" required>
                         </div>
                     </div>
@@ -56,7 +56,7 @@
                 <div class="row">
                     <div class="col">
                         <div class="form-group">
-                            <label for="labelSpeed">Velocitat (ml/min)</label>
+                            <label for="labelSpeed">Velocitat de flux (ml/min)</label>
                             <input type="text" name="velocitat" class="form-control" value="{{ old('velocitat') }}" id="labelSpeed" required>
                         </div>
                         <div class="form-group">
