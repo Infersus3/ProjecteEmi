@@ -153,6 +153,7 @@
             </div>
             <div class="modal-body" id="modal">
                 <canvas id="myChart"></canvas>
+                <div id="min-grafic" class="d-flex justify-content-center min-grafic">Temps(min)</div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
@@ -266,7 +267,9 @@
 
             //Reiniciem el gràfic perquè pugui tenir valors nous.
             $('#myChart').remove();
-            $('#modal').append("<canvas id=\"myChart\"></canvas>");
+            $("#min-grafic").remove();
+            $('#modal').append("<canvas id=\"myChart\"></canvas><div id=\"min-grafic\" class=\"d-flex justify-content-center"+
+            " min-grafic\">Temps(min)</div>");
             var ctx = document.getElementById('myChart');
             var myChart = new Chart(ctx, {
                 type: 'scatter',

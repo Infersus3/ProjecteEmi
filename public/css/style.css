@@ -127,3 +127,7 @@ input[type=file] {
     margin-right: 10px;
 }
 
+.min-grafic {
+    margin-top: 10px;
+    color: grey;
+}
