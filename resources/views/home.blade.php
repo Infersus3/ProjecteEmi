@@ -3,8 +3,8 @@
 @section('content')
 <div class="container">
   <div class="row justify-content-center">
-  <div class="wrapper-carousel">
-      <h1>Projecte HPLC</h1>
+    <div class="wrapper-carousel">
+      <h1>PROJECTE HPLC</h1>
       <!--Carousel Wrapper-->
       <div id="carousel-thumb" class="carousel slide carousel-fade carousel-thumbnails" data-ride="carousel">
         <!--Slides-->
@@ -14,7 +14,7 @@
               <img class="d-block w-100" src="{{ asset('img/detector_UV_HPLC.jpg') }}" alt="">
             </div>
             <div class="carousel-caption">
-              <h3 class="h3-responsive">Detector UV HPLC</h3>     
+              <h3 class="h3-responsive">Detector UV HPLC</h3>
             </div>
           </div>
           <div class="carousel-item">
@@ -30,7 +30,7 @@
               <img class="d-block w-100" src="{{ asset('img/imagen_3.jpeg') }}" alt="">
             </div>
             <div class="carousel-caption">
-              <h3 class="h3-responsive">Injector</h3>            
+              <h3 class="h3-responsive">Injector</h3>
             </div>
           </div>
           <div class="carousel-item">
@@ -38,7 +38,7 @@
               <img class="d-block w-100" src="{{ asset('img/cromatografo.jpg') }}" alt="">
             </div>
             <div class="carousel-caption">
-              <h3 class="h3-responsive">Cromatògraf</h3>          
+              <h3 class="h3-responsive">Cromatògraf</h3>
             </div>
           </div>
           <div class="carousel-item">
@@ -46,7 +46,7 @@
               <img class="d-block w-100" src="{{ asset('img/bomba_hplc.jpg') }}" alt="">
             </div>
             <div class="carousel-caption">
-              <h3 class="h3-responsive">Bomba HPLC</h3>           
+              <h3 class="h3-responsive">Bomba HPLC</h3>
             </div>
           </div>
         </div>
@@ -63,60 +63,70 @@
       </div>
       <!--/.Carousel Wrapper-->
 
-      </div>
-</div>
+    </div>
+  </div>
 </div>
 <footer>
-<div class="container footer-container">
-  <div class="row justify-content-center wrapper-footer">
-  <img class="vallbona" src="{{ asset('img/logo_vallbona.png') }}">
-    <span class="developers">
-    <h6> Desenvolupadors Web 2DAW (IES Carles Vallbona)</h6>
-    <ul>
-        <li> Saleamlak Secoruún </li>
-        <li> David Morcillo </li>
-        <li style="visibility: hidden;"> David Morcillo </li>
-    </ul>
-</span>
-    <span class="quimics">
-    <h6> Col·laboradors (Alumnes de Quimica del IES EMT)</h6>
-    <ul>
-        <li> Jonathan Aranda </li>
-        <li> Alex Santiago </li>
-        <li> Dalvin Melissa </li>
-    </ul>
-</span>
-<img class="emt" src="{{ asset('img/logo_emi_footer.png') }}"> 
-  </div>
+  <div class="container footer-container">
+    <div class="row justify-content-center wrapper-footer">
+      <img class="vallbona" src="{{ asset('img/logo_vallbona.png') }}">
+      <span class="developers">
+        <h6> Desenvolupadors Web 2DAW (IES Carles Vallbona)</h6>
+        <ul>
+          <li> Saleamlak Secoruún </li>
+          <li> David Morcillo </li>
+          <li style="visibility: hidden;"> David Morcillo </li>
+        </ul>
+      </span>
+      <span class="quimics">
+        <h6> Col·laboradors (Alumnes de Quimica del IES EMT)</h6>
+        <ul>
+          <li> Jonathan Aranda </li>
+          <li> Alex Santiago </li>
+          <li> Dalvin Melissa </li>
+        </ul>
+      </span>
+      <img class="emt" src="{{ asset('img/logo_emi_footer.png') }}">
+    </div>
+    <p class="copiright"> Projecte Química EMT 24/5/2021.</p>
   </div>
 </footer>
 @endsection
 
 @section('style')
 <style>
-  body{
+  body {
     background-color: white;
   }
 
-  .py-4{
-    padding-bottom: 0px!important;
-  } 
+  .py-4 {
+    padding-bottom: 0px !important;
+  }
+
   .wrapper-footer {
     text-align: center;
     position: relative;
+    margin-top: 20px;
   }
 
   footer {
     background-color: #343a40;
-}
+  }
 
-.footer-container {
+  .footer-container {
     padding: 50px;
-    margin-top: 150px;
-}
-  
-  h6{
+    margin-top: 180px;
+  }
+
+  h6 {
     color: white;
+  }
+
+  h1 {
+    margin-top: 50px;
+    margin-bottom: 20px;
+    font-weight: bold;
+    text-decoration: underline;
   }
 
   footer li {
@@ -148,5 +158,12 @@
     right: 0;
     width: 250px;
   }
-  </style>
+
+  .copiright {
+    float: right;
+    color: white;
+  }
+
+
+</style>
 @endsection
