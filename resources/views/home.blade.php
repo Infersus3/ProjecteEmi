@@ -69,7 +69,7 @@
 <footer>
   <div class="container footer-container">
     <div class="row justify-content-center wrapper-footer">
-      <img class="vallbona" src="{{ asset('img/logo_vallbona.png') }}">
+      <a href="http://www.iescarlesvallbona.cat" target="_blank"> <img class="vallbona" src="{{ asset('img/logo_vallbona.png') }}"> </a>
       <span class="developers">
         <h6> Desenvolupadors Web 2DAW (IES Carles Vallbona)</h6>
         <ul>
@@ -86,7 +86,7 @@
           <li> Dalvin Melissa </li>
         </ul>
       </span>
-      <img class="emt" src="{{ asset('img/logo_emi_footer.png') }}">
+      <a href="https://institutemt.cat" target="_blank"> <img class="emt" src="{{ asset('img/logo_emi_footer.png') }}"> </a>
     </div>
     <p class="copiright"> Projecte Química EMT 24/5/2021.</p>
   </div>
