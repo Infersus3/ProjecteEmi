@@ -73,7 +73,7 @@
                                     @if($condN)
                                     <div class="form-group">
                                         <label for="labelNeutre">Neutre</label>
-                                        <input type="text" name="neutre" value="{{ $condicioAlumne->neutre ?? '' }}" class="form-control" id="labelNeutre">
+                                        <input type="text" name="neutre" value="{{ $condicioAlumne->neutre ?? '' }}" class="form-control" id="labelNeutre" readonly>
                                     </div>
                                     @endif
                                     <input type="hidden" id="comprovarCond" action="{{ route ('comprovar_cond' ,['id' => $practica->id]) }}">
