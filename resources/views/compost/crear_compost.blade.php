@@ -4,6 +4,18 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
+            <div class="container-fluid">
+                <!-- MISSATGES I ERRORS* -->
+                @if ($errors->any())
+                @foreach ($errors->all() as $message)
+                <div class="d-flex align-items-center justify-content-center text-center">
+                    <div class="col-lg-12 alert alert-danger">
+                        <p> {{ $message }} </p>
+                    </div>
+                </div>
+                @endforeach
+                @endif
+            </div>
             <div class="card-form">
                 <div class="card-header">
                     <h4>Creació Compost Químic</h4>
