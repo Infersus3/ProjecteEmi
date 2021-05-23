@@ -59,7 +59,7 @@ class AlumneController extends Controller
                 'eluent' => 'required|max:25',
                 'diametre_col' => 'required|numeric|max:10000',
                 'tamany' => 'required|numeric|max:10000',
-                'velocitat' => 'required|max:10',
+                'velocitat' => 'required|max:20',
                 'detector_uv' => 'required|numeric|max:10000',
                 'doc' => 'max:10000'
             ]);
