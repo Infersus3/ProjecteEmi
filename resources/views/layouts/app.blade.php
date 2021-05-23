@@ -7,8 +7,8 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <title>INSTITUT ESCOLA MUNICIPAL DE TREBALL</title>
+    <link rel="icon" href="{{ asset('img/favicon_emt.png')}}"  type="image/x-icon">
+    <title>PROJECTE QUÍMICA EMIL</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
