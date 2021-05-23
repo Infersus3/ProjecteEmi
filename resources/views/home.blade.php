@@ -82,7 +82,7 @@
       <span class="developers">
         <h6> Desenvolupadors Web 2DAW (IES Carles Vallbona)</h6>
         <ul>
-          <li> Saleamlak Secoruún </li>
+          <li> Saleamlak Secorún </li>
           <li> David Morcillo </li>
           <li style="visibility: hidden;"> David Morcillo </li>
         </ul>
