@@ -206,6 +206,30 @@
                         dataResult['condicio']['neutre'] == $('#labelNeutre').val()) {
                         makeGrafic(true);
                     } else {
+                        if (dataResult['condicio']['alçada_col'] != $('#labelCol').val()){
+                            $('#labelCol').addClass('is-invalid');
+                        }
+                        if (dataResult['condicio']['alçada_col'] != $('#labelTemp').val()){
+                            $('#labelTemp').addClass('is-invalid');
+                        }
+                        if (dataResult['condicio']['alçada_col'] != $('#labelEluent').val()){
+                            $('#labelEluent').addClass('is-invalid');
+                        }
+                        if (dataResult['condicio']['alçada_col'] != $('#labelDiam').val()){
+                            $('#labelDiam').addClass('is-invalid');
+                        }
+                        if (dataResult['condicio']['alçada_col'] != $('#labelTamany').val()){
+                            $('#labelTamany').addClass('is-invalid');
+                        }
+                        if (dataResult['condicio']['alçada_col'] != $('#labelSpeed').val()){
+                            $('#labelSpeed').addClass('is-invalid');
+                        }
+                        if (dataResult['condicio']['alçada_col'] != $('#labelDetector').val()){
+                            $('#labelDetector').addClass('is-invalid');
+                        }
+                        if (dataResult['condicio']['alçada_col'] != $('#labelNeutre').val()){
+                            $('#labelNeutre').addClass('is-invalid');
+                        }
                         makeGrafic(false);
                     }
 
@@ -290,6 +314,7 @@
             });
             myChart.render();
         }
+        validarCondicions();
     });
 </script>
 @endsection

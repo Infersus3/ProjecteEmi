@@ -131,7 +131,7 @@
                                 <a href="{{ route('tasques_alumne')}}" class="btn btn-secondary">Cancelar</a>
                                 <input type="button" class="btn btn-success" value="Veure Gràfic" id="createButton">
                                 @if ($practica->data_entrega > $data)
-                                <input type="submit" name="submit" class="btn btn-primary" value="Envia"></input>
+                                <input type="submit" name="submit" class="btn btn-primary" id="submit" value="Envia"></input>
                                 @endif
                         </form>
                     </div>
@@ -209,6 +209,32 @@
                         makeGrafic(true);
 
                     } else {
+                        if ($('#submit').length == 0) {
+                            if (dataResult['condicio']['alçada_col'] != $('#labelCol').val()) {
+                                $('#labelCol').addClass('is-invalid');
+                            }
+                            if (dataResult['condicio']['alçada_col'] != $('#labelTemp').val()) {
+                                $('#labelTemp').addClass('is-invalid');
+                            }
+                            if (dataResult['condicio']['alçada_col'] != $('#labelEluent').val()) {
+                                $('#labelEluent').addClass('is-invalid');
+                            }
+                            if (dataResult['condicio']['alçada_col'] != $('#labelDiam').val()) {
+                                $('#labelDiam').addClass('is-invalid');
+                            }
+                            if (dataResult['condicio']['alçada_col'] != $('#labelTamany').val()) {
+                                $('#labelTamany').addClass('is-invalid');
+                            }
+                            if (dataResult['condicio']['alçada_col'] != $('#labelSpeed').val()) {
+                                $('#labelSpeed').addClass('is-invalid');
+                            }
+                            if (dataResult['condicio']['alçada_col'] != $('#labelDetector').val()) {
+                                $('#labelDetector').addClass('is-invalid');
+                            }
+                            if (dataResult['condicio']['alçada_col'] != $('#labelNeutre').val()) {
+                                $('#labelNeutre').addClass('is-invalid');
+                            }
+                        }
                         makeGrafic(false);
                     }
 
@@ -268,8 +294,8 @@
             //Reiniciem el gràfic perquè pugui tenir valors nous.
             $('#myChart').remove();
             $("#min-grafic").remove();
-            $('#modal').append("<canvas id=\"myChart\"></canvas><div id=\"min-grafic\" class=\"d-flex justify-content-center"+
-            " min-grafic\">Temps(min)</div>");
+            $('#modal').append("<canvas id=\"myChart\"></canvas><div id=\"min-grafic\" class=\"d-flex justify-content-center" +
+                " min-grafic\">Temps(min)</div>");
             var ctx = document.getElementById('myChart');
             var myChart = new Chart(ctx, {
                 type: 'scatter',
@@ -295,6 +321,7 @@
             });
             myChart.render();
         }
+        validarCondicions();
     });
 </script>
 @endsection
