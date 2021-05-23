@@ -103,10 +103,6 @@ class AlumneController extends Controller
             }
 
             if ($ok == true) {
-                $tasca->condicion_id = $condicioGuardar;
-                $tasca->correcta = true;
-                $tasca->save();
-            } else {
                 if ($tasca->condicion_id != $condicioGuardar) {
                     $condicioActual = Condicio::find($tasca->condicion_id);
                     if ($condicioActual) {
@@ -114,9 +110,17 @@ class AlumneController extends Controller
                         $tasca->save();
                         $condicioActual->delete();
                     }
-                } else {
+                $tasca->condicion_id = $condicioGuardar;
+                $tasca->correcta = true;
+                $tasca->save();
+                }
+            } else {
+                $idCondicioAnterior = $tasca->condicion_id;
+                $condicioAnterior = Condicio::find($idCondicioAnterior);
+                if ($condicioAnterior){
                     $tasca->condicion_id = null;
                     $tasca->save();
+                    $condicioAnterior->delete();
                 }
 
                 $condIncorrecta = Condicio::create([
