@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="icon" href="{{ asset('img/favicon_emt.png')}}"  type="image/x-icon">
-    <title>PROJECTE QUÍMICA EMIL</title>
+    <title>PROJECTE QUÍMICA EMT</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
