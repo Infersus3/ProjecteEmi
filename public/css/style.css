@@ -172,3 +172,7 @@ input[type=file] {
 .aut {
     margin-top: 15%;
 }
+
+.tr-min {
+ min-width: 250px;
+}
