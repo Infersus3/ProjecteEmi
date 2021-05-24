@@ -25,7 +25,7 @@
                 @foreach ($tasques as $tasca)
                 @if ($practica->id == $tasca->practica_id)
                 <tr>
-                    <td>
+                    <td class="tr-min">
                         <div class="btn">
                             <h5 class="users">{{ $practica->titol }}</h5>
                         </div>
