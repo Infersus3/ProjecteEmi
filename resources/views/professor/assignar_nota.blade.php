@@ -120,7 +120,7 @@
                                     @endfor
                                     <div class="form-group">
                                         <label for="labelNota">Nota</label>
-                                        <input type="number" name="nota" class="form-control" value="{{ $tasca->nota ?? '' }}" id="labelNota">
+                                        <input type="number" step="any" name="nota" class="form-control" value="{{ $tasca->nota ?? '' }}" id="labelNota">
                                     </div>
                                     <input type="hidden" value="{{ $mostra->id }}" name="mostraId">
                                     <div class="form-group" style="display: none;">
