@@ -20,7 +20,7 @@ class CreateTascasTable extends Migration
             $table->foreignId('alumne_id')->nullable()->constrained('alumnes');
             $table->foreignId('condicion_id')->nullable()->constrained('condicions'); 
             $table->text("comentari")->nullable();
-            $table->integer("nota")->nullable();
+            $table->float("nota")->nullable();
             $table->date("data_lliurament")->nullable();
             $table->string('document')->nullable();
             $table->boolean("correcta")->nullable();
