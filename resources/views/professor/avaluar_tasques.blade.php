@@ -21,7 +21,7 @@
                         @foreach ($alumnes as $alumne)
                         @if ($alumne->id == $tasca->alumne_id)
                         @php $in = 1; @endphp
-                        <td>
+                        <td class="tr-min">
                             <div class="btn">
                                 <h5> {{ $alumne->nom }}</h5>
                             </div>
@@ -44,7 +44,7 @@
                         @if ($tasca->grup_id)
                         @foreach ($grups as $grup)
                         @if ($grup->id == $tasca->grup_id)
-                        <td>
+                        <td class="tr-min">
                             <div class="btn">
                                 <h5> {{ $grup->nom }}</h5>
                             </div>
