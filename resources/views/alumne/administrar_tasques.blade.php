@@ -37,7 +37,7 @@
                         <a href="{{ route('realitza_tasca', ['id' => $tasca->id]) }}" class="btn btn-warning"><i class="fas fa-search"></i> Veure pràctica</a>
                         @endif
                     </td>
-                    @if ($tasca->nota)
+                    @if (!is_null($tasca->nota))
                     @if ($tasca->nota > 5)
                     <td>
                         <button class="btn btn-success">Avaluació: {{ $tasca->nota }}</button>
@@ -51,21 +51,9 @@
                         </td>
                     @endif
                     @endif
-                        @if ($tasca->grup_id)
+                    @if ($tasca->grup_id)
                         @foreach ($alumne->grups as $grups)
                         @if ($grups->id == $tasca->grup_id)
-                        @if ($tasca->nota > 5)
-                        <td>
-                            <button class="btn btn-success">Avaluació: {{ $tasca->nota }}</button>
-                        </td>
-                        @elseif ($tasca->nota < 4) <td>
-                            <button class="btn btn-danger">Avaluació: {{ $tasca->nota }}</button>
-                            </td>
-                            @else
-                            <td>
-                                <button class="btn btn-warning">Avaluació: {{ $tasca->nota }}</button>
-                            </td>
-                        @endif
                         <td>
                             <p> Practica en grup: {{ $grups->nom }} </p>
                         </td>
