@@ -12,7 +12,7 @@
                 <table class="table table-responsive">
                     <tr>
                         <p> {{ date("d-m-Y", strtotime($practica->data_entrega)) }} </p>
-                        <td>
+                        <td class="tr-min">
                             <div class="btn">
                                 <h5>{{ $practica->titol }}</h5>
                             </div>
