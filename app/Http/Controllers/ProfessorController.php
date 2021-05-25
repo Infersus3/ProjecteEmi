@@ -413,7 +413,7 @@ class ProfessorController extends Controller
     {
         if (isset($request->submit)) {
             $validated = $request->validate([
-                'nom' => 'required|max:40',
+                'nom_compost' => 'required|max:40',
                 'formula' => 'required|max:50',
             ]);
             CompostQuimics::create([
